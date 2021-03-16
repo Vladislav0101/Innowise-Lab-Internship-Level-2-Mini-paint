@@ -1,0 +1,304 @@
+@import url("https://fonts.googleapis.com/css2?family=Fascinate&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500&display=swap");
+.bgc_c1 {
+  background-color: #001e38;
+}
+
+.bgc_c2 {
+  background-color: chartreuse;
+}
+
+.bgc_c3 {
+  background-color: #f0fffa;
+}
+
+.c_c1 {
+  color: #001e38;
+}
+
+.c_c2 {
+  color: chartreuse;
+}
+
+.c_c3 {
+  color: #f0fffa;
+}
+
+main,
+body,
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Hind Siliguri", sans-serif;
+  font-weight: 500;
+}
+
+body {
+  background-color: #001e38;
+}
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-family: "Fascinate", cursive;
+  color: chartreuse;
+}
+
+input {
+  background-color: #001e38;
+  color: #f0fffa;
+  border: 1px solid chartreuse;
+  font-size: 1rem;
+  border-radius: 7px;
+  height: 35px;
+  outline: none;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+}
+
+input:hover,
+input:focus {
+  background-color: #f0fffa;
+  color: #001e38;
+  border: 1px solid #f0fffa;
+  cursor: pointer;
+}
+
+button {
+  outline: none;
+}
+
+.auth_box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.auth_area {
+  position: relative;
+  border: 1px solid chartreuse;
+  padding: 30px 30px 80px 30px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.auth_area h1 {
+  text-align: center;
+}
+
+.auth_form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.auth_input {
+  width: 250px;
+  margin: 5px;
+  padding-left: 15px;
+}
+
+.auth_button {
+  height: 60px;
+  position: absolute;
+  bottom: -1px;
+  left: -1px;
+  right: -1px;
+  width: 101%;
+  border-radius: 0px 0px 15px 15px;
+  border: 1px solid chartreuse;
+  background: none;
+  font-family: "Fascinate", cursive;
+  color: #f0fffa;
+  font-size: 2rem;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+}
+
+.auth_button:hover {
+  cursor: pointer;
+  background-color: chartreuse;
+  color: #001e38;
+}
+
+.from_sign_to_reg {
+  position: absolute;
+  top: 2px;
+  right: 10px;
+  color: #f0fffa;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
+.from_sign_to_reg:hover {
+  cursor: pointer;
+  color: chartreuse;
+}
+
+.error {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #001e38;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1.2rem;
+  color: #f0fffa;
+}
+
+.createButton,
+.logoutButton {
+  width: 100px;
+  height: auto;
+  background: none;
+  border: 1px solid #f0fffa;
+  border-radius: 7px;
+  color: #f0fffa;
+  font-size: 1.5rem;
+  font-family: "Fascinate", cursive;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+}
+
+.createButton:hover,
+.logoutButton:hover {
+  cursor: pointer;
+  color: #001e38;
+  background-color: #f0fffa;
+  border-radius: 7px;
+}
+
+.save {
+  background-color: #f0fffa;
+  border: none;
+  width: 45px;
+  height: 45px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 7px;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+}
+
+.save:hover {
+  background-color: chartreuse;
+  cursor: pointer;
+}
+
+.settings {
+  background-color: #f0fffa;
+}
+
+.settings_figure {
+  width: 50px;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.settings_figure:hover {
+  background-color: chartreuse;
+  cursor: pointer;
+}
+
+.circle,
+.rectangle {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #001e38;
+}
+
+.circle {
+  border-radius: 100%;
+}
+
+.line {
+  width: 35px;
+  height: 3px;
+  background-color: #001e38;
+}
+
+.settings button {
+  width: 50px;
+  height: 50px;
+  background-color: #001e38;
+  border: none;
+  border-radius: 50%;
+  color: #f0fffa;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+}
+
+.pencil:hover,
+.settings button:hover {
+  background-color: chartreuse;
+  color: #001e38;
+  cursor: pointer;
+}
+
+.settings_color input {
+  background-color: #f0fffa !important;
+}
+
+canvas {
+  background-color: #f0fffa;
+}
+
+.picture_box {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #f0fffa;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 15px;
+  border-radius: 7px;
+  margin: 30px auto;
+}
+/*# sourceMappingURL=main.css.map */
