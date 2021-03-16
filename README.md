@@ -1,24 +1,33 @@
-# mini-paint
+# Innowise Lab Internship: Level 2: Mini-paint
 
-## Project setup
+## Task
 ```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
+https://docs.google.com/document/d/1K79_NA4lMYfqQiIJGqLDek1K9z-oc2qg8n4AvrN1PXE/edit
 ```
 
-### Compiles and minifies for production
+## How to run the app
 ```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
+1. Склонируйте репозиторий: git clone https://github.com/Vladislav0101/Innowise-Lab-Internship-Level-2-Mini-paint
+2. После клонирования установите зависимости npm install
+3. Запустите проект
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Application stack
+```
+```
+
+### TypeScript
+### Firebase
+### Vue-router
+### Vuex
+
+## Folder structure
+```
+└─src
+   ├─assets       # Необходимые элементы(изображения)
+   ├─Components   # Компоненты приложения
+   ├─router        # Роутер приложения
+   ├─store        # Хранилище данных
+   ├─utils        # Полезные файлы
+   ├─App.vue      # Главный компонент
+   └─main.ts      # Точка входа
