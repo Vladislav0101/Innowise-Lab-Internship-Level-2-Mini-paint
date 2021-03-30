@@ -8,8 +8,9 @@ https://docs.google.com/document/d/1K79_NA4lMYfqQiIJGqLDek1K9z-oc2qg8n4AvrN1PXE/
 ## How to run the app
 ```
 1. Склонируйте репозиторий: git clone https://github.com/Vladislav0101/Innowise-Lab-Internship-Level-2-Mini-paint
-2. После клонирования установите зависимости npm install
-3. Запустите проект
+2. Добавьте файл с переменными среды(.env)
+3. После клонирования установите зависимости npm install
+4. Запустите проект
 ```
 deploy: https://vladislav0101.github.io/Innowise-Lab-Internship-Level-2-Mini-paint/
 
