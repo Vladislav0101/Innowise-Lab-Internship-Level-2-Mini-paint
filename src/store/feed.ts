@@ -1,10 +1,11 @@
 import firebase from "firebase";
-import { IRootState, IFeed } from "./../utils/types";
+import { IRootState, IFeed } from "@/types/index";
 import { ActionTree, MutationTree, GetterTree } from "vuex";
 
 const state: IFeed = {
   arrayOfUrls: [],
 };
+
 const getters: GetterTree<IFeed, IRootState> = {
   arrayOfUrls(state) {
     return state.arrayOfUrls.sort((a, b): any => {
@@ -14,15 +15,18 @@ const getters: GetterTree<IFeed, IRootState> = {
     });
   },
 };
+
 const mutations: MutationTree<IFeed> = {
   setArrayOfUrls(state, arrayOfUrls): void {
     state.arrayOfUrls = arrayOfUrls;
   },
 };
+
 const actions: ActionTree<IFeed, IRootState> = {
   async getPictures({ commit }): Promise<void> {
     const arrayOfUrls: Array<object> = [];
     const storageRef = firebase.storage().ref();
+
     storageRef.listAll().then((objOfFiles) => {
       objOfFiles.items.forEach((item) => {
         const email: string = item.name.split("-")[1];
@@ -32,6 +36,7 @@ const actions: ActionTree<IFeed, IRootState> = {
           email.length - countOfFormatSymbols
         );
         const date: string = item.name.split("-")[0];
+
         storageRef
           .child(item.name)
           .getDownloadURL()
@@ -47,6 +52,7 @@ const actions: ActionTree<IFeed, IRootState> = {
     commit("setArrayOfUrls", arrayOfUrls);
   },
 };
+
 export default {
   state,
   getters,

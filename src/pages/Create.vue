@@ -21,9 +21,10 @@
 <script lang="ts">
 import Header from "@/components/Header/Header.vue";
 import Settings from "@/components/Creat/Settings.vue";
-import { ICanvas, ICoordinates } from "@/utils/types";
+import { ICanvas /*ICoordinates*/ } from "@/types/index";
 import Vue from "vue";
 import { mapGetters } from "vuex";
+
 export default Vue.extend({
   data(): ICanvas {
     return {
@@ -62,11 +63,12 @@ export default Vue.extend({
         if (this.mode === "pencil") {
           this.drawPoint(e);
         } else {
-          const coordinates: ICoordinates = this.getCoordinates(e);
+          const coordinates = this.getCoordinates(e);
           const ctx = this.context;
           ctx.putImageData(this.imageData, 0, 0);
           let x1;
           let y1;
+
           if (this.arrToBuildFigure.length === 0) {
             x1 = coordinates.x;
             y1 = coordinates.y;
@@ -78,6 +80,7 @@ export default Vue.extend({
           ctx.strokeStyle = this.color;
           ctx.lineWidth = this.size;
           ctx.lineCap = "round";
+
           if (this.mode === "line") {
             ctx.moveTo(x1, y1);
             ctx.lineTo(coordinates.x, coordinates.y);
@@ -102,6 +105,7 @@ export default Vue.extend({
     drawPoint(e: MouseEvent) {
       const coordinates = this.getCoordinates(e);
       const ctx = this.context;
+
       ctx.beginPath();
       ctx.strokeStyle = this.color;
       ctx.lineWidth = this.size;
@@ -122,7 +126,7 @@ export default Vue.extend({
         this.canvas?.height
       );
     },
-    getCoordinates(e: MouseEvent): ICoordinates {
+    getCoordinates(e: MouseEvent): { [key: string]: number } {
       return {
         x: e.offsetX,
         y: e.offsetY,

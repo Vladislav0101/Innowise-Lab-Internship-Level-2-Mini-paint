@@ -1,4 +1,4 @@
-import { IProfileStateUser, IRootState, IAuth } from "./../utils/types";
+import { IProfileStateUser, IRootState, IAuth } from "@/types/index";
 import firebase from "firebase";
 import { ActionTree, MutationTree, GetterTree } from "vuex";
 
@@ -6,6 +6,7 @@ const state: IProfileStateUser = {
   user: "",
   email: "",
 };
+
 const getters: GetterTree<IProfileStateUser, IRootState> = {
   user(state): string {
     return state.user;
@@ -14,6 +15,7 @@ const getters: GetterTree<IProfileStateUser, IRootState> = {
     return state.email;
   },
 };
+
 const mutations: MutationTree<IProfileStateUser> = {
   setUser(state, newUser: string): void {
     state.user = newUser;
@@ -22,6 +24,7 @@ const mutations: MutationTree<IProfileStateUser> = {
     state.email = email;
   },
 };
+
 const actions: ActionTree<IProfileStateUser, IRootState> = {
   async registerUser(
     { commit }: any,
@@ -31,6 +34,7 @@ const actions: ActionTree<IProfileStateUser, IRootState> = {
       .auth()
       .createUserWithEmailAndPassword(userMail, userPassword);
   },
+
   async signInUser(
     { commit }: any,
     { userMail, userPassword }: IAuth
@@ -39,11 +43,13 @@ const actions: ActionTree<IProfileStateUser, IRootState> = {
       .auth()
       .signInWithEmailAndPassword(userMail, userPassword);
   },
+
   logoutUser({ commit }) {
     firebase.auth().signOut();
     commit("setUser", "");
   },
 };
+
 export default {
   state,
   getters,

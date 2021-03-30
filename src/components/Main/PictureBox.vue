@@ -6,10 +6,10 @@
   </div>
 </template>
 <script lang="ts">
-import { IDate } from "@/utils/types";
 import Vue from "vue";
+
 export default Vue.extend({
-  data(): IDate {
+  data(): { dateLocal: string } {
     return {
       dateLocal: ""
     };
@@ -34,6 +34,7 @@ export default Vue.extend({
         "November",
         "December"
       ];
+
     this.dateLocal = `${("" + day).length < 2 ? "0" + day : day}/${
       months[month]
     }/${year}`;

@@ -1,4 +1,4 @@
-import { IRootState, IProfileStateCreate } from "./../utils/types";
+import { IRootState, IProfileStateCreate } from "@/types/index";
 import { ActionTree, MutationTree, GetterTree } from "vuex";
 
 const state: IProfileStateCreate = {
@@ -6,6 +6,7 @@ const state: IProfileStateCreate = {
   color: "#000000",
   mode: "pencil",
 };
+
 const getters: GetterTree<IProfileStateCreate, IRootState> = {
   size(state): number {
     return state.size;
@@ -17,6 +18,7 @@ const getters: GetterTree<IProfileStateCreate, IRootState> = {
     return state.mode;
   },
 };
+
 const mutations: MutationTree<IProfileStateCreate> = {
   setSize(state, newSize: number): void {
     state.size = newSize;
@@ -28,6 +30,7 @@ const mutations: MutationTree<IProfileStateCreate> = {
     state.mode = mode;
   },
 };
+
 const actions: ActionTree<IProfileStateCreate, IRootState> = {
   setSize({ commit }, newSize: number): void {
     commit("setSize", newSize);
@@ -39,6 +42,7 @@ const actions: ActionTree<IProfileStateCreate, IRootState> = {
     commit("setMode", mode);
   },
 };
+
 export default {
   state,
   getters,

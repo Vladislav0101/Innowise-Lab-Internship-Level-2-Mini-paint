@@ -39,12 +39,12 @@
   </div>
 </template>
 <script lang="ts">
-import { IUserToAuth } from "@/utils/types";
+import { IPasswordToCheck, IAuth } from "@/types/index";
 import { mapActions } from "vuex";
 import Vue from "vue";
 
 export default Vue.extend({
-  data(): IUserToAuth {
+  data(): { userToSent: IAuth & IPasswordToCheck; submitStatus: string } {
     return {
       userToSent: {
         userMail: "",

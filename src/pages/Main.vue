@@ -27,10 +27,10 @@ import Vue from "vue";
 import Header from "@/components/Header/Header.vue";
 import PictureBox from "@/components/Main/PictureBox.vue";
 import { mapActions, mapGetters } from "vuex";
-import { IFeedObject, IMainData } from "@/utils/types";
+import { IFeedObject /*IMainData*/ } from "@/types/index";
 
 export default Vue.extend({
-  data(): IMainData {
+  data(): { [key: string]: string } {
     return {
       inputUser: "",
       arrOfChosenUserPict: ""
@@ -39,6 +39,7 @@ export default Vue.extend({
   methods: {
     ...mapActions(["getPictures"]),
     filterUsers(): void {
+      console.log(this.arrayOfUrls);
       if (this.inputUser) {
         this.arrOfChosenUserPict = this.arrayOfUrls.filter(
           (item: IFeedObject) => {
