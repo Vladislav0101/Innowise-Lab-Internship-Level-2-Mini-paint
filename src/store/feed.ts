@@ -8,10 +8,14 @@ const state: IFeed = {
 
 const getters: GetterTree<IFeed, IRootState> = {
   arrayOfUrls(state) {
-    return state.arrayOfUrls.sort((a, b): any => {
-      if (a.date === b.date) return 0;
-      if (a.date > b.date) return -1;
-      if (a.date < b.date) return 1;
+    return state.arrayOfUrls.sort((a, b): number => {
+      if (a.date > b.date) {
+        return -1;
+      } else if (a.date < b.date) {
+        return 1;
+      } else {
+        return 0;
+      }
     });
   },
 };
@@ -29,13 +33,12 @@ const actions: ActionTree<IFeed, IRootState> = {
 
     storageRef.listAll().then((objOfFiles) => {
       objOfFiles.items.forEach((item) => {
-        const email: string = item.name.split("-")[1];
+        const [date, email]: string[] = item.name.split("-");
         const countOfFormatSymbols = 5;
         const emailToSet: string = email.slice(
           0,
           email.length - countOfFormatSymbols
         );
-        const date: string = item.name.split("-")[0];
 
         storageRef
           .child(item.name)

@@ -27,6 +27,7 @@
 import { mapActions, mapGetters } from "vuex";
 import Vue from "vue";
 import { ISettings } from "@/types/index";
+
 export default Vue.extend({
   data(): ISettings {
     return {

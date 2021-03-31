@@ -47,7 +47,7 @@ const router = new VueRouter({
   ],
 });
 router.beforeEach((to, from, next) => {
-  const user: any = store.getters.user;
+  const user: string = store.getters.user;
   const isRequiresAuth = to.meta.requiresAuth;
 
   if (isRequiresAuth && !user) {

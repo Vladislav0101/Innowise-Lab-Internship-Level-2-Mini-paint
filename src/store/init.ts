@@ -40,8 +40,7 @@ const actions: ActionTree<IInit, IRootState> = {
     return new Promise((res, rej) => {
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
-          commit("setUser", user.uid);
-          commit("setEmail", user.email);
+          commit("setUser", { newUser: user.uid, email: user.email });
         }
         res(user);
       }, rej);

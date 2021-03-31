@@ -27,7 +27,7 @@ import Vue from "vue";
 import Header from "@/components/Header/Header.vue";
 import PictureBox from "@/components/Main/PictureBox.vue";
 import { mapActions, mapGetters } from "vuex";
-import { IFeedObject /*IMainData*/ } from "@/types/index";
+import { IFeedObject } from "@/types/index";
 
 export default Vue.extend({
   data(): { [key: string]: string } {
@@ -39,7 +39,6 @@ export default Vue.extend({
   methods: {
     ...mapActions(["getPictures"]),
     filterUsers(): void {
-      console.log(this.arrayOfUrls);
       if (this.inputUser) {
         this.arrOfChosenUserPict = this.arrayOfUrls.filter(
           (item: IFeedObject) => {

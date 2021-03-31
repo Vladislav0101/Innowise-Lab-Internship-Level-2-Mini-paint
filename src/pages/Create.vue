@@ -20,7 +20,7 @@
 </template>
 <script lang="ts">
 import Header from "@/components/Header/Header.vue";
-import Settings from "@/components/Creat/Settings.vue";
+import Settings from "@/components/Create/Settings.vue";
 import { ICanvas /*ICoordinates*/ } from "@/types/index";
 import Vue from "vue";
 import { mapGetters } from "vuex";

@@ -4,7 +4,6 @@ import router from "./router/router";
 import store from "./store";
 
 Vue.config.productionTip = false;
-console.log("asd");
 store.dispatch("initializeApp").then(() => {
   new Vue({
     router,

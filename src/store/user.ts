@@ -17,17 +17,15 @@ const getters: GetterTree<IProfileStateUser, IRootState> = {
 };
 
 const mutations: MutationTree<IProfileStateUser> = {
-  setUser(state, newUser: string): void {
+  setUser(state, { newUser, email }: { [key: string]: string }): void {
     state.user = newUser;
-  },
-  setEmail(state, email) {
     state.email = email;
   },
 };
 
 const actions: ActionTree<IProfileStateUser, IRootState> = {
   async registerUser(
-    { commit }: any,
+    { commit },
     { userMail, userPassword }: IAuth
   ): Promise<void> {
     const user = await firebase
@@ -36,7 +34,7 @@ const actions: ActionTree<IProfileStateUser, IRootState> = {
   },
 
   async signInUser(
-    { commit }: any,
+    { commit },
     { userMail, userPassword }: IAuth
   ): Promise<void> {
     const user = await firebase
@@ -46,7 +44,7 @@ const actions: ActionTree<IProfileStateUser, IRootState> = {
 
   logoutUser({ commit }) {
     firebase.auth().signOut();
-    commit("setUser", "");
+    commit("setUser", { newUser: "", email: "" });
   },
 };
 
