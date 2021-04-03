@@ -1,5 +1,5 @@
 <template>
-  <div class="picture_box">
+  <div class="picture_box" id="picture_box">
     <span class="name">{{ pictureInfo.email }}</span>
     <img alt="picture" :src="pictureInfo.url" />
     <span class="date">{{ dateLocal }}</span>
@@ -34,7 +34,6 @@ export default Vue.extend({
         "November",
         "December"
       ];
-
     this.dateLocal = `${("" + day).length < 2 ? "0" + day : day}/${
       months[month]
     }/${year}`;

@@ -30,10 +30,15 @@ import { mapActions, mapGetters } from "vuex";
 import { IFeedObject } from "@/types/index";
 
 export default Vue.extend({
-  data(): { [key: string]: string } {
+  data(): {
+    inputUser: string;
+    arrOfChosenUserPict: string;
+    lastCall: Date | null;
+  } {
     return {
       inputUser: "",
-      arrOfChosenUserPict: ""
+      arrOfChosenUserPict: "",
+      lastCall: null
     };
   },
   methods: {
@@ -48,13 +53,33 @@ export default Vue.extend({
       } else {
         this.arrOfChosenUserPict = "";
       }
+    },
+    throttle(t: number) {
+      const previousCall: Date | null = this.lastCall;
+      this.lastCall = new Date();
+
+      if (
+        (!previousCall || +this.lastCall - +previousCall > t) &&
+        this.isScroll
+      ) {
+        this.getPictures();
+      }
     }
   },
   mounted() {
-    this.getPictures();
+    this.getPictures(0);
+    window.addEventListener("scroll", () => {
+      const totalHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.pageYOffset;
+      const displayHeight = document.documentElement.clientHeight;
+
+      if (totalHeight - scrollTop - displayHeight <= 300) {
+        this.throttle(250);
+      }
+    });
   },
   computed: {
-    ...mapGetters(["arrayOfUrls"])
+    ...mapGetters(["arrayOfUrls", "isScroll"])
   },
   components: {
     Header,
