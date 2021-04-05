@@ -24,25 +24,34 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import Header from "@/components/Header/Header.vue";
-import PictureBox from "@/components/Main/PictureBox.vue";
 import { mapActions, mapGetters } from "vuex";
+import throttle from "lodash/throttle";
+
 import { IFeedObject } from "@/types/index";
 
+import Header from "@/components/Header/Header.vue";
+import PictureBox from "@/components/Main/PictureBox.vue";
+
+interface MainDataProps {
+  inputUser: string;
+  arrOfChosenUserPict: string;
+  lastCall: Date | null;
+  distanceToTheBottom: number;
+  isScroll: boolean;
+}
 export default Vue.extend({
-  data(): {
-    inputUser: string;
-    arrOfChosenUserPict: string;
-    lastCall: Date | null;
-  } {
+  data(): MainDataProps {
     return {
       inputUser: "",
       arrOfChosenUserPict: "",
-      lastCall: null
+      lastCall: null,
+      distanceToTheBottom: 300,
+      isScroll: true
     };
   },
   methods: {
     ...mapActions(["getPictures"]),
+
     filterUsers(): void {
       if (this.inputUser) {
         this.arrOfChosenUserPict = this.arrayOfUrls.filter(
@@ -54,33 +63,41 @@ export default Vue.extend({
         this.arrOfChosenUserPict = "";
       }
     },
-    throttle(t: number) {
-      const previousCall: Date | null = this.lastCall;
-      this.lastCall = new Date();
 
-      if (
-        (!previousCall || +this.lastCall - +previousCall > t) &&
-        this.isScroll
-      ) {
-        this.getPictures();
-      }
+    setIsScroll(res: { [key: string]: number }) {
+      this.isScroll = res.numberOfPicturesOnPage === res.numberOfElements;
+    },
+
+    subscribeToScroll() {
+      window.addEventListener(
+        "scroll",
+        throttle(() => {
+          const totalHeight = document.documentElement.scrollHeight;
+          const scrollTop = window.pageYOffset;
+          const displayHeight = document.documentElement.clientHeight;
+
+          if (
+            totalHeight - scrollTop - displayHeight <=
+              this.distanceToTheBottom &&
+            this.isScroll
+          ) {
+            this.getPictures().then(this.setIsScroll);
+          }
+        }, 300)
+      );
     }
   },
-  mounted() {
-    this.getPictures(0);
-    window.addEventListener("scroll", () => {
-      const totalHeight = document.documentElement.scrollHeight;
-      const scrollTop = window.pageYOffset;
-      const displayHeight = document.documentElement.clientHeight;
 
-      if (totalHeight - scrollTop - displayHeight <= 300) {
-        this.throttle(250);
-      }
-    });
+  mounted() {
+    this.getPictures().then(this.setIsScroll);
+
+    this.subscribeToScroll();
   },
+
   computed: {
-    ...mapGetters(["arrayOfUrls", "isScroll"])
+    ...mapGetters(["arrayOfUrls"])
   },
+
   components: {
     Header,
     PictureBox

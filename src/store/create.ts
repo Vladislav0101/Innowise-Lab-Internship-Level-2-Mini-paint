@@ -1,5 +1,6 @@
-import { IRootState, IProfileStateCreate } from "@/types/index";
 import { ActionTree, MutationTree, GetterTree } from "vuex";
+
+import { IRootState, IProfileStateCreate } from "@/types/index";
 
 const state: IProfileStateCreate = {
   size: 5,

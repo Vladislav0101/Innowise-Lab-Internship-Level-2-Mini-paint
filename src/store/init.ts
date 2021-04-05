@@ -1,10 +1,11 @@
-import { IRootState, IInit } from "@/types/index";
 import { ActionTree, MutationTree, GetterTree } from "vuex";
 import firebase from "firebase";
 import "firebase/auth";
 import "firebase/database";
 import "firebase/messaging";
 import "firebase/storage";
+
+import { IRootState, IInit } from "@/types/index";
 
 const state: IInit = {
   isInit: false,

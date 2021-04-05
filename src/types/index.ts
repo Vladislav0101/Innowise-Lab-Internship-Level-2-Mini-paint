@@ -46,8 +46,7 @@ export interface IFeedObject {
 export interface IFeed {
   arrayOfUrls: Array<IFeedObject>;
   token: null;
-  page: null | Promise<any>;
-  isScroll: boolean;
+  // isScroll: boolean;
 }
 
 export interface ISettings {

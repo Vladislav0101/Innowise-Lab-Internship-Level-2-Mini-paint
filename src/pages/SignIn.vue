@@ -33,9 +33,10 @@
   </div>
 </template>
 <script lang="ts">
-import { IAuth } from "@/types/index";
 import { mapActions } from "vuex";
 import Vue from "vue";
+
+import { IAuth } from "@/types/index";
 
 export default Vue.extend({
   data(): { userToSent: IAuth; submitStatus: string } {
@@ -47,8 +48,10 @@ export default Vue.extend({
       submitStatus: ""
     };
   },
+
   methods: {
     ...mapActions(["signInUser"]),
+
     signInUserLocal(): void {
       this.signInUser(this.userToSent).catch(err => {
         this.submitStatus = err.message;

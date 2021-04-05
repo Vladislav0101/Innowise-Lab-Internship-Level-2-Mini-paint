@@ -1,6 +1,7 @@
-import { IProfileStateUser, IRootState, IAuth } from "@/types/index";
 import firebase from "firebase";
 import { ActionTree, MutationTree, GetterTree } from "vuex";
+
+import { IProfileStateUser, IRootState, IAuth } from "@/types/index";
 
 const state: IProfileStateUser = {
   user: "",

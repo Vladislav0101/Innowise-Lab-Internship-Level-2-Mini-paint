@@ -39,9 +39,10 @@
   </div>
 </template>
 <script lang="ts">
-import { IPasswordToCheck, IAuth } from "@/types/index";
 import { mapActions } from "vuex";
 import Vue from "vue";
+
+import { IPasswordToCheck, IAuth } from "@/types/index";
 
 export default Vue.extend({
   data(): { userToSent: IAuth & IPasswordToCheck; submitStatus: string } {
@@ -54,8 +55,10 @@ export default Vue.extend({
       submitStatus: ""
     };
   },
+
   methods: {
     ...mapActions(["registerUser"]),
+
     registerUserLocal(): void {
       if (
         this.userToSent.userPassword === this.userToSent.userPasswordConfirm
