@@ -81,7 +81,6 @@ const actions: ActionTree<IFeed, IRootState> = {
           });
         });
     });
-
     commit("setArrayOfUrls", arrayOfUrls);
 
     return { numberOfPicturesOnPage, numberOfElements };
