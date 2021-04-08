@@ -1,19 +1,3 @@
-export interface IRootState {
-  version: string;
-}
-export interface IProfileStateUser {
-  user: string;
-  email: string;
-}
-export interface IUserToAuth {
-  userToSent: IAuth;
-  submitStatus: string;
-}
-export interface IAuth {
-  userMail: string;
-  userPassword: string;
-  userPasswordConfirm?: string;
-}
 export interface ICanvas {
   canvas: HTMLCanvasElement | null;
   context: any;

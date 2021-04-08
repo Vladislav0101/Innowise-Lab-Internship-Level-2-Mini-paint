@@ -1,15 +1,15 @@
 <template>
-  <div class="picture_box">
+  <div class="picture_box" id="picture_box" ref="picture_box">
     <span class="name">{{ pictureInfo.email }}</span>
     <img alt="picture" :src="pictureInfo.url" />
     <span class="date">{{ dateLocal }}</span>
   </div>
 </template>
 <script lang="ts">
-import { IDate } from "@/utils/types";
 import Vue from "vue";
+
 export default Vue.extend({
-  data(): IDate {
+  data(): { dateLocal: string } {
     return {
       dateLocal: ""
     };

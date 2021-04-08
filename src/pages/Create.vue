@@ -19,11 +19,14 @@
   </div>
 </template>
 <script lang="ts">
-import Header from "@/components/Header/Header.vue";
-import Settings from "@/components/Creat/Settings.vue";
-import { ICanvas, ICoordinates } from "@/utils/types";
 import Vue from "vue";
 import { mapGetters } from "vuex";
+
+import { ICanvas } from "@/types/index";
+
+import Header from "@/components/Header/Header.vue";
+import Settings from "@/components/Create/Settings.vue";
+
 export default Vue.extend({
   data(): ICanvas {
     return {
@@ -36,7 +39,9 @@ export default Vue.extend({
       imageData: ""
     };
   },
+
   components: { Header, Settings },
+
   mounted() {
     const canvas: HTMLCanvasElement | null = document.querySelector("canvas");
     const context:
@@ -46,27 +51,31 @@ export default Vue.extend({
     this.canvas = canvas;
     this.context = context;
   },
+
   methods: {
     mDown(e: MouseEvent): void {
       this.action = "down";
       this.saveImageData();
       if (this.mode === "pencil") this.drawPoint(e);
     },
+
     mUp(): void {
       this.action = "up";
       this.arrToBuildFigure = [];
       this.saveImageData();
     },
+
     mMove(e: MouseEvent): void {
       if (this.action === "down") {
         if (this.mode === "pencil") {
           this.drawPoint(e);
         } else {
-          const coordinates: ICoordinates = this.getCoordinates(e);
+          const coordinates = this.getCoordinates(e);
           const ctx = this.context;
           ctx.putImageData(this.imageData, 0, 0);
           let x1;
           let y1;
+
           if (this.arrToBuildFigure.length === 0) {
             x1 = coordinates.x;
             y1 = coordinates.y;
@@ -78,6 +87,7 @@ export default Vue.extend({
           ctx.strokeStyle = this.color;
           ctx.lineWidth = this.size;
           ctx.lineCap = "round";
+
           if (this.mode === "line") {
             ctx.moveTo(x1, y1);
             ctx.lineTo(coordinates.x, coordinates.y);
@@ -99,9 +109,11 @@ export default Vue.extend({
         }
       }
     },
+
     drawPoint(e: MouseEvent) {
       const coordinates = this.getCoordinates(e);
       const ctx = this.context;
+
       ctx.beginPath();
       ctx.strokeStyle = this.color;
       ctx.lineWidth = this.size;
@@ -114,6 +126,7 @@ export default Vue.extend({
       ctx.stroke();
       ctx.closePath();
     },
+
     saveImageData() {
       this.imageData = this.context.getImageData(
         0,
@@ -122,7 +135,8 @@ export default Vue.extend({
         this.canvas?.height
       );
     },
-    getCoordinates(e: MouseEvent): ICoordinates {
+
+    getCoordinates(e: MouseEvent): { [key: string]: number } {
       return {
         x: e.offsetX,
         y: e.offsetY,
@@ -131,6 +145,7 @@ export default Vue.extend({
       };
     }
   },
+
   computed: {
     ...mapGetters(["size", "color", "mode"])
   }

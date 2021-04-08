@@ -234,6 +234,23 @@ canvas {
 //_________CREATE----------
 
 //---------MAIN____________
+.slide_show {
+  background: none;
+  color: $color3;
+  border: 1px solid $color2;
+  border-radius: 7px;
+  height: 35px;
+  padding: 0 5px;
+  font-size: 1rem;
+  font-weight: 300;
+  transition: all 0.1s linear;
+}
+.slide_show:hover {
+  background-color: #f0fffa;
+  color: #001e38;
+  border: 1px solid #f0fffa;
+  cursor: pointer;
+}
 .picture_box {
   display: grid;
   justify-content: center;
@@ -243,4 +260,85 @@ canvas {
   border-radius: 7px;
   margin: 30px auto;
 }
+
+//__________SLIDER---------
+.back_to_main_from_slider_svg {
+  fill: $color3;
+  margin: 5px;
+  transition: all 0.1s linear;
+}
+.back_to_main_from_slider_svg:hover {
+  fill: $color1;
+}
+.slider {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+.toggle_slides {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  font-size: 70px;
+  color: $color2;
+  transition: color 0.1s linear;
+  overflow: hidden;
+}
+.toggle_slides:hover {
+  cursor: pointer;
+  color: $color3;
+}
+.slider_svg_button {
+  margin-left: 15px;
+  fill: $color2;
+  transition: fill 0.1s linear;
+  display: flex;
+  align-items: center;
+}
+.slider_svg_button:hover {
+  cursor: pointer;
+  fill: $color3;
+}
+.slider_box {
+  display: flex;
+  width: 580px;
+  height: 490px;
+  overflow: hidden;
+}
+.slider_box .picture_box {
+  margin: 0 25px !important;
+}
+.slider_start,
+.slider_stop {
+  text-align: center;
+  grid-area: 2/1/2/4;
+  width: 50px;
+  height: 50px;
+  background-color: $color3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  transition: all 0.2s linear;
+  margin-top: 15px;
+}
+.slider_stop:hover,
+.slider_start:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px 0 $color3;
+  transform: scale(1.05);
+}
+.slider_svg_play {
+  margin-left: 6px;
+  fill: $color1;
+}
+.slider_svg_stop {
+  fill: $color1;
+}
+//----------SLIDER_________
+
 //__________MAIN-----------

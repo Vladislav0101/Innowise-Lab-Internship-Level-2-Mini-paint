@@ -13,6 +13,7 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
+
 import CreationButton from "@/components/Header/CreationButton.vue";
 import LogoutButton from "@/components/Header/LogoutButton.vue";
 import BackToMainButton from "@/components/Header/BackToMainButton.vue";
@@ -20,9 +21,11 @@ import SaveButton from "@/components/Header/SaveButton.vue";
 
 export default Vue.extend({
   props: ["isCreated", "canvas"],
+
   components: { CreationButton, LogoutButton, BackToMainButton, SaveButton }
 });
 </script>
+
 <style scoped>
 header {
   display: flex;

@@ -1,52 +1,92 @@
 import firebase from "firebase";
-import { IRootState, IFeed } from "./../utils/types";
 import { ActionTree, MutationTree, GetterTree } from "vuex";
+
+import { IRootState, IFeed } from "@/types/index";
 
 const state: IFeed = {
   arrayOfUrls: [],
+  token: null,
 };
+
 const getters: GetterTree<IFeed, IRootState> = {
   arrayOfUrls(state) {
-    return state.arrayOfUrls.sort((a, b): any => {
-      if (a.date === b.date) return 0;
-      if (a.date > b.date) return -1;
-      if (a.date < b.date) return 1;
-    });
+    // return state.arrayOfUrls.sort((a, b): number => {
+    //   if (a.date > b.date) {
+    //     return -1;
+    //   } else if (a.date < b.date) {
+    //     return 1;
+    //   } else {
+    //     return 0;
+    //   }
+    // });
+    return state.arrayOfUrls;
   },
 };
+
 const mutations: MutationTree<IFeed> = {
   setArrayOfUrls(state, arrayOfUrls): void {
     state.arrayOfUrls = arrayOfUrls;
   },
-};
-const actions: ActionTree<IFeed, IRootState> = {
-  async getPictures({ commit }): Promise<void> {
-    const arrayOfUrls: Array<object> = [];
-    const storageRef = firebase.storage().ref();
-    storageRef.listAll().then((objOfFiles) => {
-      objOfFiles.items.forEach((item) => {
-        const email: string = item.name.split("-")[1];
-        const countOfFormatSymbols = 5;
-        const emailToSet: string = email.slice(
-          0,
-          email.length - countOfFormatSymbols
-        );
-        const date: string = item.name.split("-")[0];
-        storageRef
-          .child(item.name)
-          .getDownloadURL()
-          .then((url) => {
-            arrayOfUrls.push({
-              url: url,
-              email: emailToSet,
-              date: date,
-            });
-          });
-      });
-    });
-    commit("setArrayOfUrls", arrayOfUrls);
+  setToken(state, token) {
+    state.token = token;
   },
 };
+
+const actions: ActionTree<IFeed, IRootState> = {
+  async getPictures({ commit, dispatch }): Promise<void> {
+    const storageRef = firebase.storage().ref("/");
+    const numberOfPicturesOnPage = 7;
+
+    const token = state.token;
+    const page = (await token)
+      ? storageRef.list({
+          maxResults: numberOfPicturesOnPage,
+          pageToken: token,
+        })
+      : storageRef.list({ maxResults: numberOfPicturesOnPage });
+
+    commit("setToken", (await page).nextPageToken);
+
+    return dispatch("requestProcessing", {
+      objOfFiles: await page,
+      numberOfPicturesOnPage,
+      storageRef,
+    });
+  },
+
+  requestProcessing(
+    { commit },
+    { objOfFiles, numberOfPicturesOnPage, storageRef }
+  ) {
+    const arrayOfUrls = state.arrayOfUrls;
+    let numberOfElements = 0;
+
+    objOfFiles.items.forEach((item: any) => {
+      numberOfElements++;
+      const [date, email]: string[] = item.name.split("-");
+      const countOfFormatSymbols = 5;
+      const emailToSet: string = email.slice(
+        0,
+        email.length - countOfFormatSymbols
+      );
+
+      storageRef
+        .child(item.name)
+        .getDownloadURL()
+        .then((url: string) => {
+          arrayOfUrls.push({
+            url: url,
+            email: emailToSet,
+            date: date,
+          });
+        });
+    });
+    commit("setArrayOfUrls", arrayOfUrls);
+
+    return { numberOfPicturesOnPage, numberOfElements };
+  },
+};
+
 export default {
   state,
   getters,

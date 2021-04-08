@@ -17,13 +17,19 @@
           class="auth_input"
           v-model="userToSent.userPassword"
         />
-        <button class="auth_button" @click.prevent="signInUserLocal">
-          sign in
+        <input
+          type="password"
+          placeholder="password"
+          class="auth_input"
+          v-model="userToSent.userPasswordConfirm"
+        />
+        <button class="auth_button" @click.prevent="registerUserLocal">
+          register
         </button>
       </form>
-      <router-link :to="{ name: 'registration' }">
+      <router-link :to="{ name: 'sign' }">
         <div class="from_sign_to_reg">
-          Registration
+          Sign in
         </div>
       </router-link>
       <div class="error" v-if="submitStatus">
@@ -33,30 +39,44 @@
   </div>
 </template>
 <script lang="ts">
-import { IUserToAuth } from "@/utils/types";
 import { mapActions } from "vuex";
 import Vue from "vue";
 
+import { IPasswordToCheck, IAuth } from "@/types/index";
+
 export default Vue.extend({
-  data(): IUserToAuth {
+  data(): { userToSent: IAuth & IPasswordToCheck; submitStatus: string } {
     return {
       userToSent: {
         userMail: "",
-        userPassword: ""
+        userPassword: "",
+        userPasswordConfirm: ""
       },
       submitStatus: ""
     };
   },
+
   methods: {
-    ...mapActions(["signInUser"]),
-    signInUserLocal(): void {
-      this.signInUser(this.userToSent).catch(err => {
-        this.submitStatus = err.message;
+    ...mapActions(["registerUser"]),
+
+    registerUserLocal(): void {
+      if (
+        this.userToSent.userPassword === this.userToSent.userPasswordConfirm
+      ) {
+        this.registerUser(this.userToSent).catch(err => {
+          this.submitStatus = err.message;
+          setTimeout(() => {
+            this.submitStatus = "";
+          }, 2000);
+        });
+      } else {
+        this.submitStatus = "Check your password";
         setTimeout(() => {
           this.submitStatus = "";
         }, 2000);
-      });
+      }
     }
   }
 });
 </script>
+<style scoped></style>
