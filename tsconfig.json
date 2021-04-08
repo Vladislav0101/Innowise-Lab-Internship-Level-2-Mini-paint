@@ -19,8 +19,8 @@
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
   "include": [
-    "src/**/*.vue",
     "src/**/*.ts",
+    "src/**/*.vue",
     "src/**/*.tsx",
     "tests/**/*.ts",
     "tests/**/*.tsx"
