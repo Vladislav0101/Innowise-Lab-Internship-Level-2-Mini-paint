@@ -1,8 +1,11 @@
 import Vue from "vue";
-import App from "./App.vue";
+import { PopoverPlugin } from "bootstrap-vue";
+
 import router from "./router/router";
 import store from "./store";
 
+import App from "./App.vue";
+Vue.use(PopoverPlugin);
 Vue.config.productionTip = false;
 store.dispatch("initializeApp").then(() => {
   new Vue({

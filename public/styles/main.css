@@ -369,7 +369,6 @@ canvas {
 }
 
 .slider_svg_button {
-  margin-left: 15px;
   fill: chartreuse;
   -webkit-transition: fill 0.1s linear;
   transition: fill 0.1s linear;

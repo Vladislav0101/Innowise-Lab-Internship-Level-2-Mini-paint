@@ -33,7 +33,7 @@ const mutations: MutationTree<IFeed> = {
 };
 
 const actions: ActionTree<IFeed, IRootState> = {
-  async getPictures({ commit, dispatch }): Promise<void> {
+  async getPictures({ commit, dispatch }, aim): Promise<void> {
     const storageRef = firebase.storage().ref("/");
     const numberOfPicturesOnPage = 7;
 
@@ -51,15 +51,17 @@ const actions: ActionTree<IFeed, IRootState> = {
       objOfFiles: await page,
       numberOfPicturesOnPage,
       storageRef,
+      aim,
     });
   },
 
   requestProcessing(
     { commit },
-    { objOfFiles, numberOfPicturesOnPage, storageRef }
+    { objOfFiles, numberOfPicturesOnPage, storageRef, aim }
   ) {
     const arrayOfUrls = state.arrayOfUrls;
     let numberOfElements = 0;
+    const slidesNumber = 5;
 
     objOfFiles.items.forEach((item: any) => {
       numberOfElements++;
@@ -74,6 +76,7 @@ const actions: ActionTree<IFeed, IRootState> = {
         .child(item.name)
         .getDownloadURL()
         .then((url: string) => {
+          if (aim === "slider" && arrayOfUrls.length > slidesNumber - 1) return;
           arrayOfUrls.push({
             url: url,
             email: emailToSet,
@@ -81,6 +84,7 @@ const actions: ActionTree<IFeed, IRootState> = {
           });
         });
     });
+
     commit("setArrayOfUrls", arrayOfUrls);
 
     return { numberOfPicturesOnPage, numberOfElements };

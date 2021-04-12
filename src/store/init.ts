@@ -42,6 +42,7 @@ const actions: ActionTree<IInit, IRootState> = {
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           commit("setUser", { newUser: user.uid, email: user.email });
+          dispatch("checkEqualVersion");
         }
         res(user);
       }, rej);
