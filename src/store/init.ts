@@ -6,6 +6,7 @@ import "firebase/messaging";
 import "firebase/storage";
 
 import { IRootState, IInit } from "@/types/index";
+import { eventBus } from "@/main";
 
 const state: IInit = {
   isInit: false,
@@ -43,6 +44,30 @@ const actions: ActionTree<IInit, IRootState> = {
         if (user) {
           commit("setUser", { newUser: user.uid, email: user.email });
           dispatch("checkEqualVersion");
+
+          eventBus.$on(
+            "checkVersionOnStart",
+            (
+              result: { checkedVersion: boolean; version: string },
+              stateVersion: string
+            ) => {
+              if (!result || result.version !== stateVersion) {
+                dispatch("setVersionOnDB");
+              }
+            }
+          );
+
+          eventBus.$on("isNeedToLearningPath", () => {
+            const resultQ = confirm(
+              "We have some new features, would you like to see them?"
+            );
+
+            if (resultQ) {
+              commit("setIsLearningPathActive", true);
+            } else {
+              commit("setIsLearningPathActive", false);
+            }
+          });
         }
         res(user);
       }, rej);

@@ -2,30 +2,18 @@
   <main>
     <Header></Header>
     <section class="picture_actions">
-      <Popover :idElement="'search'" :requiredVersion="'1.0'">
-        <div class="search">
-          <input type="text" v-model="inputUser" placeholder="find" />
-          <!-- @keypress.enter="filterUsers" @blur="filterUsers" -->
-        </div>
-      </Popover>
-      <Popover :idElement="'slider'" :requiredVersion="'1.0'">
-        <router-link class="slider_svg_button" :to="{ name: 'slider' }">
-          <svg
-            id="Capa_1"
-            enable-background="new 0 0 508 508"
-            height="40"
-            viewBox="0 0 508 508"
-            width="40"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g>
-              <path
-                d="m254 376c-22.056 0-40 17.944-40 40s17.944 40 40 40 40-17.944 40-40-17.944-40-40-40zm0 60c-11.028 0-20-8.972-20-20s8.972-20 20-20 20 8.972 20 20-8.972 20-20 20zm-140-54c-18.748 0-34 15.252-34 34s15.252 34 34 34 34-15.252 34-34-15.252-34-34-34zm0 48c-7.72 0-14-6.28-14-14s6.28-14 14-14 14 6.28 14 14-6.28 14-14 14zm280-48c-18.748 0-34 15.252-34 34s15.252 34 34 34 34-15.252 34-34-15.252-34-34-34zm0 48c-7.72 0-14-6.28-14-14s6.28-14 14-14 14 6.28 14 14-6.28 14-14 14zm-60-230c29.776 0 54-24.224 54-54s-24.224-54-54-54-54 24.224-54 54 24.224 54 54 54zm0-88c18.748 0 34 15.252 34 34s-15.252 34-34 34-34-15.252-34-34 15.252-34 34-34zm164 81.07c5.51 0 10 4.49 10 10s-4.49 10-10 10-10-4.49-10-10 4.49-10 10-10zm-488 20c-5.51 0-10-4.48-10-10 0-5.51 4.49-10 10-10s10 4.49 10 10c0 5.52-4.49 10-10 10zm468-131.428h-50v-19.642c0-5.523-4.477-10-10-10h-328c-5.523 0-10 4.477-10 10v20h-50c-16.569 0-30 13.431-30 30v45.723c0 5.318 4 9.973 9.306 10.334 5.822.397 10.694-4.236 10.694-9.976v-46.081c.01-5.5 4.5-9.99 10-10h50v206h-50c-5.5-.01-9.99-4.5-10-10v-49.93c0-5.74-4.872-10.373-10.694-9.976-5.306.361-9.306 5.016-9.306 10.334v49.572c0 16.569 13.431 30 30 30h50v20c0 5.523 4.477 10 10 10h328c5.523 0 10-4.477 10-10v-20.358h50c16.569 0 30-13.431 30-30v-49.572c0-5.318-4-9.973-9.306-10.334-5.822-.396-10.694 4.237-10.694 9.976v49.93c-.01 5.5-4.5 9.99-10 10h-50v-206h50c5.5.01 9.99 4.5 10 10v46.081c0 5.74 4.872 10.373 10.694 9.976 5.306-.361 9.306-5.016 9.306-10.334v-45.723c0-16.569-13.431-30-30-30zm-70-9.642v262.172l-133.226-124.538c-16.977-15.87-43.573-15.869-60.549 0l-29.901 27.951-73.111-91.388c-3.008-3.76-6.877-6.582-11.214-8.295v-65.902zm-308 92.195 99.601 124.5c8.322 10.402 23.939-2.092 15.617-12.494l-18.362-22.953 31.028-29.004c9.317-8.71 23.916-8.71 33.233 0l121.69 113.756h-282.807z"
-              />
-            </g>
-          </svg>
-        </router-link>
-      </Popover>
+      <component
+        :is="SearchUserIs"
+        @inputUser="inputUser"
+        :idElement="'search'"
+        :text="features.search.text"
+      ></component>
+
+      <component
+        :is="ToSliderButtonIs"
+        :idElement="'slider'"
+        :text="features.slider.text"
+      ></component>
     </section>
     <section class="feed" v-if="arrOfChosenUserPict || arrayOfUrls">
       <PictureBox
@@ -49,9 +37,13 @@ import { IFeedObject } from "../types/index";
 import Header from "@/components/Header/Header.vue";
 import PictureBox from "@/components/Main/PictureBox.vue";
 import Popover from "@/components/Popover/Popover.vue";
+import SearchUser from "@/components/Main/SearchUser.vue";
+import SearchUserWithHint from "@/components/Main/SearchUserWithHint.vue";
+import ToSliderButton from "@/components/Main/ToSliderButton.vue";
+import ToSliderButtonWithHint from "@/components/Main/ToSliderButtonWithHint.vue";
 
 interface MainDataProps {
-  inputUser: string;
+  inputUserValue: string;
   lastCall: Date | null;
   distanceToTheBottom: number;
   isInfiniteScrollEnabled: boolean;
@@ -61,8 +53,7 @@ interface MainDataProps {
 export default Vue.extend({
   data(): MainDataProps {
     return {
-      inputUser: "",
-      // arrOfChosenUserPict: "",
+      inputUserValue: "",
       lastCall: null,
       distanceToTheBottom: 300,
       isInfiniteScrollEnabled: true,
@@ -72,12 +63,16 @@ export default Vue.extend({
   methods: {
     ...mapActions(["getPictures", "setVersionOnDB"]),
 
+    inputUser(value: string): void {
+      this.inputUserValue = value;
+    },
+
     setIsInfiniteScrollEnabled(res: { [key: string]: number }): void {
       this.isInfiniteScrollEnabled =
         res.numberOfElements === res.numberOfPicturesOnPage;
     },
 
-    handlerScroll(): void {
+    handlerScroll() {
       const totalHeight = document.documentElement.scrollHeight;
       const scrollTop = window.pageYOffset;
       const displayHeight = document.documentElement.clientHeight;
@@ -95,11 +90,11 @@ export default Vue.extend({
     }
   },
 
-  beforeDestroy() {
+  beforeDestroy(): void {
     window.removeEventListener("scroll", this.throttleScroll);
   },
 
-  mounted() {
+  mounted(): void {
     if (!this.arrayOfUrls.length) {
       this.getPictures().then(this.setIsInfiniteScrollEnabled);
     }
@@ -108,23 +103,44 @@ export default Vue.extend({
   },
 
   computed: {
-    ...mapGetters(["arrayOfUrls"]),
+    ...mapGetters([
+      "arrayOfUrls",
+      "isLearningPathActive",
+      "features",
+      "version"
+    ]),
 
     arrOfChosenUserPict(): string | Array<IFeedObject> {
-      if (this.inputUser) {
+      if (this.inputUserValue) {
         return this.arrayOfUrls.filter((item: IFeedObject) => {
-          return item.email === this.inputUser;
+          return item.email === this.inputUserValue;
         });
       } else {
         return "";
       }
+    },
+
+    SearchUserIs(): Function {
+      return this.isLearningPathActive && this.version === "1.0"
+        ? SearchUserWithHint
+        : SearchUser;
+    },
+
+    ToSliderButtonIs(): Function {
+      return this.isLearningPathActive && this.version === "1.0"
+        ? ToSliderButtonWithHint
+        : ToSliderButton;
     }
   },
 
   components: {
     Header,
     PictureBox,
-    Popover
+    Popover,
+    SearchUser,
+    SearchUserWithHint,
+    ToSliderButton,
+    ToSliderButtonWithHint
   }
 });
 </script>
@@ -135,9 +151,6 @@ export default Vue.extend({
   align-items: center;
   justify-content: center;
   gap: 15px;
-}
-.search input {
-  padding-left: 10px;
 }
 .feed {
   display: grid;

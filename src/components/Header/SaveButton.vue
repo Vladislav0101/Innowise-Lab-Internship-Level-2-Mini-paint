@@ -1,17 +1,13 @@
 <template>
-  <Popover :idElement="'save-button'" :requiredVersion="'1.0'">
-    <button class="save" @click="save">
-      <img src="../../assets/save.png" alt="picture" />
-    </button>
-  </Popover>
+  <button class="save" @click="save">
+    <img src="../../assets/save.png" alt="picture" />
+  </button>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import firebase from "firebase";
 import { mapGetters } from "vuex";
-
-import Popover from "@/components/Popover/Popover.vue";
 
 export default Vue.extend({
   methods: {
@@ -26,9 +22,7 @@ export default Vue.extend({
     }
   },
 
-  components: { Popover },
-
-  props: ["canvas", "popoverText"],
+  props: ["canvas"],
 
   computed: {
     ...mapGetters(["email"])

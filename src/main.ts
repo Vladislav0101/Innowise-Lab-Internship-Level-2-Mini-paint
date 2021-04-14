@@ -5,8 +5,13 @@ import router from "./router/router";
 import store from "./store";
 
 import App from "./App.vue";
+
 Vue.use(PopoverPlugin);
+
 Vue.config.productionTip = false;
+
+export const eventBus = new Vue();
+
 store.dispatch("initializeApp").then(() => {
   new Vue({
     router,

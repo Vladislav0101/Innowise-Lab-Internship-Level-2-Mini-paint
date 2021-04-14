@@ -1,33 +1,25 @@
 <template>
   <div class="settings">
-    <Popover :idElement="'rectangle'" :requiredVersion="'1.0'">
-      <div class="settings_figure" @click="setRectangleMode">
-        <div class="rectangle"></div>
-      </div>
-    </Popover>
+    <component
+      :is="componentIs"
+      v-for="item of tools"
+      :key="item.id"
+      :idElement="item.idElement"
+      :requiredVersion="'1.0'"
+      :toolClass="item.toolClass"
+      :mode="item.mode"
+      :text="features[item.idElement].text"
+    >
+      <div
+        :class="item.idElement"
+        v-if="'circle rectangle line'.includes(item.idElement)"
+      ></div>
 
-    <Popover :idElement="'circle'" :requiredVersion="'1.0'">
-      <div class="settings_figure" @click="setCircleMode">
-        <div class="circle"></div>
+      <div v-else-if="item.idElement === 'pencil'">
+        <img src="../../assets/pencil.png" alt="pencil" width="35px" />
       </div>
-    </Popover>
 
-    <Popover :idElement="'line'" :requiredVersion="'1.0'">
-      <div class="settings_figure" @click="setLineMode">
-        <div class="line"></div>
-      </div>
-    </Popover>
-
-    <Popover :idElement="'pencil'" :requiredVersion="'1.0'">
-      <div class="settings_line">
-        <button class="pencil" @click="setPencilMode">
-          <img src="../../assets/pencil.png" alt="" />
-        </button>
-      </div>
-    </Popover>
-
-    <Popover :idElement="'size'" :requiredVersion="'1.0'">
-      <div class="settings_size">
+      <div v-else-if="item.idElement === 'size'">
         <button @click="setIsSizeInput">width</button>
         <input
           type="range"
@@ -36,13 +28,11 @@
           v-if="isSizeInput"
         />
       </div>
-    </Popover>
 
-    <Popover :idElement="'color'" :requiredVersion="'1.0'">
-      <div class="settings_color">
+      <div v-else-if="item.idElement === 'color'">
         <input type="color" v-model="localColor" width="50px" />
       </div>
-    </Popover>
+    </component>
   </div>
 </template>
 
@@ -50,13 +40,14 @@
 import { mapActions, mapGetters } from "vuex";
 import Vue from "vue";
 
-import Popover from "@/components/Popover/Popover.vue";
+import Tool from "@/components/Create/Tool.vue";
+import ToolWithHint from "@/components/Create/ToolWithHint.vue";
 
 interface SettingsData {
   localSize: number;
   isSizeInput?: boolean;
   localColor: string;
-  mode: string;
+  tools: Array<object>;
 }
 export default Vue.extend({
   data(): SettingsData {
@@ -64,12 +55,65 @@ export default Vue.extend({
       localSize: 0,
       isSizeInput: false,
       localColor: "",
-      mode: "pencil"
+      tools: [
+        {
+          id: 1,
+          idElement: "rectangle",
+          requiredVersion: "'1.0'",
+          toolClass: "settings_figure",
+          mode: "rectangle"
+        },
+        {
+          id: 2,
+          idElement: "circle",
+          requiredVersion: "'1.0'",
+          toolClass: "settings_figure",
+          mode: "circle"
+        },
+        {
+          id: 3,
+          idElement: "line",
+          requiredVersion: "'1.0'",
+          toolClass: "settings_figure",
+          mode: "line"
+        },
+        {
+          id: 4,
+          idElement: "pencil",
+          requiredVersion: "'1.0'",
+          toolClass: "settings_figure",
+          mode: "pencil"
+        },
+        {
+          id: 5,
+          idElement: "size",
+          requiredVersion: "'1.0'",
+          toolClass: "settings_size"
+        },
+        {
+          id: 6,
+          idElement: "color",
+          requiredVersion: "'1.0'",
+          toolClass: "settings_color"
+        }
+      ]
     };
   },
 
   computed: {
-    ...mapGetters(["size", "color", "requiredVersion"])
+    ...mapGetters([
+      "size",
+      "color",
+      "isLearningPathActive",
+      "features",
+      "version"
+    ]),
+
+    componentIs(): Function {
+      return this.isLearningPathActive && this.version === "1.0"
+        ? ToolWithHint
+        : Tool;
+    }
   },
 
   watch: {
@@ -87,30 +131,10 @@ export default Vue.extend({
 
     setIsSizeInput(): void {
       this.isSizeInput = !this.isSizeInput;
-    },
-
-    setPencilMode(): void {
-      this.mode = "pencil";
-      this.setMode("pencil");
-    },
-
-    setLineMode(): void {
-      this.mode = "line";
-      this.setMode("line");
-    },
-
-    setCircleMode(): void {
-      this.mode = "circle";
-      this.setMode("circle");
-    },
-
-    setRectangleMode(): void {
-      this.mode = "rectangle";
-      this.setMode("rectangle");
     }
   },
 
-  components: { Popover },
+  components: { Tool, ToolWithHint },
 
   mounted() {
     this.localSize = this.size;
@@ -119,7 +143,7 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped>
+<style>
 .settings {
   width: 10vw;
   height: 100%;

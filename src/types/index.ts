@@ -53,7 +53,13 @@ export interface IRenderingContext {
 }
 
 export interface IVersion {
-  features: object;
+  features: { [key: string]: IFeaturesElement };
   version: string;
-  versionReviewed: boolean;
+  isLearningPathActive: boolean;
+  isVersionsMatch: boolean;
+}
+
+export interface IFeaturesElement {
+  isChecked: boolean;
+  text: string;
 }

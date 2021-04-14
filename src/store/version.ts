@@ -3,10 +3,12 @@ import { ActionTree, MutationTree, GetterTree } from "vuex";
 
 import { IRootState, IVersion } from "@/types/index";
 import features from "@/utils/features";
+import { eventBus } from "@/main";
 
 const state: IVersion = {
   version: "1.0",
-  versionReviewed: false,
+  isLearningPathActive: false,
+  isVersionsMatch: false,
   features: {},
 };
 
@@ -14,29 +16,31 @@ const getters: GetterTree<IVersion, IRootState> = {
   version(state) {
     return state.version;
   },
-  versionReviewed(state) {
-    return state.versionReviewed;
-  },
   features(state) {
     return state.features;
+  },
+  isVersionsMatch(state) {
+    return state.isVersionsMatch;
+  },
+  isLearningPathActive(state) {
+    return state.isLearningPathActive;
   },
 };
 
 const mutations: MutationTree<IVersion> = {
-  setFeatures(state, features) {
+  setFeatures(state) {
     state.features = features;
   },
-  setVersionReviewed(state, value) {
-    state.versionReviewed = value;
+  setIsLearningPathActive(state, value) {
+    state.isLearningPathActive = value;
+  },
+  setIsVersionsMatch(state, value) {
+    state.isVersionsMatch = value;
   },
 };
 
 const actions: ActionTree<IVersion, IRootState> = {
-  getFeatures({ commit }) {
-    commit("setFeatures", features);
-  },
-
-  async checkEqualVersion({ dispatch, getters, commit }) {
+  async checkEqualVersion({ getters, commit }) {
     const user = getters.user;
 
     firebase
@@ -45,27 +49,18 @@ const actions: ActionTree<IVersion, IRootState> = {
       .on("value", (res) => {
         const result = res.val();
 
-        if (!result || result.version !== state.version) {
-          dispatch("setVersionOnDB");
-        } else {
-          commit("setVersionReviewed", result.checkedVersion);
-        }
+        eventBus.$emit("checkVersionOnStart", {
+          result,
+          stateVersion: state.version,
+        });
+
+        commit("setIsVersionsMatch", result.version === state.version);
 
         if (!result.checkedVersion) {
-          const resultQ = confirm(
-            "We have some new features, would you like to see them?"
-          );
-
-          if (resultQ) {
-            commit("setVersionReviewed", false);
-          } else {
-            commit("setVersionReviewed", true);
-            dispatch("setVersionOnDB", true);
-          }
+          eventBus.$emit("isNeedToLearningPath");
         }
       });
-
-    dispatch("getFeatures");
+    commit("setFeatures");
   },
 
   async setVersionOnDB({ getters }, value) {
@@ -78,6 +73,26 @@ const actions: ActionTree<IVersion, IRootState> = {
         version: state.version,
         checkedVersion: value ? value : false,
       });
+  },
+
+  checkFeature({ state, dispatch }, idElement: string) {
+    state.features[idElement].isChecked = true;
+
+    dispatch("allFeaturesIsChecked", features).then((res) => {
+      if (res) dispatch("setVersionOnDB", true);
+    });
+  },
+
+  allFeaturesIsChecked() {
+    const features = state.features;
+
+    let allIsChecked = true;
+
+    Object.entries(features).forEach((item: Array<any>) => {
+      if (item[1].isChecked === false) allIsChecked = false;
+    });
+
+    return allIsChecked;
   },
 };
 

@@ -440,4 +440,67 @@ canvas {
 .slider_svg_stop {
   fill: #001e38;
 }
+
+@-webkit-keyframes beat {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    background-color: orange;
+  }
+  50% {
+    -webkit-transform: scale(1.3);
+            transform: scale(1.3);
+    background-color: crimson;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    background-color: orange;
+  }
+}
+
+@keyframes beat {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    background-color: orange;
+  }
+  50% {
+    -webkit-transform: scale(1.3);
+            transform: scale(1.3);
+    background-color: crimson;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    background-color: orange;
+  }
+}
+
+.popover-box {
+  position: relative;
+}
+
+.notification {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  background-color: coral;
+  -webkit-animation: beat 2s ease-out infinite;
+          animation: beat 2s ease-out infinite;
+}
+
+.popover {
+  background-color: #fcfcfc;
+  padding: 10px 15px;
+  border-radius: 7px;
+}
+
+.agree-feature {
+  width: 30px;
+  height: 30px;
+}
 /*# sourceMappingURL=main.css.map */
