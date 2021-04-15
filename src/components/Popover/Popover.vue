@@ -15,7 +15,10 @@
     >
       <h2>{{ idElement }}</h2>
       <p>{{ text }}</p>
-      <button class="agree-feature" @click="checkFeatureLocal">OK</button>
+      <form>
+        <button class="agree-feature" @click="checkFeatureLocal">Ok</button>
+        <button @click.prevent="complete">Complete</button>
+      </form>
     </b-popover>
   </div>
 </template>
@@ -26,10 +29,14 @@ import Vue from "vue";
 
 export default Vue.extend({
   methods: {
-    ...mapActions(["checkFeature"]),
+    ...mapActions(["checkFeature", "completeAll"]),
 
     checkFeatureLocal(): void {
       this.checkFeature(this.idElement);
+    },
+
+    complete() {
+      this.completeAll(true);
     }
   },
 

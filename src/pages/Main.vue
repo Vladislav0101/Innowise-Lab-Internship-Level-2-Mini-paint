@@ -61,7 +61,7 @@ export default Vue.extend({
     };
   },
   methods: {
-    ...mapActions(["getPictures", "setVersionOnDB"]),
+    ...mapActions(["getPictures"]),
 
     inputUser(value: string): void {
       this.inputUserValue = value;

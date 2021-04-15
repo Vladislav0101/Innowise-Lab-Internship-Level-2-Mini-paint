@@ -1,4 +1,3 @@
-import firebase from "firebase";
 import { ActionTree, MutationTree, GetterTree } from "vuex";
 
 import { IRootState, IVersion } from "@/types/index";
@@ -10,6 +9,7 @@ const state: IVersion = {
   isLearningPathActive: false,
   isVersionsMatch: false,
   features: {},
+  isNeedToLearningPath: false,
 };
 
 const getters: GetterTree<IVersion, IRootState> = {
@@ -25,6 +25,9 @@ const getters: GetterTree<IVersion, IRootState> = {
   isLearningPathActive(state) {
     return state.isLearningPathActive;
   },
+  isNeedToLearningPath(state) {
+    return state.isNeedToLearningPath;
+  },
 };
 
 const mutations: MutationTree<IVersion> = {
@@ -32,47 +35,24 @@ const mutations: MutationTree<IVersion> = {
     state.features = features;
   },
   setIsLearningPathActive(state, value) {
+    state.isNeedToLearningPath = false;
     state.isLearningPathActive = value;
   },
   setIsVersionsMatch(state, value) {
     state.isVersionsMatch = value;
   },
+  setIsNeedToLearningPath(state, value) {
+    state.isNeedToLearningPath = value;
+  },
 };
 
 const actions: ActionTree<IVersion, IRootState> = {
-  async checkEqualVersion({ getters, commit }) {
-    const user = getters.user;
+  async initVersion({ dispatch, commit }) {
+    dispatch("checkEqualVersion");
 
-    firebase
-      .database()
-      .ref(`${user}`)
-      .on("value", (res) => {
-        const result = res.val();
-
-        eventBus.$emit("checkVersionOnStart", {
-          result,
-          stateVersion: state.version,
-        });
-
-        commit("setIsVersionsMatch", result.version === state.version);
-
-        if (!result.checkedVersion) {
-          eventBus.$emit("isNeedToLearningPath");
-        }
-      });
-    commit("setFeatures");
-  },
-
-  async setVersionOnDB({ getters }, value) {
-    const user = getters.user;
-
-    firebase
-      .database()
-      .ref(`${user}`)
-      .set({
-        version: state.version,
-        checkedVersion: value ? value : false,
-      });
+    eventBus.$on("isNeedToLearningPath", () => {
+      commit("setIsNeedToLearningPath", true);
+    });
   },
 
   checkFeature({ state, dispatch }, idElement: string) {
@@ -93,6 +73,14 @@ const actions: ActionTree<IVersion, IRootState> = {
     });
 
     return allIsChecked;
+  },
+
+  completeAll({ dispatch }) {
+    Object.entries(features).forEach((item: Array<any>) => {
+      item[1].isChecked = true;
+    });
+
+    dispatch("setVersionOnDB", true);
   },
 };
 

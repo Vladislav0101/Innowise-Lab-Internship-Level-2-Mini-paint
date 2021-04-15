@@ -503,4 +503,40 @@ canvas {
   width: 30px;
   height: 30px;
 }
+
+.popover button {
+  padding: 2px 5px;
+}
+
+.modal-window {
+  background-color: #f0fffa;
+  max-width: 300px;
+  padding: 10px 15px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.modal-window button {
+  width: 50px;
+  text-align: center;
+  padding: 2px 0;
+}
+
+.popover button,
+.modal-window button {
+  background-color: #001e38;
+  color: #f0fffa;
+  font-size: 1rem;
+  border: none;
+  border-radius: 7px;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+}
+
+.popover button:hover,
+.modal-window button:hover {
+  cursor: pointer;
+  background-color: chartreuse;
+  color: #001e38;
+}
 /*# sourceMappingURL=main.css.map */

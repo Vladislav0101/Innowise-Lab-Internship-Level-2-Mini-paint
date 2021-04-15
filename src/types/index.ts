@@ -57,6 +57,7 @@ export interface IVersion {
   version: string;
   isLearningPathActive: boolean;
   isVersionsMatch: boolean;
+  isNeedToLearningPath: boolean;
 }
 
 export interface IFeaturesElement {
