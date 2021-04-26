@@ -1,11 +1,17 @@
 <template>
-  <div class="picture_box" id="picture_box" ref="picture_box">
-    <span class="name">{{ pictureInfo.email }}</span>
-    <img alt="picture" :src="pictureInfo.url" />
+  <div class="picture_box" id="picture_box">
+    <router-link :to="{ name: 'someoneUser' }" class="name">
+      <span @click="getSomeoneUserInfoLocal"> {{ pictureInfo.email }}</span>
+    </router-link>
+
+    <img alt="picture" :src="pictureInfo.url" ref="image" />
+
     <span class="date">{{ dateLocal }}</span>
   </div>
 </template>
+
 <script lang="ts">
+import { mapActions } from "vuex";
 import Vue from "vue";
 
 export default Vue.extend({
@@ -14,7 +20,17 @@ export default Vue.extend({
       dateLocal: ""
     };
   },
+
+  methods: {
+    ...mapActions(["getSomeoneUserInfo"]),
+
+    getSomeoneUserInfoLocal() {
+      this.getSomeoneUserInfo(this.pictureInfo.email);
+    }
+  },
+
   props: ["pictureInfo"],
+
   mounted() {
     const pictureDate: Date = new Date(+this.pictureInfo.date),
       day = pictureDate.getDate(),
@@ -34,15 +50,10 @@ export default Vue.extend({
         "November",
         "December"
       ];
+
     this.dateLocal = `${("" + day).length < 2 ? "0" + day : day}/${
       months[month]
     }/${year}`;
   }
 });
 </script>
-<style scoped>
-.date {
-  text-align: right;
-  margin-top: 5px;
-}
-</style>

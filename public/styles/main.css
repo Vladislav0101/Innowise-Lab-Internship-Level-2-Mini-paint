@@ -1,76 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Fascinate&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500&display=swap");
-.bgc_c1 {
-  background-color: #001e38;
-}
-
-.bgc_c2 {
-  background-color: chartreuse;
-}
-
-.bgc_c3 {
-  background-color: #f0fffa;
-}
-
-.c_c1 {
-  color: #001e38;
-}
-
-.c_c2 {
-  color: chartreuse;
-}
-
-.c_c3 {
-  color: #f0fffa;
-}
-
-main,
-body,
-* {
-  margin: 0;
-  padding: 0;
-  font-family: "Hind Siliguri", sans-serif;
-  font-weight: 500;
-}
-
-body {
-  background-color: #001e38;
-}
-
-.wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-h1 {
-  font-family: "Fascinate", cursive;
-  color: chartreuse;
-}
-
-input {
-  background-color: #001e38;
-  color: #f0fffa;
-  border: 1px solid chartreuse;
-  font-size: 1rem;
-  border-radius: 7px;
-  height: 35px;
-  outline: none;
-  -webkit-transition: all 0.1s linear;
-  transition: all 0.1s linear;
-}
-
-input:hover,
-input:focus {
-  background-color: #f0fffa;
-  color: #001e38;
-  border: 1px solid #f0fffa;
-  cursor: pointer;
-}
-
-button {
-  outline: none;
-}
-
 .auth_box {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -90,7 +19,7 @@ button {
 
 .auth_area {
   position: relative;
-  border: 1px solid chartreuse;
+  border: 1px solid #00043c;
   padding: 30px 30px 80px 30px;
   border-radius: 15px;
   overflow: hidden;
@@ -124,7 +53,7 @@ button {
   right: -1px;
   width: 101%;
   border-radius: 0px 0px 15px 15px;
-  border: 1px solid chartreuse;
+  border: 1px solid #00043c;
   background: none;
   font-family: "Fascinate", cursive;
   color: #f0fffa;
@@ -135,8 +64,8 @@ button {
 
 .auth_button:hover {
   cursor: pointer;
-  background-color: chartreuse;
-  color: #001e38;
+  background-color: #00043c;
+  color: #ff5007;
 }
 
 .from_sign_to_reg {
@@ -152,7 +81,7 @@ button {
 
 .from_sign_to_reg:hover {
   cursor: pointer;
-  color: chartreuse;
+  color: #00043c;
 }
 
 .error {
@@ -167,7 +96,7 @@ button {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: #001e38;
+  background-color: #ff5007;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -175,12 +104,57 @@ button {
   color: #f0fffa;
 }
 
-.createButton,
-.logoutButton {
-  width: 100px;
-  height: auto;
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px;
+  background-color: #ff5007;
+}
+
+.logo p {
+  margin-left: 5px;
+  color: #f0fffa;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
+
+nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+
+.logoutButton svg {
+  fill: #f0fffa;
+  width: 30px;
+  height: 30px;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+}
+
+.logoutButton svg:hover {
+  cursor: pointer;
+  fill: #00043c;
+}
+
+.createButton {
+  padding: 0 5px;
+}
+
+.createButton {
+  text-align: center;
   background: none;
-  border: 1px solid #f0fffa;
   border-radius: 7px;
   color: #f0fffa;
   font-size: 1.5rem;
@@ -189,36 +163,25 @@ button {
   transition: all 0.1s linear;
 }
 
-.createButton:hover,
-.logoutButton:hover {
+.createButton:hover {
   cursor: pointer;
-  color: #001e38;
-  background-color: #f0fffa;
-  border-radius: 7px;
+  color: #00043c;
 }
 
 .save {
-  background-color: #f0fffa;
-  border: none;
-  width: 45px;
-  height: 45px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  border-radius: 7px;
+  width: 30px;
+  fill: #f0fffa;
   -webkit-transition: all 0.1s linear;
   transition: all 0.1s linear;
 }
 
 .save:hover {
-  background-color: chartreuse;
+  fill: #00043c;
   cursor: pointer;
+}
+
+.my-account {
+  color: #f0fffa;
 }
 
 .settings {
@@ -240,7 +203,7 @@ button {
 }
 
 .settings_figure:hover {
-  background-color: chartreuse;
+  background-color: #00043c;
   cursor: pointer;
 }
 
@@ -248,7 +211,7 @@ button {
 .rectangle {
   width: 30px;
   height: 30px;
-  border: 2px solid #001e38;
+  border: 2px solid #ff5007;
 }
 
 .circle {
@@ -258,13 +221,13 @@ button {
 .line {
   width: 35px;
   height: 3px;
-  background-color: #001e38;
+  background-color: #ff5007;
 }
 
 .settings button {
   width: 50px;
   height: 50px;
-  background-color: #001e38;
+  background-color: #ff5007;
   border: none;
   border-radius: 50%;
   color: #f0fffa;
@@ -274,8 +237,8 @@ button {
 
 .pencil:hover,
 .settings button:hover {
-  background-color: chartreuse;
-  color: #001e38;
+  background-color: #00043c;
+  color: #ff5007;
   cursor: pointer;
 }
 
@@ -290,7 +253,7 @@ canvas {
 .slide_show {
   background: none;
   color: #f0fffa;
-  border: 1px solid chartreuse;
+  border: 1px solid #00043c;
   border-radius: 7px;
   height: 35px;
   padding: 0 5px;
@@ -314,6 +277,8 @@ canvas {
       -ms-flex-pack: center;
           justify-content: center;
   background: #f0fffa;
+  -webkit-box-shadow: 0px 0px 15px 2px #cdcdcdba;
+          box-shadow: 0px 0px 15px 2px #cdcdcdba;
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
@@ -322,15 +287,29 @@ canvas {
   margin: 30px auto;
 }
 
+.picture_box .name {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  text-decoration: none;
+  color: #00043c;
+}
+
+.date {
+  text-align: right;
+  margin-top: 5px;
+  color: #ff5007;
+}
+
 .back_to_main_from_slider_svg {
-  fill: #f0fffa;
+  fill: #ff5007;
   margin: 5px;
   -webkit-transition: all 0.1s linear;
   transition: all 0.1s linear;
 }
 
 .back_to_main_from_slider_svg:hover {
-  fill: #001e38;
+  fill: #00043c;
 }
 
 .slider {
@@ -357,19 +336,19 @@ canvas {
       -ms-flex-align: center;
           align-items: center;
   font-size: 70px;
-  color: chartreuse;
-  -webkit-transition: color 0.1s linear;
-  transition: color 0.1s linear;
+  color: #00043c;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
   overflow: hidden;
 }
 
 .toggle_slides:hover {
   cursor: pointer;
-  color: #f0fffa;
+  color: #ff5007;
 }
 
 .slider_svg_button {
-  fill: chartreuse;
+  fill: #00043c;
   -webkit-transition: fill 0.1s linear;
   transition: fill 0.1s linear;
   display: -webkit-box;
@@ -382,7 +361,7 @@ canvas {
 
 .slider_svg_button:hover {
   cursor: pointer;
-  fill: #f0fffa;
+  fill: #ff5007;
 }
 
 .slider_box {
@@ -396,6 +375,8 @@ canvas {
 
 .slider_box .picture_box {
   margin: 0 25px !important;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .slider_start,
@@ -407,7 +388,7 @@ canvas {
   grid-area: 2/1/2/4;
   width: 50px;
   height: 50px;
-  background-color: #f0fffa;
+  background-color: #00043c;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -434,11 +415,11 @@ canvas {
 
 .slider_svg_play {
   margin-left: 6px;
-  fill: #001e38;
+  fill: #f0fffa;
 }
 
 .slider_svg_stop {
-  fill: #001e38;
+  fill: #f0fffa;
 }
 
 @-webkit-keyframes beat {
@@ -524,7 +505,7 @@ canvas {
 
 .popover button,
 .modal-window button {
-  background-color: #001e38;
+  background-color: #ff5007;
   color: #f0fffa;
   font-size: 1rem;
   border: none;
@@ -536,7 +517,7 @@ canvas {
 .popover button:hover,
 .modal-window button:hover {
   cursor: pointer;
-  background-color: chartreuse;
-  color: #001e38;
+  background-color: #00043c;
+  color: #ff5007;
 }
 /*# sourceMappingURL=main.css.map */

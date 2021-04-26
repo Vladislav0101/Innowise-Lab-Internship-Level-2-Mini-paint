@@ -1,60 +1,33 @@
 import firebase from "firebase";
 import { ActionTree, MutationTree, GetterTree } from "vuex";
 
-import { IProfileStateUser, IRootState, IAuth } from "@/types/index";
+import { IRootState, IUser } from "@/types/index";
 import { eventBus } from "@/main";
+import { stringToDBFormat } from "@/utils/helpFunction";
 
-const state: IProfileStateUser = {
-  user: "",
-  email: "",
+const state: IUser = {
+  userAccountInfo: null,
 };
 
-const getters: GetterTree<IProfileStateUser, IRootState> = {
-  user(state): string {
-    return state.user;
-  },
-  email(state) {
-    return state.email;
+const getters: GetterTree<IUser, IRootState> = {
+  userAccountInfo(state) {
+    return state.userAccountInfo;
   },
 };
 
-const mutations: MutationTree<IProfileStateUser> = {
-  setUser(state, { newUser, email }: { [key: string]: string }): void {
-    state.user = newUser;
-    state.email = email;
+const mutations: MutationTree<IUser> = {
+  setUserAccountInfo(state, userInfo) {
+    state.userAccountInfo = userInfo;
   },
 };
 
-const actions: ActionTree<IProfileStateUser, IRootState> = {
-  async registerUser(
-    { commit },
-    { userMail, userPassword }: IAuth
-  ): Promise<void> {
-    const user = await firebase
-      .auth()
-      .createUserWithEmailAndPassword(userMail, userPassword);
-  },
-
-  async signInUser(
-    { commit },
-    { userMail, userPassword }: IAuth
-  ): Promise<void> {
-    const user = await firebase
-      .auth()
-      .signInWithEmailAndPassword(userMail, userPassword);
-  },
-
-  logoutUser({ commit }) {
-    firebase.auth().signOut();
-    commit("setUser", { newUser: "", email: "" });
-  },
-
+const actions: ActionTree<IUser, IRootState> = {
   async checkEqualVersion({ getters, commit, dispatch }) {
-    const user = getters.user;
+    const emailToDB = stringToDBFormat(getters.email);
 
     firebase
       .database()
-      .ref(`${user}`)
+      .ref(`${emailToDB}/version`)
       .on("value", (res) => {
         const result = res.val();
 
@@ -72,14 +45,33 @@ const actions: ActionTree<IProfileStateUser, IRootState> = {
   },
 
   async setVersionOnDB({ getters }, value) {
-    const user = getters.user;
-
+    const emailToDB = stringToDBFormat(getters.email);
     firebase
       .database()
-      .ref(`${user}`)
+      .ref(`${emailToDB}/version`)
       .set({
         version: getters.version,
         checkedVersion: value ? value : false,
+      });
+  },
+
+  setUserInfo({ dispatch, getters }, userInfo) {
+    const emailToDB = stringToDBFormat(getters.email);
+    firebase
+      .database()
+      .ref(`${emailToDB}/userInfo`)
+      .set(userInfo);
+
+    dispatch("getUserInfo");
+  },
+
+  getUserInfo({ getters, commit }) {
+    const emailToDB = stringToDBFormat(getters.email);
+    firebase
+      .database()
+      .ref(`${emailToDB}/userInfo`)
+      .on("value", (res) => {
+        commit("setUserAccountInfo", res.val());
       });
   },
 };

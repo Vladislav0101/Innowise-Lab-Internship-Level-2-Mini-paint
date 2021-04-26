@@ -53,12 +53,16 @@ export default Vue.extend({
     ...mapActions(["signInUser"]),
 
     signInUserLocal(): void {
-      this.signInUser(this.userToSent).catch(err => {
-        this.submitStatus = err.message;
-        setTimeout(() => {
-          this.submitStatus = "";
-        }, 2000);
-      });
+      this.signInUser(this.userToSent)
+        .then(() => {
+          this.$router.push({ name: "main" });
+        })
+        .catch(err => {
+          this.submitStatus = err.message;
+          setTimeout(() => {
+            this.submitStatus = "";
+          }, 2000);
+        });
     }
   }
 });

@@ -1,7 +1,7 @@
 <template>
   <div class="settings">
     <component
-      :is="componentIs"
+      :is="componentIsV1"
       v-for="item of tools"
       :key="item.id"
       :idElement="item.idElement"
@@ -109,7 +109,7 @@ export default Vue.extend({
       "version"
     ]),
 
-    componentIs(): Function {
+    componentIsV1(): Function {
       return this.isLearningPathActive && this.version === "1.0"
         ? ToolWithHint
         : Tool;

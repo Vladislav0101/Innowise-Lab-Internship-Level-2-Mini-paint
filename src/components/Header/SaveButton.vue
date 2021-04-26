@@ -1,24 +1,55 @@
 <template>
-  <button class="save" @click="save">
-    <img src="../../assets/save.png" alt="picture" />
-  </button>
+  <svg
+    version="1.1"
+    id="Capa_1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    x="0px"
+    y="0px"
+    viewBox="0 0 512 512"
+    style="enable-background:new 0 0 512 512;"
+    xml:space="preserve"
+    class="save"
+    @click="save"
+  >
+    <g>
+      <g>
+        <g>
+          <path
+            d="M166,332h180c8.284,0,15-6.716,15-15s-6.716-15-15-15H166c-8.284,0-15,6.716-15,15S157.716,332,166,332z"
+          />
+          <path
+            d="M166,392h180c8.284,0,15-6.716,15-15s-6.716-15-15-15H166c-8.284,0-15,6.716-15,15S157.716,392,166,392z"
+          />
+          <path
+            d="M507.606,84.394l-80-80C424.793,1.58,420.978,0,417,0H15C6.716,0,0,6.716,0,15v482c0,8.284,6.716,15,15,15
+				c6.912,0,477.495,0,482,0c8.284,0,15-6.716,15-15V95C512,91.021,510.419,87.206,507.606,84.394z M121,30h210v100H121V30z
+				 M391,482H121V272h270V482z M482,482h-61V257c0-8.284-6.716-15-15-15H106c-8.284,0-15,6.716-15,15v225H30V30h61v115
+				c0,8.284,6.716,15,15,15h240c8.284,0,15-6.716,15-15V30h49.787L482,101.213V482z"
+          />
+          <path
+            d="M166,452h180c8.284,0,15-6.716,15-15s-6.716-15-15-15H166c-8.284,0-15,6.716-15,15S157.716,452,166,452z"
+          />
+        </g>
+      </g>
+    </g>
+  </svg>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import firebase from "firebase";
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default Vue.extend({
   methods: {
+    ...mapActions(["savePicture"]),
+
     save(): void {
-      const storageRef = firebase.storage().ref();
       const img: string = this.canvas.toDataURL();
 
-      storageRef
-        .child(`${+new Date()}-${this.email}.jpeg`)
-        .putString(img, "data_url");
-      alert("Save completed");
+      this.savePicture({ img }).then(() => {
+        alert("Save completed");
+      });
     }
   },
 
@@ -29,9 +60,3 @@ export default Vue.extend({
   }
 });
 </script>
-
-<style scoped>
-.save img {
-  width: 35px;
-}
-</style>

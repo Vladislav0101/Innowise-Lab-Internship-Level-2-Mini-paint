@@ -1,69 +1,58 @@
 $Fascinate: "Fascinate", cursive;
 $HindSiliguri: "Hind Siliguri", sans-serif;
-$color1: #001e38;
-$color2: chartreuse;
-$color3: #f0fffa;
-.bgc_c1 {
-  background-color: $color1;
-}
-.bgc_c2 {
-  background-color: $color2;
-}
-.bgc_c3 {
-  background-color: $color3;
-}
-.c_c1 {
-  color: $color1;
-}
-.c_c2 {
-  color: $color2;
-}
-.c_c3 {
-  color: $color3;
-}
+// $color1: #001e38;
+// $color2: chartreuse;
+// $color3: #f0fffa;
+$color-primary: #ff5007;
+$color-primary-variant: #ff5007ad;
+$color-secondary: #00043c;
+$color-background: #f0fffa;
+$color-shadow: #cdcdcdba;
 
 @import url("https://fonts.googleapis.com/css2?family=Fascinate&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500&display=swap");
-main,
-body,
-* {
-  margin: 0;
-  padding: 0;
-  font-family: $HindSiliguri;
-  font-weight: 500;
-}
-body {
-  background-color: $color1;
-}
-.wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-h1 {
-  font-family: $Fascinate;
-  color: $color2;
-}
+// main,
+// body,
+// * {
+//   margin: 0;
+//   padding: 0;
+//   font-family: $HindSiliguri;
+//   font-weight: 500;
+// }
+// body {
+//   background-color: $color-primary;
+// }
+// .wrapper {
+//   max-width: 1200px;
+//   margin: 0 auto;
+// }
+// h1 {
+//   font-family: $Fascinate;
+//   color: $color-secondary;
+// }
 
-input {
-  background-color: $color1;
-  color: $color3;
-  border: 1px solid $color2;
-  font-size: 1rem;
-  border-radius: 7px;
-  height: 35px;
-  outline: none;
-  transition: all 0.1s linear;
-}
-input:hover,
-input:focus {
-  background-color: $color3;
-  color: $color1;
-  border: 1px solid $color3;
-  cursor: pointer;
-}
-button {
-  outline: none;
-}
+// input {
+//   background-color: $color-primary;
+//   color: $color-background;
+//   border: 1px solid $color-secondary;
+//   font-size: 1rem;
+//   border-radius: 7px;
+//   height: 35px;
+//   outline: none;
+//   transition: all 0.1s linear;
+// }
+// input:hover,
+// input:focus,
+// select:hover,
+// select:focus {
+//   background-color: $color-background !important;
+//   color: $color-primary !important;
+//   border: 1px solid $color-background !important;
+//   cursor: pointer;
+// }
+// button {
+//   outline: none;
+// }
 
 // --------SIGN_IN_________
 .auth_box {
@@ -78,7 +67,7 @@ button {
 }
 .auth_area {
   position: relative;
-  border: 1px solid $color2;
+  border: 1px solid $color-secondary;
   padding: 30px 30px 80px 30px;
   border-radius: 15px;
   overflow: hidden;
@@ -103,30 +92,30 @@ button {
   right: -1px;
   width: 101%;
   border-radius: 0px 0px 15px 15px;
-  border: 1px solid $color2;
+  border: 1px solid $color-secondary;
   background: none;
   font-family: $Fascinate;
-  color: $color3;
+  color: $color-background;
   font-size: 2rem;
   transition: all 0.1s linear;
 }
 .auth_button:hover {
   cursor: pointer;
-  background-color: $color2;
-  color: $color1;
+  background-color: $color-secondary;
+  color: $color-primary;
 }
 .from_sign_to_reg {
   position: absolute;
   top: 2px;
   right: 10px;
-  color: $color3;
+  color: $color-background;
   transition: all 0.1s linear;
   text-decoration: underline;
   font-size: 0.9rem;
 }
 .from_sign_to_reg:hover {
   cursor: pointer;
-  color: $color2;
+  color: $color-secondary;
 }
 .error {
   position: absolute;
@@ -136,53 +125,75 @@ button {
   right: 0;
   display: flex;
   justify-content: center;
-  background-color: $color1;
+  background-color: $color-primary;
   align-items: center;
   font-size: 1.2rem;
-  color: $color3;
+  color: $color-background;
 }
 // ________SIGN_IN---------
 
 //---------HEADER__________
-.createButton,
-.logoutButton {
-  width: 100px;
-  height: auto;
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: $color-primary;
+}
+.logo p {
+  margin-left: 5px;
+  color: $color-background;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
+nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logoutButton svg {
+  fill: $color-background;
+  width: 30px;
+  height: 30px;
+  transition: all 0.1s linear;
+}
+.logoutButton svg:hover {
+  cursor: pointer;
+  fill: $color-secondary;
+}
+.createButton {
+  padding: 0 5px;
+}
+.createButton {
+  text-align: center;
   background: none;
-  border: 1px solid $color3;
   border-radius: 7px;
-  color: $color3;
+  color: $color-background;
   font-size: 1.5rem;
   font-family: $Fascinate;
   transition: all 0.1s linear;
 }
-.createButton:hover,
-.logoutButton:hover {
+.createButton:hover {
   cursor: pointer;
-  color: $color1;
-  background-color: $color3;
-  border-radius: 7px;
+  color: $color-secondary;
 }
 .save {
-  background-color: $color3;
-  border: none;
-  width: 45px;
-  height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 7px;
+  width: 30px;
+  fill: $color-background;
   transition: all 0.1s linear;
 }
 .save:hover {
-  background-color: $color2;
+  fill: $color-secondary;
   cursor: pointer;
+}
+.my-account {
+  color: $color-background;
 }
 //_________HEADER----------
 
 //---------CREATE__________
 .settings {
-  background-color: $color3;
+  background-color: $color-background;
 }
 .settings_figure {
   width: 50px;
@@ -192,14 +203,14 @@ button {
   justify-content: center;
 }
 .settings_figure:hover {
-  background-color: $color2;
+  background-color: $color-secondary;
   cursor: pointer;
 }
 .circle,
 .rectangle {
   width: 30px;
   height: 30px;
-  border: 2px solid $color1;
+  border: 2px solid $color-primary;
 }
 .circle {
   border-radius: 100%;
@@ -207,37 +218,37 @@ button {
 .line {
   width: 35px;
   height: 3px;
-  background-color: $color1;
+  background-color: $color-primary;
 }
 .settings button {
   width: 50px;
   height: 50px;
-  background-color: $color1;
+  background-color: $color-primary;
   border: none;
   border-radius: 50%;
-  color: $color3;
+  color: $color-background;
   transition: all 0.1s linear;
 }
 .pencil:hover,
 .settings button:hover {
-  background-color: $color2;
-  color: $color1;
+  background-color: $color-secondary;
+  color: $color-primary;
   cursor: pointer;
 }
 .settings_color input {
-  background-color: $color3 !important;
+  background-color: $color-background !important;
 }
 canvas {
-  background-color: $color3;
-  // border: 1px solid $color2;
+  background-color: $color-background;
+  // border: 1px solid $color-secondary;
 }
 //_________CREATE----------
 
 //---------MAIN____________
 .slide_show {
   background: none;
-  color: $color3;
-  border: 1px solid $color2;
+  color: $color-background;
+  border: 1px solid $color-secondary;
   border-radius: 7px;
   height: 35px;
   padding: 0 5px;
@@ -254,21 +265,31 @@ canvas {
 .picture_box {
   display: grid;
   justify-content: center;
-  background: $color3;
+  background: $color-background;
+  box-shadow: 0px 0px 15px 2px $color-shadow;
   width: max-content;
   padding: 15px;
   border-radius: 7px;
   margin: 30px auto;
 }
-
+.picture_box .name {
+  width: max-content;
+  text-decoration: none;
+  color: $color-secondary;
+}
+.date {
+  text-align: right;
+  margin-top: 5px;
+  color: $color-primary;
+}
 //__________SLIDER---------
 .back_to_main_from_slider_svg {
-  fill: $color3;
+  fill: $color-primary;
   margin: 5px;
   transition: all 0.1s linear;
 }
 .back_to_main_from_slider_svg:hover {
-  fill: $color1;
+  fill: $color-secondary;
 }
 .slider {
   display: grid;
@@ -284,23 +305,23 @@ canvas {
   display: flex;
   align-items: center;
   font-size: 70px;
-  color: $color2;
-  transition: color 0.1s linear;
+  color: $color-secondary;
+  transition: all 0.1s linear;
   overflow: hidden;
 }
 .toggle_slides:hover {
   cursor: pointer;
-  color: $color3;
+  color: $color-primary;
 }
 .slider_svg_button {
-  fill: $color2;
+  fill: $color-secondary;
   transition: fill 0.1s linear;
   display: flex;
   align-items: center;
 }
 .slider_svg_button:hover {
   cursor: pointer;
-  fill: $color3;
+  fill: $color-primary;
 }
 .slider_box {
   display: flex;
@@ -310,6 +331,7 @@ canvas {
 }
 .slider_box .picture_box {
   margin: 0 25px !important;
+  box-shadow: none;
 }
 .slider_start,
 .slider_stop {
@@ -317,7 +339,7 @@ canvas {
   grid-area: 2/1/2/4;
   width: 50px;
   height: 50px;
-  background-color: $color3;
+  background-color: $color-secondary;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -328,15 +350,15 @@ canvas {
 .slider_stop:hover,
 .slider_start:hover {
   cursor: pointer;
-  box-shadow: 0 0 10px 0 $color3;
+  box-shadow: 0 0 10px 0 $color-background;
   transform: scale(1.05);
 }
 .slider_svg_play {
   margin-left: 6px;
-  fill: $color1;
+  fill: $color-background;
 }
 .slider_svg_stop {
-  fill: $color1;
+  fill: $color-background;
 }
 //----------SLIDER_________
 
@@ -387,7 +409,7 @@ canvas {
 //----------MODAL__________
 
 .modal-window {
-  background-color: $color3;
+  background-color: $color-background;
   max-width: 300px;
   padding: 10px 15px;
   text-align: center;
@@ -400,8 +422,8 @@ canvas {
 }
 .popover button,
 .modal-window button {
-  background-color: $color1;
-  color: $color3;
+  background-color: $color-primary;
+  color: $color-background;
   font-size: 1rem;
   border: none;
   border-radius: 7px;
@@ -410,8 +432,8 @@ canvas {
 .popover button:hover,
 .modal-window button:hover {
   cursor: pointer;
-  background-color: $color2;
-  color: $color1;
+  background-color: $color-secondary;
+  color: $color-primary;
 }
 
 //__________MODAL----------

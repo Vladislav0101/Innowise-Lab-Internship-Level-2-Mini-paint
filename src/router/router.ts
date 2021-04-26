@@ -9,6 +9,8 @@ import Create from "@/pages/Create.vue";
 import SignIn from "@/pages/SignIn.vue";
 import Registration from "@/pages/Registration.vue";
 import Slider from "@/pages/SliderPage.vue";
+import MyAccount from "@/pages/MyAccount.vue";
+import SomeoneUser from "@/pages/SomeoneUser.vue";
 
 Vue.use(VueRouter);
 
@@ -60,6 +62,22 @@ const router = new VueRouter({
         } else {
           next({ path: Routes.main });
         }
+      },
+    },
+    {
+      name: "myAccount",
+      path: Routes.myAccount,
+      component: MyAccount,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      name: "someoneUser",
+      path: Routes.someoneUser,
+      component: SomeoneUser,
+      meta: {
+        requiresAuth: true,
       },
     },
   ],

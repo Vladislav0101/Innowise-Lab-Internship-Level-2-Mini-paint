@@ -82,6 +82,10 @@ const actions: ActionTree<IVersion, IRootState> = {
 
     dispatch("setVersionOnDB", true);
   },
+
+  setIsLearningPathActive({ commit }, value) {
+    commit("setIsLearningPathActive", value);
+  },
 };
 
 export default { state, getters, actions, mutations };

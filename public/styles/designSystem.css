@@ -1,0 +1,84 @@
+.fascinate {
+  font-family: "Fascinate", cursive;
+}
+
+.hind_siliguri {
+  font-family: "Hind Siliguri", sans-serif;
+}
+
+main,
+body,
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Hind Siliguri", sans-serif;
+  font-weight: 500;
+}
+
+body {
+  background-color: #f0fffa;
+}
+
+a {
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+}
+
+h1 {
+  font-family: "Fascinate", cursive;
+  color: #00043c;
+}
+
+input {
+  background-color: #00043c;
+  color: #f0fffa;
+  border: 1px solid #00043c;
+  font-size: 1rem;
+  border-radius: 7px;
+  height: 35px;
+  outline: none;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+}
+
+input::-webkit-input-placeholder {
+  color: #f0fffa;
+}
+
+input:-ms-input-placeholder {
+  color: #f0fffa;
+}
+
+input::-ms-input-placeholder {
+  color: #f0fffa;
+}
+
+input::placeholder {
+  color: #f0fffa;
+}
+
+input:hover,
+input:focus,
+select:hover,
+select:focus {
+  background-color: #ff5007 !important;
+  color: #f0fffa !important;
+  border: 1px solid #ff5007 !important;
+  cursor: pointer;
+}
+
+button {
+  outline: none;
+}
+
+.logo-svg {
+  fill: #f0fffa;
+  width: 40px;
+}
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+/*# sourceMappingURL=designSystem.css.map */

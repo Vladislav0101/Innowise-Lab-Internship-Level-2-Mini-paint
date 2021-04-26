@@ -6,14 +6,18 @@ import create from "@/store/create";
 import feed from "@/store/feed";
 import init from "@/store/init";
 import version from "@/store/version";
+import auth from "@/store/auth";
+import someoneUserAccount from "@/store/someoneUserAccount";
 
-import { IRootState, IProfileStateCreate } from "@/types/index";
+import { IRootState } from "@/types/index";
 
 Vue.use(Vuex);
 
 const store: StoreOptions<IRootState> = {
   state: { version: "1.0.0" },
   modules: {
+    someoneUserAccount,
+    auth,
     version,
     init,
     feed,

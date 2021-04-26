@@ -45,6 +45,7 @@ const actions: ActionTree<IInit, IRootState> = {
           commit("setUser", { newUser: user.uid, email: user.email });
 
           dispatch("initVersion");
+          dispatch("getUserInfo");
         }
         res(user);
       }, rej);

@@ -11,13 +11,12 @@
 </template>
 
 <script lang="ts">
-import { mapActions, mapMutations } from "vuex";
+import { mapActions } from "vuex";
 import Vue from "vue";
 
 export default Vue.extend({
   methods: {
-    ...mapMutations(["setIsLearningPathActive"]),
-    ...mapActions(["setVersionOnDB"]),
+    ...mapActions(["setVersionOnDB", "setIsLearningPathActive"]),
 
     agree() {
       this.setIsLearningPathActive(true);

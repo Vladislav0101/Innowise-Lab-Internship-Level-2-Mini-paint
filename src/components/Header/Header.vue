@@ -1,44 +1,44 @@
 <template>
   <header>
-    <component
-      :is="CreationButtonIs"
-      :idElement="'creation-button'"
-      :text="features['creation-button'].text"
-      v-if="!isCreated"
-    ></component>
+    <Logo />
+    <nav>
+      <component
+        :is="CreationButtonIs"
+        :idElement="'creation-button'"
+        :text="features['creation-button'].text"
+        v-if="!isCreated"
+      ></component>
 
-    <BackToMainButton v-else />
+      <BackToMainButton v-else />
 
-    <router-link :to="{ name: 'main' }" class="logo">
-      <h1>
-        mini-paint
-      </h1>
-    </router-link>
-
-    <LogoutButton v-if="!isCreated" />
-
-    <component
-      :is="SaveButtonIs"
-      :idElement="'save-button'"
-      :text="features['save-button'].text"
-      v-else
-    ></component>
+      <component
+        :is="SaveButtonIs"
+        :idElement="'save-button'"
+        :text="features['save-button'].text"
+        :canvas="canvas"
+        v-if="isCreated"
+      ></component>
+      <MyAccountButton :email="email" />
+      <LogoutButton v-if="!isCreated" />
+    </nav>
   </header>
 </template>
 <script lang="ts">
 import Vue from "vue";
 import { mapGetters } from "vuex";
 
+import Logo from "@/components/Header/Logo.vue";
 import CreationButton from "@/components/Header/CreationButton.vue";
 import CreationButtonWithHint from "@/components/Header/CreationButtonWithHint.vue";
 import LogoutButton from "@/components/Header/LogoutButton.vue";
 import BackToMainButton from "@/components/Header/BackToMainButton.vue";
 import SaveButton from "@/components/Header/SaveButton.vue";
 import SaveButtonWithHint from "@/components/Header/SaveButtonWithHint.vue";
+import MyAccountButton from "@/components/Header/MyAccountButton.vue";
 
 export default Vue.extend({
   computed: {
-    ...mapGetters(["isLearningPathActive", "features", "version"]),
+    ...mapGetters(["isLearningPathActive", "features", "version", "email"]),
 
     CreationButtonIs(): Function {
       return this.isLearningPathActive && this.version === "1.0"
@@ -56,22 +56,18 @@ export default Vue.extend({
   props: ["isCreated", "canvas"],
 
   components: {
+    Logo,
     CreationButton,
     CreationButtonWithHint,
     LogoutButton,
     BackToMainButton,
-    SaveButton
+    SaveButton,
+    MyAccountButton
   }
 });
 </script>
 
 <style scoped>
-header {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 10px;
-}
 @keyframes header_h1 {
   0% {
     transform: scale(1);

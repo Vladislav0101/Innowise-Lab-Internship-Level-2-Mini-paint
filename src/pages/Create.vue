@@ -48,6 +48,7 @@ export default Vue.extend({
       | CanvasRenderingContext2D
       | null
       | undefined = canvas?.getContext("2d");
+
     this.canvas = canvas;
     this.context = context;
   },

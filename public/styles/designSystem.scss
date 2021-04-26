@@ -1,0 +1,65 @@
+$Fascinate: "Fascinate", cursive;
+$HindSiliguri: "Hind Siliguri", sans-serif;
+.fascinate {
+  font-family: $Fascinate;
+}
+.hind_siliguri {
+  font-family: $HindSiliguri;
+}
+$color-primary: #ff5007;
+$color-primary-variant: #ff5007ad;
+$color-secondary: #00043c;
+$color-background: #f0fffa;
+
+main,
+body,
+* {
+  margin: 0;
+  padding: 0;
+  font-family: $HindSiliguri;
+  font-weight: 500;
+}
+body {
+  background-color: $color-background;
+}
+a {
+  height: max-content;
+}
+h1 {
+  font-family: $Fascinate;
+  color: $color-secondary;
+}
+
+input {
+  background-color: $color-secondary;
+  color: $color-background;
+  border: 1px solid $color-secondary;
+  font-size: 1rem;
+  border-radius: 7px;
+  height: 35px;
+  outline: none;
+  transition: all 0.1s linear;
+}
+input::placeholder {
+  color: $color-background;
+}
+input:hover,
+input:focus,
+select:hover,
+select:focus {
+  background-color: $color-primary !important;
+  color: $color-background !important;
+  border: 1px solid $color-primary !important;
+  cursor: pointer;
+}
+button {
+  outline: none;
+}
+.logo-svg {
+  fill: $color-background;
+  width: 40px;
+}
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}

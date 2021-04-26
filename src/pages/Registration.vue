@@ -63,12 +63,16 @@ export default Vue.extend({
       if (
         this.userToSent.userPassword === this.userToSent.userPasswordConfirm
       ) {
-        this.registerUser(this.userToSent).catch(err => {
-          this.submitStatus = err.message;
-          setTimeout(() => {
-            this.submitStatus = "";
-          }, 2000);
-        });
+        this.registerUser(this.userToSent)
+          .then(() => {
+            this.$router.push({ name: "main" });
+          })
+          .catch(err => {
+            this.submitStatus = err.message;
+            setTimeout(() => {
+              this.submitStatus = "";
+            }, 2000);
+          });
       } else {
         this.submitStatus = "Check your password";
         setTimeout(() => {

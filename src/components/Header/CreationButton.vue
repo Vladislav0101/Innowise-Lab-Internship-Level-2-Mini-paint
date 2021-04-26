@@ -1,7 +1,7 @@
 <template>
   <router-link :to="{ name: 'create' }">
-    <button class="createButton">
+    <p class="createButton">
       create
-    </button>
+    </p>
   </router-link>
 </template>
