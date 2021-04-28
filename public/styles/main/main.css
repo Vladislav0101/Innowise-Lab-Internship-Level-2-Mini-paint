@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Fascinate&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500&display=swap");
 .auth_box {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -19,7 +17,7 @@
 
 .auth_area {
   position: relative;
-  border: 1px solid #00043c;
+  border: 1px solid #30d5c8;
   padding: 30px 30px 80px 30px;
   border-radius: 15px;
   overflow: hidden;
@@ -27,6 +25,7 @@
 
 .auth_area h1 {
   text-align: center;
+  color: #ca4260;
 }
 
 .auth_form {
@@ -53,10 +52,10 @@
   right: -1px;
   width: 101%;
   border-radius: 0px 0px 15px 15px;
-  border: 1px solid #00043c;
+  border: 1px solid #30d5c8;
   background: none;
   font-family: "Fascinate", cursive;
-  color: #f0fffa;
+  color: #30d5c8;
   font-size: 2rem;
   -webkit-transition: all 0.1s linear;
   transition: all 0.1s linear;
@@ -64,15 +63,15 @@
 
 .auth_button:hover {
   cursor: pointer;
-  background-color: #00043c;
-  color: #ff5007;
+  background-color: #30d5c8;
+  color: #026159;
 }
 
 .from_sign_to_reg {
   position: absolute;
   top: 2px;
   right: 10px;
-  color: #f0fffa;
+  color: #ca4260;
   -webkit-transition: all 0.1s linear;
   transition: all 0.1s linear;
   text-decoration: underline;
@@ -81,7 +80,7 @@
 
 .from_sign_to_reg:hover {
   cursor: pointer;
-  color: #00043c;
+  color: #30d5c8;
 }
 
 .error {
@@ -96,7 +95,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: #ff5007;
+  background-color: #30d5c8;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -115,7 +114,10 @@ header {
       -ms-flex-align: center;
           align-items: center;
   padding: 10px;
-  background-color: #ff5007;
+}
+
+.header-wrapper {
+  background-color: #30d5c8;
 }
 
 .logo p {
@@ -132,7 +134,18 @@ nav {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 10px;
+  gap: 30px;
+}
+
+.looked-nav {
+  display: none;
+  width: 100%;
+  height: 17px;
+  margin-top: 10px;
+  text-align: center;
+  color: #f0fffa;
+  line-height: 16px;
+  background-color: #ca4260;
 }
 
 .logoutButton svg {
@@ -145,7 +158,11 @@ nav {
 
 .logoutButton svg:hover {
   cursor: pointer;
-  fill: #00043c;
+  fill: #026159;
+}
+
+.fill-logout-secondary {
+  fill: #026159;
 }
 
 .createButton {
@@ -165,7 +182,7 @@ nav {
 
 .createButton:hover {
   cursor: pointer;
-  color: #00043c;
+  color: #026159;
 }
 
 .save {
@@ -176,7 +193,7 @@ nav {
 }
 
 .save:hover {
-  fill: #00043c;
+  fill: #026159;
   cursor: pointer;
 }
 
@@ -186,6 +203,11 @@ nav {
 
 .settings {
   background-color: #f0fffa;
+}
+
+.settings * {
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
 }
 
 .settings_figure {
@@ -203,15 +225,23 @@ nav {
 }
 
 .settings_figure:hover {
-  background-color: #00043c;
   cursor: pointer;
+}
+
+.settings_figure:hover .circle,
+.settings_figure:hover .rectangle {
+  border: 2px solid #ca4260;
+}
+
+.settings_figure:hover .line {
+  border: 1px solid #ca4260;
 }
 
 .circle,
 .rectangle {
   width: 30px;
   height: 30px;
-  border: 2px solid #ff5007;
+  border: 2px solid #30d5c8;
 }
 
 .circle {
@@ -220,30 +250,48 @@ nav {
 
 .line {
   width: 35px;
-  height: 3px;
-  background-color: #ff5007;
+  border: 1px solid #30d5c8;
 }
 
-.settings button {
+.pencil svg {
+  fill: #30d5c8;
+  width: 35px;
+}
+
+.pencil:hover svg {
+  fill: #ca4260;
+}
+
+.settings_size {
   width: 50px;
   height: 50px;
-  background-color: #ff5007;
-  border: none;
   border-radius: 50%;
-  color: #f0fffa;
-  -webkit-transition: all 0.1s linear;
-  transition: all 0.1s linear;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #30d5c8;
+  border: 1px solid #30d5c8;
 }
 
-.pencil:hover,
-.settings button:hover {
-  background-color: #00043c;
-  color: #ff5007;
+.settings_size:hover {
   cursor: pointer;
+  border: 1px solid #ca4260;
+  color: #ca4260;
 }
 
 .settings_color input {
   background-color: #f0fffa !important;
+}
+
+.settings_color input:hover {
+  background-color: #f0fffa !important;
+  border: none !important;
 }
 
 canvas {
@@ -253,7 +301,7 @@ canvas {
 .slide_show {
   background: none;
   color: #f0fffa;
-  border: 1px solid #00043c;
+  border: 1px solid #ca4260;
   border-radius: 7px;
   height: 35px;
   padding: 0 5px;
@@ -277,8 +325,8 @@ canvas {
       -ms-flex-pack: center;
           justify-content: center;
   background: #f0fffa;
-  -webkit-box-shadow: 0px 0px 15px 2px #cdcdcdba;
-          box-shadow: 0px 0px 15px 2px #cdcdcdba;
+  -webkit-box-shadow: 0px 0px 15px 2px #02615940;
+          box-shadow: 0px 0px 15px 2px #02615940;
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
@@ -288,28 +336,35 @@ canvas {
 }
 
 .picture_box .name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 7px;
+  margin-bottom: 5px;
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
-  text-decoration: none;
-  color: #00043c;
+  color: #253533;
 }
 
 .date {
   text-align: right;
   margin-top: 5px;
-  color: #ff5007;
+  color: #253533;
 }
 
 .back_to_main_from_slider_svg {
-  fill: #ff5007;
-  margin: 5px;
+  fill: #30d5c8;
+  margin: 15px;
   -webkit-transition: all 0.1s linear;
   transition: all 0.1s linear;
 }
 
 .back_to_main_from_slider_svg:hover {
-  fill: #00043c;
+  fill: #ca4260;
 }
 
 .slider {
@@ -336,7 +391,7 @@ canvas {
       -ms-flex-align: center;
           align-items: center;
   font-size: 70px;
-  color: #00043c;
+  color: #ca4260;
   -webkit-transition: all 0.1s linear;
   transition: all 0.1s linear;
   overflow: hidden;
@@ -344,11 +399,11 @@ canvas {
 
 .toggle_slides:hover {
   cursor: pointer;
-  color: #ff5007;
+  color: #30d5c8;
 }
 
 .slider_svg_button {
-  fill: #00043c;
+  fill: #ca4260;
   -webkit-transition: fill 0.1s linear;
   transition: fill 0.1s linear;
   display: -webkit-box;
@@ -361,7 +416,7 @@ canvas {
 
 .slider_svg_button:hover {
   cursor: pointer;
-  fill: #ff5007;
+  fill: #30d5c8;
 }
 
 .slider_box {
@@ -377,6 +432,7 @@ canvas {
   margin: 0 25px !important;
   -webkit-box-shadow: none;
           box-shadow: none;
+  border: 1px solid #026159;
 }
 
 .slider_start,
@@ -388,7 +444,7 @@ canvas {
   grid-area: 2/1/2/4;
   width: 50px;
   height: 50px;
-  background-color: #00043c;
+  background-color: #ca4260;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -505,7 +561,7 @@ canvas {
 
 .popover button,
 .modal-window button {
-  background-color: #ff5007;
+  background-color: #30d5c8;
   color: #f0fffa;
   font-size: 1rem;
   border: none;
@@ -517,7 +573,7 @@ canvas {
 .popover button:hover,
 .modal-window button:hover {
   cursor: pointer;
-  background-color: #00043c;
-  color: #ff5007;
+  background-color: #ca4260;
+  color: #30d5c8;
 }
 /*# sourceMappingURL=main.css.map */

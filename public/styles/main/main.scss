@@ -1,0 +1,434 @@
+$Fascinate: "Fascinate", cursive;
+$HindSiliguri: "Hind Siliguri", sans-serif;
+
+$color-primary: #30d5c8;
+$color-dark-primary: #026159;
+$color-secondary: #ca4260;
+$color-dark-secondary: #74182c;
+$color-background: #f0fffa;
+$color-dark: #253533;
+$color-shadow: #02615940;
+
+$transition-primary: all 0.1s linear;
+
+// --------SIGN_IN_________
+.auth_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.auth_area {
+  position: relative;
+  border: 1px solid $color-primary;
+  padding: 30px 30px 80px 30px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+.auth_area h1 {
+  text-align: center;
+  color: $color-secondary;
+}
+.auth_form {
+  display: flex;
+  flex-direction: column;
+}
+.auth_input {
+  width: 250px;
+  margin: 5px;
+  padding-left: 15px;
+}
+.auth_button {
+  height: 60px;
+  position: absolute;
+  bottom: -1px;
+  left: -1px;
+  right: -1px;
+  width: 101%;
+  border-radius: 0px 0px 15px 15px;
+  border: 1px solid $color-primary;
+  background: none;
+  font-family: $Fascinate;
+  color: $color-primary;
+  font-size: 2rem;
+  transition: $transition-primary;
+}
+.auth_button:hover {
+  cursor: pointer;
+  background-color: $color-primary;
+  color: $color-dark-primary;
+}
+.from_sign_to_reg {
+  position: absolute;
+  top: 2px;
+  right: 10px;
+  color: $color-secondary;
+  transition: $transition-primary;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+.from_sign_to_reg:hover {
+  cursor: pointer;
+  color: $color-primary;
+}
+.error {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  background-color: $color-primary;
+  align-items: center;
+  font-size: 1.2rem;
+  color: $color-background;
+}
+// ________SIGN_IN---------
+
+//---------HEADER__________
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+.header-wrapper {
+  background-color: $color-primary;
+}
+.logo p {
+  margin-left: 5px;
+  color: $color-background;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
+nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.looked-nav {
+  display: none;
+  width: 100%;
+  height: 17px;
+  margin-top: 10px;
+  text-align: center;
+  color: $color-background;
+  line-height: 16px;
+  background-color: $color-secondary;
+}
+.logoutButton svg {
+  fill: $color-background;
+  width: 30px;
+  height: 30px;
+  transition: $transition-primary;
+}
+.logoutButton svg:hover {
+  cursor: pointer;
+  fill: $color-dark-primary;
+}
+.fill-logout-secondary {
+  fill: $color-dark-primary;
+}
+.createButton {
+  padding: 0 5px;
+}
+.createButton {
+  text-align: center;
+  background: none;
+  border-radius: 7px;
+  color: $color-background;
+  font-size: 1.5rem;
+  font-family: $Fascinate;
+  transition: $transition-primary;
+}
+.createButton:hover {
+  cursor: pointer;
+  color: $color-dark-primary;
+}
+.save {
+  width: 30px;
+  fill: $color-background;
+  transition: $transition-primary;
+}
+.save:hover {
+  fill: $color-dark-primary;
+  cursor: pointer;
+}
+.my-account {
+  color: $color-background;
+}
+//_________HEADER----------
+
+//---------CREATE__________
+.settings {
+  background-color: $color-background;
+}
+.settings * {
+  transition: $transition-primary;
+}
+.settings_figure {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.settings_figure:hover {
+  cursor: pointer;
+}
+.settings_figure:hover .circle,
+.settings_figure:hover .rectangle {
+  border: 2px solid $color-secondary;
+}
+.settings_figure:hover .line {
+  border: 1px solid $color-secondary;
+}
+.circle,
+.rectangle {
+  width: 30px;
+  height: 30px;
+  border: 2px solid $color-primary;
+}
+.circle {
+  border-radius: 100%;
+}
+.line {
+  width: 35px;
+  border: 1px solid $color-primary;
+}
+.pencil svg {
+  fill: $color-primary;
+  width: 35px;
+}
+.pencil:hover svg {
+  fill: $color-secondary;
+}
+.settings_size {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-primary;
+  border: 1px solid $color-primary;
+}
+.settings_size:hover {
+  cursor: pointer;
+  border: 1px solid $color-secondary;
+  color: $color-secondary;
+}
+.settings_color input {
+  background-color: $color-background !important;
+}
+.settings_color input:hover {
+  background-color: $color-background !important;
+  border: none !important;
+}
+canvas {
+  background-color: $color-background;
+}
+//_________CREATE----------
+
+//---------MAIN____________
+.slide_show {
+  background: none;
+  color: $color-background;
+  border: 1px solid $color-secondary;
+  border-radius: 7px;
+  height: 35px;
+  padding: 0 5px;
+  font-size: 1rem;
+  font-weight: 300;
+  transition: $transition-primary;
+}
+.slide_show:hover {
+  background-color: #f0fffa;
+  color: #001e38;
+  border: 1px solid #f0fffa;
+  cursor: pointer;
+}
+.picture_box {
+  display: grid;
+  justify-content: center;
+  background: $color-background;
+  box-shadow: 0px 0px 15px 2px $color-shadow;
+  width: max-content;
+  padding: 15px;
+  border-radius: 7px;
+  margin: 30px auto;
+}
+.picture_box .name {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 5px;
+  width: max-content;
+  color: $color-dark;
+}
+.date {
+  text-align: right;
+  margin-top: 5px;
+  color: $color-dark;
+}
+//__________SLIDER---------
+.back_to_main_from_slider_svg {
+  fill: $color-primary;
+  margin: 15px;
+  transition: $transition-primary;
+}
+.back_to_main_from_slider_svg:hover {
+  fill: $color-secondary;
+}
+.slider {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+.toggle_slides {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  font-size: 70px;
+  color: $color-secondary;
+  transition: $transition-primary;
+  overflow: hidden;
+}
+.toggle_slides:hover {
+  cursor: pointer;
+  color: $color-primary;
+}
+.slider_svg_button {
+  fill: $color-secondary;
+  transition: fill 0.1s linear;
+  display: flex;
+  align-items: center;
+}
+.slider_svg_button:hover {
+  cursor: pointer;
+  fill: $color-primary;
+}
+.slider_box {
+  display: flex;
+  width: 580px;
+  height: 490px;
+  overflow: hidden;
+}
+.slider_box .picture_box {
+  margin: 0 25px !important;
+  box-shadow: none;
+  border: 1px solid $color-dark-primary;
+}
+.slider_start,
+.slider_stop {
+  text-align: center;
+  grid-area: 2/1/2/4;
+  width: 50px;
+  height: 50px;
+  background-color: $color-secondary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  transition: all 0.2s linear;
+  margin-top: 15px;
+}
+.slider_stop:hover,
+.slider_start:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px 0 $color-background;
+  transform: scale(1.05);
+}
+.slider_svg_play {
+  margin-left: 6px;
+  fill: $color-background;
+}
+.slider_svg_stop {
+  fill: $color-background;
+}
+//----------SLIDER_________
+
+//__________MAIN-----------
+
+//----------POPOVER________
+@keyframes beat {
+  0% {
+    transform: scale(1);
+    background-color: orange;
+  }
+  50% {
+    transform: scale(1.3);
+    background-color: crimson;
+  }
+  100% {
+    transform: scale(1);
+    background-color: orange;
+  }
+}
+.popover-box {
+  position: relative;
+}
+.notification {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  background-color: coral;
+  animation: beat 2s ease-out infinite;
+}
+.popover {
+  background-color: #fcfcfc;
+  padding: 10px 15px;
+  border-radius: 7px;
+}
+.agree-feature {
+  width: 30px;
+  height: 30px;
+}
+.popover button {
+  padding: 2px 5px;
+}
+//__________POPOVER--------
+
+//----------MODAL__________
+
+.modal-window {
+  background-color: $color-background;
+  max-width: 300px;
+  padding: 10px 15px;
+  text-align: center;
+  border-radius: 10px;
+}
+.modal-window button {
+  width: 50px;
+  text-align: center;
+  padding: 2px 0;
+}
+.popover button,
+.modal-window button {
+  background-color: $color-primary;
+  color: $color-background;
+  font-size: 1rem;
+  border: none;
+  border-radius: 7px;
+  transition: $transition-primary;
+}
+.popover button:hover,
+.modal-window button:hover {
+  cursor: pointer;
+  background-color: $color-secondary;
+  color: $color-primary;
+}
+
+//__________MODAL----------

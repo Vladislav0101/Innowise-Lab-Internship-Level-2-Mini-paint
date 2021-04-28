@@ -1,27 +1,29 @@
 <template>
-  <header>
-    <Logo />
-    <nav>
-      <component
-        :is="CreationButtonIs"
-        :idElement="'creation-button'"
-        :text="features['creation-button'].text"
-        v-if="!isCreated"
-      ></component>
+  <div class="header-wrapper">
+    <header class="wrapper">
+      <Logo />
+      <nav>
+        <component
+          :is="CreationButtonIs"
+          :idElement="'creation-button'"
+          :text="features['creation-button'].text"
+          v-if="!isCreated"
+        ></component>
 
-      <BackToMainButton v-else />
+        <BackToMainButton v-else />
 
-      <component
-        :is="SaveButtonIs"
-        :idElement="'save-button'"
-        :text="features['save-button'].text"
-        :canvas="canvas"
-        v-if="isCreated"
-      ></component>
-      <MyAccountButton :email="email" />
-      <LogoutButton v-if="!isCreated" />
-    </nav>
-  </header>
+        <component
+          :is="SaveButtonIs"
+          :idElement="'save-button'"
+          :text="features['save-button'].text"
+          :canvas="canvas"
+          v-if="isCreated"
+        ></component>
+        <MyAccountButton :email="email" />
+        <LogoutButton v-if="!isCreated" />
+      </nav>
+    </header>
+  </div>
 </template>
 <script lang="ts">
 import Vue from "vue";

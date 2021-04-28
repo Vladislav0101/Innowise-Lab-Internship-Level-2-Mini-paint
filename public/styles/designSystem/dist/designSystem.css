@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Fascinate&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500&display=swap");
 .fascinate {
   font-family: "Fascinate", cursive;
 }
@@ -20,38 +22,23 @@ body {
 }
 
 a {
-  height: -webkit-max-content;
-  height: -moz-max-content;
   height: max-content;
+  text-decoration: none;
 }
 
 h1 {
   font-family: "Fascinate", cursive;
-  color: #00043c;
 }
 
 input {
-  background-color: #00043c;
+  background-color: #ca4260;
   color: #f0fffa;
-  border: 1px solid #00043c;
+  border: 1px solid #ca4260;
   font-size: 1rem;
   border-radius: 7px;
   height: 35px;
   outline: none;
-  -webkit-transition: all 0.1s linear;
   transition: all 0.1s linear;
-}
-
-input::-webkit-input-placeholder {
-  color: #f0fffa;
-}
-
-input:-ms-input-placeholder {
-  color: #f0fffa;
-}
-
-input::-ms-input-placeholder {
-  color: #f0fffa;
 }
 
 input::placeholder {
@@ -62,14 +49,24 @@ input:hover,
 input:focus,
 select:hover,
 select:focus {
-  background-color: #ff5007 !important;
+  background-color: #e7748d !important;
   color: #f0fffa !important;
-  border: 1px solid #ff5007 !important;
+  border: 1px solid #e7748d !important;
   cursor: pointer;
 }
 
 button {
+  border: 1px solid #30d5c8;
+  background-color: #f0fffa;
+  color: #30d5c8;
   outline: none;
+}
+
+button:hover {
+  border: 1px solid #f0fffa;
+  background-color: #30d5c8;
+  color: #026159;
+  cursor: pointer;
 }
 
 .logo-svg {
@@ -81,4 +78,3 @@ button {
   max-width: 1200px;
   margin: 0 auto;
 }
-/*# sourceMappingURL=designSystem.css.map */

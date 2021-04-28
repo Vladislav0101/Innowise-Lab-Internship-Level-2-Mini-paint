@@ -5,21 +5,19 @@
   header {
     display: -ms-grid !important;
     display: grid !important;
-    -ms-grid-columns: 1fr 1fr;
-        grid-template-columns: 1fr 1fr;
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
     justify-items: center;
+    padding: 10px 10px 0 10px;
   }
-  .logo {
-    -ms-grid-row: 1;
-    -ms-grid-row-span: 1;
-    -ms-grid-column: 1;
-    -ms-grid-column-span: 2;
-    grid-area: 1/1/2/3;
+  .looked-nav {
+    display: block;
   }
   .logo h1 {
     font-size: 2rem !important;
   }
-  .createButton, .logoutButton {
+  .createButton,
+  .logoutButton {
     font-size: 1rem;
     margin-top: 5px;
   }

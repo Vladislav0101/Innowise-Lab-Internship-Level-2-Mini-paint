@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="box_main-information">
     <div class="main-information" v-if="information">
       <div v-for="(value, prop) of informationToShow" :key="prop">
         <span class="info-prop" v-if="value">{{ propToShow(prop) }} : </span>

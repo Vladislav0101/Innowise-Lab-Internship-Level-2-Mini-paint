@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="wrapper">
     <router-link :to="{ name: 'main' }" style="position:absolute">
       <svg
         version="1.1"

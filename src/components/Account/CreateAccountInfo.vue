@@ -129,9 +129,11 @@
         <input type="text" id="specialization" v-model="info.specialization" />
       </label>
     </section>
-    <button type="submit" class="create-submit-button">
+    <button type="submit" @submit="submitForm" class="create-submit-button">
       Edit
     </button>
+    <input type="file" ref="fileInput" @change="addAva" />
+    <img src="" alt="" ref="img" />
   </form>
 </template>
 
@@ -179,9 +181,24 @@ export default Vue.extend({
   },
 
   methods: {
+    ...mapActions(["setUserAvatar"]),
+
+    addAva() {
+      const reader = new FileReader();
+      const files: FileList = this.$refs.fileInput.files;
+      const img = this.$refs.img;
+      if (files) {
+        const selected = files[0];
+        reader.readAsDataURL(selected);
+        reader.onload = () => {
+          this.setUserAvatar({ img: reader.result });
+        };
+      }
+    },
     ...mapActions(["setUserInfo"]),
 
     submitForm(): void {
+      console.log("submit");
       this.v$.$touch();
       if (!this.v$.$error) {
         this.setUserInfo(this.info);
@@ -190,18 +207,14 @@ export default Vue.extend({
     },
 
     setCurrentInformation() {
-      Object.entries(this.information).forEach(field => {
-        this.info[field[0]] = field[1];
-      });
+      if (this.information) {
+        Object.entries(this.information).forEach(field => {
+          this.info[field[0]] = field[1];
+        });
+      }
     }
   },
 
   props: ["information"]
 });
 </script>
-
-<style scoped>
-.validate-error {
-  border: 1px solid red;
-}
-</style>

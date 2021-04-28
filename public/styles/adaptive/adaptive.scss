@@ -1,0 +1,75 @@
+@media (max-width: 568px) {
+  input {
+    height: 30px;
+  }
+  header {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    justify-items: center;
+
+    padding: 10px 10px 0 10px;
+  }
+  .looked-nav {
+    display: block;
+  }
+  // .logo {
+  // grid-area: 1/1/2/3;
+  // }
+  .logo h1 {
+    font-size: 2rem !important;
+  }
+  .createButton,
+  .logoutButton {
+    font-size: 1rem;
+    margin-top: 5px;
+  }
+  .picture_box {
+    margin: 25px 0 5px 0;
+  }
+  .picture_box img {
+    width: 80vw;
+  }
+  .canvas_box {
+    height: auto !important;
+    flex-direction: column;
+  }
+  .settings {
+    display: flex !important;
+    width: 100vw !important;
+    height: auto !important;
+    justify-content: space-around !important;
+  }
+  .settings_size input {
+    transform: none !important;
+    bottom: -40px;
+    left: -15px;
+  }
+  .canvas_block {
+    width: 100vw !important;
+  }
+}
+@media (max-width: 500px) {
+  canvas {
+    transform: scale(0.9);
+  }
+}
+@media (max-width: 450px) {
+  canvas {
+    transform: scale(0.8);
+  }
+}
+@media (max-width: 400px) {
+  canvas {
+    transform: scale(0.7);
+  }
+}
+@media (max-width: 350px) {
+  canvas {
+    transform: scale(0.6);
+  }
+}
+@media (max-width: 300px) {
+  canvas {
+    transform: scale(0.5);
+  }
+}

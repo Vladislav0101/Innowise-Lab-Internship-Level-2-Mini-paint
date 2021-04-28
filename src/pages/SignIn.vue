@@ -1,9 +1,7 @@
 <template>
   <div class="auth_box">
     <div class="auth_area">
-      <h1 class="c_white">
-        mini<span style="margin:0 15px" class="c_white">-</span>paint
-      </h1>
+      <h1>mini<span style="margin:0 15px">-</span>paint</h1>
       <form action="sign_in" class="auth_form">
         <input
           type="text"

@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Fascinate&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500&display=swap");
+
 $Fascinate: "Fascinate", cursive;
 $HindSiliguri: "Hind Siliguri", sans-serif;
 .fascinate {
@@ -6,10 +9,18 @@ $HindSiliguri: "Hind Siliguri", sans-serif;
 .hind_siliguri {
   font-family: $HindSiliguri;
 }
-$color-primary: #ff5007;
-$color-primary-variant: #ff5007ad;
-$color-secondary: #00043c;
+// $color-primary: #ff5007;
+// $color-secondary: #00043c;
+
+$color-primary: #30d5c8;
+$color-dark-primary: #026159;
+// $color-secondary: #a9203e;
+$color-secondary: #ca4260;
+$color-dark-secondary: #74182c;
 $color-background: #f0fffa;
+$color-shadow: #cdcdcdba;
+
+$transition-primary: all 0.1s linear;
 
 main,
 body,
@@ -24,10 +35,10 @@ body {
 }
 a {
   height: max-content;
+  text-decoration: none;
 }
 h1 {
   font-family: $Fascinate;
-  color: $color-secondary;
 }
 
 input {
@@ -38,7 +49,7 @@ input {
   border-radius: 7px;
   height: 35px;
   outline: none;
-  transition: all 0.1s linear;
+  transition: $transition-primary;
 }
 input::placeholder {
   color: $color-background;
@@ -47,13 +58,22 @@ input:hover,
 input:focus,
 select:hover,
 select:focus {
-  background-color: $color-primary !important;
+  background-color: #e7748d !important;
   color: $color-background !important;
-  border: 1px solid $color-primary !important;
+  border: 1px solid #e7748d !important;
   cursor: pointer;
 }
 button {
+  border: 1px solid $color-primary;
+  background-color: $color-background;
+  color: $color-primary;
   outline: none;
+}
+button:hover {
+  border: 1px solid $color-background;
+  background-color: $color-primary;
+  color: $color-dark-primary;
+  cursor: pointer;
 }
 .logo-svg {
   fill: $color-background;

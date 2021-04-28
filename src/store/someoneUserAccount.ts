@@ -7,6 +7,7 @@ import { stringToDBFormat } from "@/utils/helpFunction";
 const state: ISomeoneUser = {
   someoneUserInfo: null,
   someoneUserEmail: null,
+  usersAvatars: {},
 };
 
 const getters: GetterTree<ISomeoneUser, IRootState> = {
@@ -16,6 +17,9 @@ const getters: GetterTree<ISomeoneUser, IRootState> = {
   someoneUserEmail(state) {
     return state.someoneUserEmail;
   },
+  usersAvatars(state) {
+    return state.usersAvatars;
+  },
 };
 
 const mutations: MutationTree<ISomeoneUser> = {
@@ -24,6 +28,10 @@ const mutations: MutationTree<ISomeoneUser> = {
   },
   setSomeoneUserEmail(state, email) {
     state.someoneUserEmail = email;
+  },
+  setUsersAvatars(state, { email, img }) {
+    state.usersAvatars[email] = img;
+    console.log("state.usersAvatars", state.usersAvatars);
   },
 };
 
@@ -38,6 +46,48 @@ const actions: ActionTree<ISomeoneUser, IRootState> = {
       .on("value", (res) => {
         commit("setSomeoneUserInfo", res.val());
       });
+  },
+
+  getSomeoneUserAvatar({ getters, commit }, userEmail) {
+    const storageRef = firebase.storage().ref();
+    // if (getters.email === userEmail) {
+
+    const emailToDB = stringToDBFormat(userEmail);
+
+    firebase
+      .database()
+      .ref(`${emailToDB}/isAvatar`)
+      .on("value", (res) => {
+        const isAvatar = res.val();
+
+        if (getters.usersAvatars[userEmail] === undefined) {
+          if (isAvatar) {
+            storageRef
+              .child(`avatars/${userEmail}.jpeg`)
+              .getDownloadURL()
+              .then((url: string) => {
+                commit("setUsersAvatars", { email: userEmail, img: url });
+              });
+          } else {
+            commit("setUsersAvatars", { email: userEmail, img: null });
+          }
+        }
+      });
+
+    // } else {
+    //   storageRef
+    //     .child("avatars/")
+    //     .listAll()
+    //     .then((res) => {
+    //       res.items.forEach((fullImgObj) => {
+    //         fullImgObj.getDownloadURL().then((img) => {
+    //           const email = fullImgObj.name.split(".jpeg")[0];
+
+    //           commit("setUsersAvatars", { email, img });
+    //         });
+    //       });
+    //     });
+    // }
   },
 };
 

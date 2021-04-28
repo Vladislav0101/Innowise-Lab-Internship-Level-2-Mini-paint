@@ -68,9 +68,11 @@ export interface IFeaturesElement {
 
 export interface IUser {
   userAccountInfo: null | { [key: string]: string };
+  userAvatar: string | null;
 }
 
 export interface ISomeoneUser {
   someoneUserInfo: null | { [key: string]: string };
   someoneUserEmail: null | string;
+  usersAvatars: { [key: string]: string };
 }

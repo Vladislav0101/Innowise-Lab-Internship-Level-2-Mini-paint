@@ -1,10 +1,13 @@
 <template>
   <div class="picture_box" id="picture_box">
-    <router-link :to="{ name: 'someoneUser' }" class="name">
-      <span @click="getSomeoneUserInfoLocal"> {{ pictureInfo.email }}</span>
+    <router-link :to="{ name: 'someoneUser' }">
+      <div @click="getSomeoneUserInfoLocal" class="name">
+        <Avatar :mail="pictureInfo.email" />
+        <span> {{ pictureInfo.email }}</span>
+      </div>
     </router-link>
 
-    <img alt="picture" :src="pictureInfo.url" ref="image" />
+    <img alt="picture" :src="pictureInfo.url" />
 
     <span class="date">{{ dateLocal }}</span>
   </div>
@@ -13,6 +16,8 @@
 <script lang="ts">
 import { mapActions } from "vuex";
 import Vue from "vue";
+
+import Avatar from "@/components/Account/Avatar.vue";
 
 export default Vue.extend({
   data(): { dateLocal: string } {
@@ -54,6 +59,8 @@ export default Vue.extend({
     this.dateLocal = `${("" + day).length < 2 ? "0" + day : day}/${
       months[month]
     }/${year}`;
-  }
+  },
+
+  components: { Avatar }
 });
 </script>

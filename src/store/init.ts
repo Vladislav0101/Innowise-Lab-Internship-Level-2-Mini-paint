@@ -46,6 +46,7 @@ const actions: ActionTree<IInit, IRootState> = {
 
           dispatch("initVersion");
           dispatch("getUserInfo");
+          // dispatch("getSomeoneUserAvatar");
         }
         res(user);
       }, rej);

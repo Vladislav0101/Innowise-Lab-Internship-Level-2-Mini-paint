@@ -64,7 +64,7 @@ const actions: ActionTree<IFeed, IRootState> = {
   },
 
   requestProcessing(
-    { commit },
+    { commit, getters, dispatch },
     { objOfFiles, numberOfPicturesOnPage, storageRef, aim }
   ) {
     const arrayOfUrls = state.arrayOfUrls;
@@ -85,11 +85,17 @@ const actions: ActionTree<IFeed, IRootState> = {
         .getDownloadURL()
         .then((url: string) => {
           if (aim === "slider" && arrayOfUrls.length > slidesNumber - 1) return;
+
           arrayOfUrls.push({
             url: url,
             email: emailToSet,
             date: date,
           });
+
+          if (!(emailToSet in getters.usersAvatars)) {
+            commit("setUsersAvatars", { email: emailToSet, img: undefined });
+            dispatch("getSomeoneUserAvatar", emailToSet);
+          }
         });
     });
 

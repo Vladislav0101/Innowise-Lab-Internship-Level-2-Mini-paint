@@ -2,7 +2,9 @@
   <div class="wrapper">
     <Header />
     <div class="information-box">
-      <HeaderInformation :userEmail="someoneUserEmail" />
+      <div class="header-info-edit">
+        <HeaderInformation :userEmail="someoneUserEmail" />
+      </div>
       <AccountInfo :information="someoneUserInfo" />
     </div>
   </div>

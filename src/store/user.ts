@@ -7,17 +7,25 @@ import { stringToDBFormat } from "@/utils/helpFunction";
 
 const state: IUser = {
   userAccountInfo: null,
+  userAvatar: null,
 };
 
 const getters: GetterTree<IUser, IRootState> = {
   userAccountInfo(state) {
     return state.userAccountInfo;
   },
+  userAvatar(state) {
+    return state.userAvatar;
+  },
 };
 
 const mutations: MutationTree<IUser> = {
   setUserAccountInfo(state, userInfo) {
     state.userAccountInfo = userInfo;
+  },
+
+  setUserAvatar(state, url) {
+    state.userAvatar = url;
   },
 };
 
@@ -63,6 +71,23 @@ const actions: ActionTree<IUser, IRootState> = {
       .set(userInfo);
 
     dispatch("getUserInfo");
+  },
+
+  setUserAvatar({ getters, dispatch }, { img }) {
+    const storageRef = firebase.storage().ref("avatars/");
+    const emailToDB = stringToDBFormat(getters.email);
+
+    storageRef
+      .child(`${getters.email}.jpeg`)
+      .putString(img, "data_url")
+      .then(() => {
+        firebase
+          .database()
+          .ref(`${emailToDB}/isAvatar`)
+          .set(true);
+      });
+
+    dispatch("getSomeoneUserAvatar", getters.email);
   },
 
   getUserInfo({ getters, commit }) {

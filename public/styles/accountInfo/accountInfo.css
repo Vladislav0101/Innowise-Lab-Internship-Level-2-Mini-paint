@@ -6,11 +6,11 @@ textarea {
 }
 
 .information-box {
-  padding: 25px;
+  padding: 15px;
 }
 
 .no-info {
-  color: #f0fffa;
+  color: #253533;
   margin-top: 15px;
 }
 
@@ -21,19 +21,21 @@ textarea {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .avatar {
-  background: #001e38;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  height: -webkit-max-content;
-  height: -moz-max-content;
-  height: max-content;
+  background: #f0fffa;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
   border-radius: 100%;
-  border: 1px solid chartreuse;
+  border: 1px solid #f0fffa;
+}
+
+.avatar img {
+  width: 40px;
+  height: 40px;
 }
 
 .header--information p {
@@ -45,13 +47,16 @@ textarea {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 35px;
+  padding: 10px;
+  gap: 17px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background-color: #ca4260;
+  border-radius: 7px 7px 0 0;
 }
 
-.header-info-edit button {
+.go-edit {
   height: 30px;
   width: 30px;
   display: -webkit-box;
@@ -71,10 +76,17 @@ textarea {
   transition: all 0.1s linear;
 }
 
-.header-info-edit button:hover {
-  background-color: #f0fffa;
-  fill: #001e38;
+.go-edit:hover {
+  fill: #74182c;
   cursor: pointer;
+}
+
+.box_main-information {
+  border: 2px solid #ca4260;
+  border-top: none;
+  margin-top: 15px;
+  border-radius: 0 0 7px 7px;
+  padding: 10px 0 10px 65px;
 }
 
 .main-information {
@@ -84,21 +96,19 @@ textarea {
   width: -moz-max-content;
   width: max-content;
   grid-column-gap: 25px;
-  margin-left: 10%;
-  margin-top: 15px;
 }
 
 .info-prop {
-  color: chartreuse;
+  color: #026159;
   font-weight: 300;
 }
 
 .info-value {
-  color: #f0fffa;
+  color: #ca4260;
 }
 
 .main-information p {
-  color: chartreuse;
+  color: #ca4260;
 }
 
 .create-info {
@@ -107,7 +117,7 @@ textarea {
   -ms-grid-columns: 1fr 1fr;
       grid-template-columns: 1fr 1fr;
   margin-top: 15px;
-  color: #f0fffa;
+  color: #253533;
 }
 
 .create-info input {
@@ -140,7 +150,7 @@ textarea {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  border-bottom: 1px solid chartreuse;
+  border-bottom: 1px solid #ca4260;
   margin-bottom: 7px;
 }
 
@@ -161,7 +171,7 @@ textarea {
   height: 35px;
   background: none;
   color: #f0fffa;
-  border: 1px solid chartreuse;
+  border: 1px solid #ca4260;
 }
 
 .create-submit-button {
@@ -169,8 +179,8 @@ textarea {
   height: 30px;
   font-size: 1rem;
   background: #f0fffa;
-  color: #001e38;
-  border: 1px solid #001e38;
+  color: #30d5c8;
+  border: 1px solid #30d5c8;
   -webkit-transition: all 0.1s linear;
   transition: all 0.1s linear;
   margin-top: 15px;
@@ -178,9 +188,13 @@ textarea {
 }
 
 .create-submit-button:hover {
-  background-color: #001e38;
-  color: chartreuse;
-  border-color: chartreuse;
+  background-color: #30d5c8;
+  color: #ca4260;
+  border-color: #ca4260;
   cursor: pointer;
+}
+
+.validate-error {
+  background-color: #ff1313;
 }
 /*# sourceMappingURL=accountInfo.css.map */
