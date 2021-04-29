@@ -1,6 +1,6 @@
 <template>
   <router-link :to="{ name: 'myAccount' }" class="my-account">
-    <Avatar :mail="email" />
+    <Avatar :src="email" />
   </router-link>
 </template>
 

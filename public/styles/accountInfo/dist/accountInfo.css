@@ -96,8 +96,10 @@ textarea {
 .create-info {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin-top: 15px;
+  margin: 15px auto 0 auto;
   color: #253533;
+  grid-column-gap: 30px;
+  max-width: 630px;
 }
 
 .create-info input {
@@ -107,14 +109,14 @@ textarea {
 .create-info input[type=text],
 .create-info input[type=date] {
   margin-bottom: 7px;
-  width: calc(100%-7px);
+  width: calc(100% - 10px);
 }
 
 .create-main-info,
 .create-work {
   display: flex;
   flex-direction: column;
-  width: 300px;
+  max-width: 300px;
 }
 
 .gender-radio,
@@ -138,7 +140,7 @@ textarea {
   border-radius: 7px;
   height: 35px;
   background: none;
-  color: #f0fffa;
+  color: #ca4260;
   border: 1px solid #ca4260;
 }
 
@@ -146,21 +148,45 @@ textarea {
   width: 150px;
   height: 30px;
   font-size: 1rem;
-  background: #f0fffa;
-  color: #30d5c8;
-  border: 1px solid #30d5c8;
   transition: all 0.1s linear;
-  margin-top: 15px;
-  border-radius: 5px;
-}
-
-.create-submit-button:hover {
-  background-color: #30d5c8;
-  color: #ca4260;
-  border-color: #ca4260;
-  cursor: pointer;
+  margin: 15px auto 0 auto;
 }
 
 .validate-error {
   background-color: #ff1313;
+}
+
+.label-input-avatar {
+  width: max-content;
+  color: #026159;
+  margin: 15px auto 0 auto;
+}
+
+.label-input-avatar:hover {
+  cursor: pointer;
+}
+
+#input-avatar {
+  display: none;
+}
+
+.label-input-avatar p {
+  width: 150px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #30d5c8;
+  background-color: #f0fffa;
+  color: #30d5c8;
+  outline: none;
+  border-radius: 5px;
+  transition: all 0.1s linear;
+}
+
+.label-input-avatar p:hover {
+  border: 1px solid #f0fffa;
+  background-color: #30d5c8;
+  color: #026159;
+  cursor: pointer;
 }

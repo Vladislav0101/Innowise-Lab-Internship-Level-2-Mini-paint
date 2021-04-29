@@ -1,6 +1,6 @@
 <template>
   <div class="header--information">
-    <Avatar :mail="userEmail" />
+    <Avatar :src="userEmail" />
     <p>{{ userEmail }}</p>
   </div>
 </template>
@@ -16,10 +16,3 @@ export default Vue.extend({
   components: { Avatar }
 });
 </script>
-
-<style scoped>
-img {
-  width: auto;
-  height: 40px;
-}
-</style>

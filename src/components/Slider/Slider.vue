@@ -1,11 +1,11 @@
 <template>
   <div class="slider wrapper">
-    <div>
+    <div class="left-toggle">
       <div
         @click.prevent="prev"
-        class="toggle_slides"
-        v-show="lookedPictures.length"
+        :class="{ toggle_slides: true, 'zero-opacity': !lookedPictures.length }"
       >
+        <!-- v-show="lookedPictures.length" -->
         &lt;
       </div>
     </div>
@@ -21,12 +21,15 @@
         :pictureInfo="pictureInfo"
       />
     </transition-group>
-    <div>
+    <div class="right-toggle">
       <div
         @click.prevent="next"
-        class="toggle_slides"
-        v-show="arrPicturesToShow.length > 1"
+        :class="{
+          toggle_slides: true,
+          'zero-opacity': !(arrPicturesToShow.length > 1)
+        }"
       >
+        <!-- v-show="arrPicturesToShow.length > 1" -->
         &gt;
       </div>
     </div>
@@ -158,5 +161,8 @@ export default Vue.extend({
 }
 .slider-move {
   transition: all 1s linear;
+}
+.zero-opacity {
+  opacity: 0;
 }
 </style>

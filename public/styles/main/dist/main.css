@@ -89,6 +89,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+  position: relative;
 }
 
 .header-wrapper {
@@ -106,6 +107,11 @@ nav {
   display: flex;
   align-items: center;
   gap: 30px;
+  background-color: #30d5c8;
+}
+
+.burger {
+  display: none;
 }
 
 .looked-nav {
@@ -117,6 +123,10 @@ nav {
   color: #f0fffa;
   line-height: 16px;
   background-color: #ca4260;
+}
+
+.logoutButton {
+  height: 30px;
 }
 
 .logoutButton svg {
@@ -348,7 +358,6 @@ canvas {
 .slider_box {
   display: flex;
   width: 580px;
-  height: 490px;
   overflow: hidden;
 }
 

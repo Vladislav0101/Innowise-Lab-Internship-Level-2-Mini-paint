@@ -26,9 +26,11 @@ var mutations = {
         state.someoneUserEmail = email;
     },
     setUsersAvatars: function (state, _a) {
+        var _b;
         var email = _a.email, img = _a.img;
-        state.usersAvatars[email] = img;
-        console.log("state.usersAvatars", state.usersAvatars);
+        state.usersAvatars = Object.assign({}, state.usersAvatars, (_b = {},
+            _b[email] = img,
+            _b));
     }
 };
 var actions = {
@@ -43,10 +45,10 @@ var actions = {
             commit("setSomeoneUserInfo", res.val());
         });
     },
-    getSomeoneUserAvatar: function (_a, userEmail) {
-        var getters = _a.getters, commit = _a.commit;
+    getSomeoneUserAvatar: function (_a, _b) {
+        var getters = _a.getters, commit = _a.commit, state = _a.state;
+        var userEmail = _b.userEmail, target = _b.target;
         var storageRef = firebase_1["default"].storage().ref();
-        // if (getters.email === userEmail) {
         var emailToDB = helpFunction_1.stringToDBFormat(userEmail);
         firebase_1["default"]
             .database()
@@ -54,6 +56,9 @@ var actions = {
             .on("value", function (res) {
             var isAvatar = res.val();
             if (getters.usersAvatars[userEmail] === undefined) {
+                if (target === "updateUserAvatar") {
+                    delete state.usersAvatars[userEmail];
+                }
                 if (isAvatar) {
                     storageRef
                         .child("avatars/" + userEmail + ".jpeg")
@@ -67,19 +72,6 @@ var actions = {
                 }
             }
         });
-        // } else {
-        //   storageRef
-        //     .child("avatars/")
-        //     .listAll()
-        //     .then((res) => {
-        //       res.items.forEach((fullImgObj) => {
-        //         fullImgObj.getDownloadURL().then((img) => {
-        //           const email = fullImgObj.name.split(".jpeg")[0];
-        //           commit("setUsersAvatars", { email, img });
-        //         });
-        //       });
-        //     });
-        // }
     }
 };
 exports["default"] = {

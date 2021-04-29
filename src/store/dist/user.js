@@ -111,7 +111,7 @@ var actions = {
         dispatch("getUserInfo");
     },
     setUserAvatar: function (_a, _b) {
-        var getters = _a.getters, dispatch = _a.dispatch;
+        var getters = _a.getters, dispatch = _a.dispatch, commit = _a.commit;
         var img = _b.img;
         var storageRef = firebase_1["default"].storage().ref("avatars/");
         var emailToDB = helpFunction_1.stringToDBFormat(getters.email);
@@ -124,7 +124,7 @@ var actions = {
                 .ref(emailToDB + "/isAvatar")
                 .set(true);
         });
-        dispatch("getSomeoneUserAvatar", getters.email);
+        commit("setUsersAvatars", { email: getters.email, img: img });
     },
     getUserInfo: function (_a) {
         var getters = _a.getters, commit = _a.commit;

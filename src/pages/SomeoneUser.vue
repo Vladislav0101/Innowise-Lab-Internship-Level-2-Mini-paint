@@ -1,7 +1,7 @@
 <template>
-  <div class="wrapper">
+  <div>
     <Header />
-    <div class="information-box">
+    <div class="information-box wrapper">
       <div class="header-info-edit">
         <HeaderInformation :userEmail="someoneUserEmail" />
       </div>

@@ -1,6 +1,6 @@
 <template>
   <div class="avatar">
-    <img :src="src" alt="avatar" />
+    <img :src="srcLocal" alt="avatar" />
   </div>
 </template>
 
@@ -11,16 +11,14 @@ import { mapGetters } from "vuex";
 import img from "../../assets/default-avatar.png";
 
 export default Vue.extend({
-  props: ["mail"],
+  props: ["src"],
 
   computed: {
     ...mapGetters(["usersAvatars"]),
 
-    src() {
-      // const avatars = this.$store.getters.usersAvatars;
-
-      if (this.$store.getters.usersAvatars[this.mail]) {
-        return this.$store.getters.usersAvatars[this.mail];
+    srcLocal() {
+      if (this.$store.getters.usersAvatars[this.src]) {
+        return this.$store.getters.usersAvatars[this.src];
       } else {
         return img;
       }

@@ -60,6 +60,7 @@ button {
   background-color: #f0fffa;
   color: #30d5c8;
   outline: none;
+  border-radius: 5px;
 }
 
 button:hover {

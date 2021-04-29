@@ -96,6 +96,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+  position: relative;
 }
 .header-wrapper {
   background-color: $color-primary;
@@ -110,6 +111,10 @@ nav {
   display: flex;
   align-items: center;
   gap: 30px;
+  background-color: $color-primary;
+}
+.burger {
+  display: none;
 }
 .looked-nav {
   display: none;
@@ -120,6 +125,9 @@ nav {
   color: $color-background;
   line-height: 16px;
   background-color: $color-secondary;
+}
+.logoutButton {
+  height: 30px;
 }
 .logoutButton svg {
   fill: $color-background;
@@ -320,7 +328,6 @@ canvas {
 .slider_box {
   display: flex;
   width: 580px;
-  height: 490px;
   overflow: hidden;
 }
 .slider_box .picture_box {

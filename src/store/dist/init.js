@@ -56,7 +56,7 @@ var mutations = {
 };
 var actions = {
     initializeApp: function (_a) {
-        var commit = _a.commit, dispatch = _a.dispatch;
+        var commit = _a.commit, dispatch = _a.dispatch, getters = _a.getters;
         return __awaiter(this, void 0, void 0, function () {
             var firebaseConfig;
             return __generator(this, function (_b) {
@@ -77,7 +77,7 @@ var actions = {
                                 commit("setUser", { newUser: user.uid, email: user.email });
                                 dispatch("initVersion");
                                 dispatch("getUserInfo");
-                                // dispatch("getSomeoneUserAvatar");
+                                dispatch("getSomeoneUserAvatar", { userEmail: getters.email });
                             }
                             res(user);
                         }, rej);

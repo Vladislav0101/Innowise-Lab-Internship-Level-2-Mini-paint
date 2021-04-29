@@ -30,8 +30,9 @@ const mutations: MutationTree<ISomeoneUser> = {
     state.someoneUserEmail = email;
   },
   setUsersAvatars(state, { email, img }) {
-    state.usersAvatars[email] = img;
-    console.log("state.usersAvatars", state.usersAvatars);
+    state.usersAvatars = Object.assign({}, state.usersAvatars, {
+      [email]: img,
+    });
   },
 };
 
@@ -48,10 +49,8 @@ const actions: ActionTree<ISomeoneUser, IRootState> = {
       });
   },
 
-  getSomeoneUserAvatar({ getters, commit }, userEmail) {
+  getSomeoneUserAvatar({ getters, commit, state }, { userEmail, target }) {
     const storageRef = firebase.storage().ref();
-    // if (getters.email === userEmail) {
-
     const emailToDB = stringToDBFormat(userEmail);
 
     firebase
@@ -61,6 +60,9 @@ const actions: ActionTree<ISomeoneUser, IRootState> = {
         const isAvatar = res.val();
 
         if (getters.usersAvatars[userEmail] === undefined) {
+          if (target === "updateUserAvatar") {
+            delete state.usersAvatars[userEmail];
+          }
           if (isAvatar) {
             storageRef
               .child(`avatars/${userEmail}.jpeg`)
@@ -73,21 +75,6 @@ const actions: ActionTree<ISomeoneUser, IRootState> = {
           }
         }
       });
-
-    // } else {
-    //   storageRef
-    //     .child("avatars/")
-    //     .listAll()
-    //     .then((res) => {
-    //       res.items.forEach((fullImgObj) => {
-    //         fullImgObj.getDownloadURL().then((img) => {
-    //           const email = fullImgObj.name.split(".jpeg")[0];
-
-    //           commit("setUsersAvatars", { email, img });
-    //         });
-    //       });
-    //     });
-    // }
   },
 };
 

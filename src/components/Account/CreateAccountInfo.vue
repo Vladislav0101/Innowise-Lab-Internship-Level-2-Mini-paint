@@ -10,8 +10,6 @@
         :class="{ 'validate-error': v$.firstName.$error }"
         @blur="v$.firstName.$touch()"
       />
-      <!-- @blur="v$.firstName.$touch" -->
-      <!-- :class="{ 'validate-error': v$.firstName.$error }" -->
 
       <label for="create-secondName">Second name</label>
       <input
@@ -77,7 +75,7 @@
             type="radio"
             name="work"
             id="employed"
-            v-model="info.isEmployed"
+            v-model="isEmployed"
             :value="true"
           />
         </label>
@@ -87,7 +85,7 @@
             type="radio"
             name="work"
             id="unemployed"
-            v-model="info.isEmployed"
+            v-model="isEmployed"
             :value="false"
           />
         </label>
@@ -105,7 +103,7 @@
             type="radio"
             name="study"
             id="student"
-            v-model="info.isStudy"
+            v-model="isStudy"
             :value="true"
           />
         </label>
@@ -115,11 +113,12 @@
             type="radio"
             name="study"
             id="not-a-student"
-            v-model="info.isStudy"
+            v-model="isStudy"
             :value="false"
           />
         </label>
       </div>
+
       <label for="university" v-if="isStudy">
         <p>University</p>
         <input type="text" id="university" v-model="info.university" />
@@ -129,11 +128,15 @@
         <input type="text" id="specialization" v-model="info.specialization" />
       </label>
     </section>
+
+    <label for="input-avatar" class="label-input-avatar">
+      <p>Change avatar</p>
+      <input type="file" ref="fileInput" id="input-avatar" @change="addAva" />
+    </label>
+
     <button type="submit" @submit="submitForm" class="create-submit-button">
       Edit
     </button>
-    <input type="file" ref="fileInput" @change="addAva" />
-    <img src="" alt="" ref="img" />
   </form>
 </template>
 
@@ -176,45 +179,45 @@ export default Vue.extend({
     };
   },
 
+  props: ["information"],
+
   mounted() {
     this.setCurrentInformation();
   },
 
   methods: {
-    ...mapActions(["setUserAvatar"]),
+    ...mapActions(["setUserAvatar", "setUserInfo"]),
 
-    addAva() {
+    addAva(): void {
       const reader = new FileReader();
       const files: FileList = this.$refs.fileInput.files;
-      const img = this.$refs.img;
+
+      reader.onload = () => {
+        this.setUserAvatar({ img: reader.result });
+      };
+
       if (files) {
         const selected = files[0];
         reader.readAsDataURL(selected);
-        reader.onload = () => {
-          this.setUserAvatar({ img: reader.result });
-        };
       }
     },
-    ...mapActions(["setUserInfo"]),
 
     submitForm(): void {
-      console.log("submit");
       this.v$.$touch();
+
       if (!this.v$.$error) {
         this.setUserInfo(this.info);
         this.$emit("changeIsEditMode");
       }
     },
 
-    setCurrentInformation() {
+    setCurrentInformation(): void {
       if (this.information) {
         Object.entries(this.information).forEach(field => {
           this.info[field[0]] = field[1];
         });
       }
     }
-  },
-
-  props: ["information"]
+  }
 });
 </script>

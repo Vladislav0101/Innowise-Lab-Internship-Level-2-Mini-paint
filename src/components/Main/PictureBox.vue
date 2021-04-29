@@ -2,7 +2,7 @@
   <div class="picture_box" id="picture_box">
     <router-link :to="{ name: 'someoneUser' }">
       <div @click="getSomeoneUserInfoLocal" class="name">
-        <Avatar :mail="pictureInfo.email" />
+        <Avatar :src="pictureInfo.email" />
         <span> {{ pictureInfo.email }}</span>
       </div>
     </router-link>

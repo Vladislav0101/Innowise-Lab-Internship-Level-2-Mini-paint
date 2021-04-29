@@ -73,7 +73,7 @@ const actions: ActionTree<IUser, IRootState> = {
     dispatch("getUserInfo");
   },
 
-  setUserAvatar({ getters, dispatch }, { img }) {
+  setUserAvatar({ getters, dispatch, commit }, { img }) {
     const storageRef = firebase.storage().ref("avatars/");
     const emailToDB = stringToDBFormat(getters.email);
 
@@ -87,11 +87,12 @@ const actions: ActionTree<IUser, IRootState> = {
           .set(true);
       });
 
-    dispatch("getSomeoneUserAvatar", getters.email);
+    commit("setUsersAvatars", { email: getters.email, img });
   },
 
   getUserInfo({ getters, commit }) {
     const emailToDB = stringToDBFormat(getters.email);
+
     firebase
       .database()
       .ref(`${emailToDB}/userInfo`)

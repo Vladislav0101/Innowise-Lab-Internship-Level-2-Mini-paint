@@ -94,7 +94,7 @@ const actions: ActionTree<IFeed, IRootState> = {
 
           if (!(emailToSet in getters.usersAvatars)) {
             commit("setUsersAvatars", { email: emailToSet, img: undefined });
-            dispatch("getSomeoneUserAvatar", emailToSet);
+            dispatch("getSomeoneUserAvatar", { userEmail: emailToSet });
           }
         });
     });

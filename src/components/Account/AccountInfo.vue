@@ -16,6 +16,21 @@
 import Vue from "vue";
 
 export default Vue.extend({
+  props: ["userEmail", "information"],
+
+  methods: {
+    propToShow(prop: string): string {
+      switch (prop) {
+        case "firstName":
+          return "First name";
+        case "secondName":
+          return "Second name";
+        default:
+          return prop[0].toUpperCase() + prop.slice(1, prop.length).trim();
+      }
+    }
+  },
+
   computed: {
     informationToShow() {
       return {
@@ -29,26 +44,6 @@ export default Vue.extend({
         specialization: this.information.specialization
       };
     }
-  },
-
-  methods: {
-    propToShow(prop: string): string {
-      let returnProp;
-      switch (prop) {
-        case "firstName":
-          returnProp = "First name";
-          break;
-        case "secondName":
-          returnProp = "Second name";
-          break;
-        default:
-          returnProp = prop[0].toUpperCase() + prop.slice(1, prop.length);
-          break;
-      }
-      return returnProp.trim();
-    }
-  },
-
-  props: ["userEmail", "information"]
+  }
 });
 </script>
