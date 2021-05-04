@@ -84,6 +84,12 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  store.dispatch("setAnalyticsUnit", {
+    user: store.getters.user,
+    date: new Date().getTime(),
+    event: `visit-${to.name}-page`,
+  });
+
   const user: string = store.getters.user;
   const isRequiresAuth = to.meta.requiresAuth;
 
@@ -95,4 +101,5 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
+
 export default router;

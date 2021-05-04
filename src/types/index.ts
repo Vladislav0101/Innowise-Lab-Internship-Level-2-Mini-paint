@@ -76,3 +76,7 @@ export interface ISomeoneUser {
   someoneUserEmail: null | string;
   usersAvatars: { [key: string]: string };
 }
+
+export interface IAnalytics {
+  countEvents: { [key: string]: number };
+}

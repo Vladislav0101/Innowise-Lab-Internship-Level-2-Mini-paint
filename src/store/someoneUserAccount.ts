@@ -43,7 +43,7 @@ const actions: ActionTree<ISomeoneUser, IRootState> = {
     const emailToDb = stringToDBFormat(email);
     firebase
       .database()
-      .ref(`${emailToDb}/userInfo`)
+      .ref(`users/${emailToDb}/userInfo`)
       .on("value", (res) => {
         commit("setSomeoneUserInfo", res.val());
       });
@@ -55,7 +55,7 @@ const actions: ActionTree<ISomeoneUser, IRootState> = {
 
     firebase
       .database()
-      .ref(`${emailToDB}/isAvatar`)
+      .ref(`users/${emailToDB}/isAvatar`)
       .on("value", (res) => {
         const isAvatar = res.val();
 

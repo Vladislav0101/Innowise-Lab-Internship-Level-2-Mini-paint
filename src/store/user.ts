@@ -35,7 +35,7 @@ const actions: ActionTree<IUser, IRootState> = {
 
     firebase
       .database()
-      .ref(`${emailToDB}/version`)
+      .ref(`users/${emailToDB}/version`)
       .on("value", (res) => {
         const result = res.val();
 
@@ -56,7 +56,7 @@ const actions: ActionTree<IUser, IRootState> = {
     const emailToDB = stringToDBFormat(getters.email);
     firebase
       .database()
-      .ref(`${emailToDB}/version`)
+      .ref(`users/${emailToDB}/version`)
       .set({
         version: getters.version,
         checkedVersion: value ? value : false,
@@ -67,7 +67,7 @@ const actions: ActionTree<IUser, IRootState> = {
     const emailToDB = stringToDBFormat(getters.email);
     firebase
       .database()
-      .ref(`${emailToDB}/userInfo`)
+      .ref(`users/${emailToDB}/userInfo`)
       .set(userInfo);
 
     dispatch("getUserInfo");
@@ -83,7 +83,7 @@ const actions: ActionTree<IUser, IRootState> = {
       .then(() => {
         firebase
           .database()
-          .ref(`${emailToDB}/isAvatar`)
+          .ref(`users/${emailToDB}/isAvatar`)
           .set(true);
       });
 
@@ -95,7 +95,7 @@ const actions: ActionTree<IUser, IRootState> = {
 
     firebase
       .database()
-      .ref(`${emailToDB}/userInfo`)
+      .ref(`users/${emailToDB}/userInfo`)
       .on("value", (res) => {
         commit("setUserAccountInfo", res.val());
       });
