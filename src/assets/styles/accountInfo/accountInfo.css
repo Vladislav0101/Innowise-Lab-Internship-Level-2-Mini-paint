@@ -1,0 +1,340 @@
+@import url("https://fonts.googleapis.com/css2?family=Fascinate&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
+.fascinate {
+  font-family: "Fascinate", cursive;
+}
+
+.hind_siliguri {
+  font-family: "Hind Siliguri", sans-serif;
+}
+
+main,
+body,
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f0fffa;
+  font-family: "Hind Siliguri", sans-serif;
+  font-weight: 500;
+}
+
+a {
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  text-decoration: none;
+}
+
+h1 {
+  font-family: "Fascinate", cursive;
+}
+
+[custom-input] {
+  background-color: #ca4260;
+  color: #f0fffa;
+  border: 1px solid #ca4260;
+  font-size: 1rem;
+  border-radius: 7px;
+  height: 35px;
+  outline: none;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+}
+
+[custom-input]::-webkit-input-placeholder {
+  color: #f0fffa;
+}
+
+[custom-input]:-ms-input-placeholder {
+  color: #f0fffa;
+}
+
+[custom-input]::-ms-input-placeholder {
+  color: #f0fffa;
+}
+
+[custom-input]::placeholder {
+  color: #f0fffa;
+}
+
+[custom-input]:hover,
+[custom-input]:focus,
+select:hover,
+select:focus {
+  background-color: #e7748d;
+  color: #f0fffa;
+  border: 1px solid #e7748d !important;
+  cursor: pointer;
+}
+
+[custom-button] {
+  border: 1px solid #30d5c8;
+  background-color: #f0fffa;
+  color: #30d5c8;
+  outline: none;
+  border-radius: 5px;
+}
+
+[custom-button]:hover {
+  border: 1px solid #f0fffa;
+  background-color: #30d5c8;
+  color: #026159;
+  cursor: pointer;
+}
+
+.logo-svg {
+  fill: #f0fffa;
+  width: 40px;
+}
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+:root {
+  --itim: "Itim", cursive;
+}
+
+input,
+select,
+option,
+textarea {
+  outline: none;
+}
+
+body #app div .information-box {
+  padding: 15px;
+  font-family: var(--itim);
+}
+
+.no-info {
+  color: #253533;
+  margin-top: 15px;
+}
+
+.header--information {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  background: #f0fffa;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 100%;
+  border: 1px solid #f0fffa;
+}
+
+.avatar img {
+  width: 40px;
+  height: 40px;
+}
+
+.header--information p {
+  color: #f0fffa;
+  font-size: 1.2rem;
+}
+
+.header-info-edit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px;
+  gap: 17px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #ca4260;
+  border-radius: 7px 7px 0 0;
+}
+
+.go-edit {
+  height: 30px;
+  width: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 5px;
+  border: none;
+  background: none;
+  fill: #f0fffa;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+}
+
+.go-edit:hover {
+  fill: #74182c;
+  cursor: pointer;
+}
+
+.box_main-information {
+  border: 2px solid #ca4260;
+  border-top: none;
+  margin-top: 15px;
+  border-radius: 0 0 7px 7px;
+  padding: 10px 0 10px 65px;
+}
+
+.main-information {
+  display: -ms-grid;
+  display: grid;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  grid-column-gap: 25px;
+}
+
+.info-prop {
+  color: #026159;
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+
+.info-value {
+  color: #ca4260;
+  font-size: 1.5rem;
+}
+
+.main-information p {
+  color: #ca4260;
+}
+
+.create-info {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  margin: 15px auto 0 auto;
+  color: #253533;
+  grid-column-gap: 30px;
+  max-width: 630px;
+}
+
+.create-info input {
+  padding-left: 10px;
+}
+
+.create-info input[type="text"],
+.create-info input[type="date"] {
+  margin-bottom: 7px;
+  width: calc(100% - 10px);
+}
+
+.create-main-info,
+.create-work {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  max-width: 300px;
+}
+
+.gender-radio,
+.work-radio,
+.study-radio {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  border-bottom: 1px solid #ca4260;
+  margin-bottom: 7px;
+}
+
+.work-radio label,
+.study-radio label,
+.gender-radio label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 4px;
+}
+
+#country {
+  border-radius: 7px;
+  height: 35px;
+  background: none;
+  color: #ca4260;
+  border: 1px solid #ca4260;
+}
+
+.create-submit-button {
+  width: 150px;
+  height: 30px;
+  font-size: 1rem;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+  margin: 15px auto 0 auto;
+}
+
+.validate-error {
+  background-color: #992323;
+}
+
+.label-input-avatar {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  color: #026159;
+  margin: 15px auto 0 auto;
+}
+
+.label-input-avatar:hover {
+  cursor: pointer;
+}
+
+#input-avatar {
+  display: none;
+}
+
+.label-input-avatar p {
+  width: 150px;
+  height: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid #30d5c8;
+  background-color: #f0fffa;
+  color: #30d5c8;
+  outline: none;
+  border-radius: 5px;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+}
+
+.label-input-avatar p:hover {
+  border: 1px solid #f0fffa;
+  background-color: #30d5c8;
+  color: #026159;
+  cursor: pointer;
+}
+/*# sourceMappingURL=accountInfo.css.map */

@@ -1,12 +1,23 @@
 <template>
-  <div class="picture_box" id="picture_box" ref="picture_box">
-    <span class="name">{{ pictureInfo.email }}</span>
+  <div class="picture_box" id="picture_box">
+    <router-link :to="{ name: 'someoneUser' }">
+      <div @click="getSomeoneUserInfoLocal" class="name">
+        <Avatar :src="pictureInfo.email" />
+        <span> {{ pictureInfo.email }}</span>
+      </div>
+    </router-link>
+
     <img alt="picture" :src="pictureInfo.url" />
+
     <span class="date">{{ dateLocal }}</span>
   </div>
 </template>
+
 <script lang="ts">
+import { mapActions } from "vuex";
 import Vue from "vue";
+
+import Avatar from "@/components/Account/Avatar.vue";
 
 export default Vue.extend({
   data(): { dateLocal: string } {
@@ -14,7 +25,17 @@ export default Vue.extend({
       dateLocal: ""
     };
   },
+
+  methods: {
+    ...mapActions(["getSomeoneUserInfo"]),
+
+    getSomeoneUserInfoLocal() {
+      this.getSomeoneUserInfo(this.pictureInfo.email);
+    }
+  },
+
   props: ["pictureInfo"],
+
   mounted() {
     const pictureDate: Date = new Date(+this.pictureInfo.date),
       day = pictureDate.getDate(),
@@ -34,15 +55,12 @@ export default Vue.extend({
         "November",
         "December"
       ];
+
     this.dateLocal = `${("" + day).length < 2 ? "0" + day : day}/${
       months[month]
     }/${year}`;
-  }
+  },
+
+  components: { Avatar }
 });
 </script>
-<style scoped>
-.date {
-  text-align: right;
-  margin-top: 5px;
-}
-</style>

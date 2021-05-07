@@ -6,7 +6,6 @@ import "firebase/messaging";
 import "firebase/storage";
 
 import { IRootState, IInit } from "@/types/index";
-import { eventBus } from "@/main";
 
 const state: IInit = {
   isInit: false,
@@ -25,7 +24,7 @@ const mutations: MutationTree<IInit> = {
 };
 
 const actions: ActionTree<IInit, IRootState> = {
-  async initializeApp({ commit, dispatch }) {
+  async initializeApp({ commit, dispatch, getters }) {
     const firebaseConfig = {
       apiKey: process.env.VUE_APP_API_KEY,
       authDomain: process.env.VUE_APP_AUTH_DOMAIN,
@@ -45,6 +44,8 @@ const actions: ActionTree<IInit, IRootState> = {
           commit("setUser", { newUser: user.uid, email: user.email });
 
           dispatch("initVersion");
+          dispatch("getUserInfo");
+          dispatch("getSomeoneUserAvatar", { userEmail: getters.email });
         }
         res(user);
       }, rej);

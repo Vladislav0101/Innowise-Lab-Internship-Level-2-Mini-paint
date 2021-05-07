@@ -1,3 +1,4 @@
+import firebase from "firebase";
 import { ActionTree, MutationTree, GetterTree } from "vuex";
 
 import { IRootState, IProfileStateCreate } from "@/types/index";
@@ -24,9 +25,11 @@ const mutations: MutationTree<IProfileStateCreate> = {
   setSize(state, newSize: number): void {
     state.size = newSize;
   },
+
   setColor(state, newColor: string): void {
     state.color = newColor;
   },
+
   setMode(state, mode: string): void {
     state.mode = mode;
   },
@@ -36,11 +39,21 @@ const actions: ActionTree<IProfileStateCreate, IRootState> = {
   setSize({ commit }, newSize: number): void {
     commit("setSize", newSize);
   },
+
   setColor({ commit }, newColor: string): void {
     commit("setColor", newColor);
   },
+
   setMode({ commit }, mode: string): void {
     commit("setMode", mode);
+  },
+
+  savePicture({ getters }, { img }) {
+    const storageRef = firebase.storage().ref();
+
+    storageRef
+      .child(`${+new Date()}-${getters.email}.jpeg`)
+      .putString(img, "data_url");
   },
 };
 

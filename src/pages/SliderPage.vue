@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="wrapper">
     <router-link :to="{ name: 'main' }" style="position:absolute">
       <svg
         version="1.1"
@@ -38,13 +38,15 @@ import Slider from "@/components/Slider/Slider.vue";
 interface SliderPageDate {
   arrPicturesToShow: Array<{ [key: string]: string }>;
   slidesNumber: number;
+  picturesIsReady: boolean;
 }
 
 export default Vue.extend({
   data(): SliderPageDate {
     return {
       arrPicturesToShow: [],
-      slidesNumber: 5
+      slidesNumber: 5,
+      picturesIsReady: false
     };
   },
   components: { Slider },
@@ -53,12 +55,15 @@ export default Vue.extend({
     ...mapActions(["getPictures"]),
 
     getPicturesToShow() {
-      if (!this.arrayOfUrls.length) {
+      const arrPictures: any = this.arrayOfUrls;
+
+      if (!arrPictures.length) {
         this.getPictures("slider").then(() => {
-          this.arrPicturesToShow = this.arrayOfUrls;
+          this.arrPicturesToShow = arrPictures;
+          this.picturesIsReady = true;
         });
       }
-      this.arrPicturesToShow = this.arrayOfUrls.slice(0, this.slidesNumber);
+      this.arrPicturesToShow = arrPictures.slice(0, this.slidesNumber);
     }
   },
 

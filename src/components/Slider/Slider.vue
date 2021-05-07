@@ -1,14 +1,38 @@
 <template>
   <div class="slider wrapper">
-    <div @click.prevent="prev" class="toggle_slides">&lt;</div>
-    <transition-group name="slider" class="slider_box" tag="div">
+    <div class="left-toggle">
+      <div
+        @click.prevent="prev"
+        :class="{ toggle_slides: true, 'zero-opacity': !lookedPictures.length }"
+      >
+        <!-- v-show="lookedPictures.length" -->
+        &lt;
+      </div>
+    </div>
+    <transition-group
+      name="slider"
+      class="slider_box"
+      tag="div"
+      ref="sliderBox"
+    >
       <PictureBox
         v-for="pictureInfo of arrPicturesToShow"
         :key="pictureInfo.date"
         :pictureInfo="pictureInfo"
       />
     </transition-group>
-    <div @click.prevent="next" class="toggle_slides">&gt;</div>
+    <div class="right-toggle">
+      <div
+        @click.prevent="next"
+        :class="{
+          toggle_slides: true,
+          'zero-opacity': !(arrPicturesToShow.length > 1)
+        }"
+      >
+        <!-- v-show="arrPicturesToShow.length > 1" -->
+        &gt;
+      </div>
+    </div>
     <div @click.prevent="start" class="slider_start" v-if="!isStartShow">
       <svg
         version="1.1"
@@ -58,7 +82,6 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { mapActions, mapGetters } from "vuex";
 
 import PictureBox from "@/components/Main/PictureBox.vue";
 
@@ -66,6 +89,7 @@ interface SliderBoxData {
   lookedPictures: [];
   isStartShow: boolean;
   intervalId: undefined | number;
+  arrPictures: any;
 }
 
 export default Vue.extend({
@@ -73,13 +97,12 @@ export default Vue.extend({
     return {
       lookedPictures: [],
       isStartShow: false,
-      intervalId: undefined
+      intervalId: undefined,
+      arrPictures: this.arrPicturesToShow
     };
   },
 
   methods: {
-    ...mapActions(["getPictures"]),
-
     prev() {
       if (this.lookedPictures.length) {
         this.arrPicturesToShow.unshift(
@@ -119,10 +142,6 @@ export default Vue.extend({
     }
   },
 
-  computed: {
-    ...mapGetters(["arrayOfUrls"])
-  },
-
   components: { PictureBox }
 });
 </script>
@@ -134,12 +153,16 @@ export default Vue.extend({
 .slider-leave-to,
 .slider-enter {
   opacity: 0;
-  transition: all 1.5s linear;
+  transition: all 1s linear;
+  transform: translateX(-560px);
 }
 .slider-enter-active {
   transition: all 1s linear;
 }
 .slider-move {
-  transition: all 1.5s;
+  transition: all 1s linear;
+}
+.zero-opacity {
+  opacity: 0;
 }
 </style>

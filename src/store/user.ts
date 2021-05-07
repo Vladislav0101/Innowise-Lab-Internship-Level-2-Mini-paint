@@ -1,60 +1,41 @@
 import firebase from "firebase";
 import { ActionTree, MutationTree, GetterTree } from "vuex";
 
-import { IProfileStateUser, IRootState, IAuth } from "@/types/index";
+import { IRootState, IUser } from "@/types/index";
 import { eventBus } from "@/main";
+import { stringToDBFormat } from "@/utils/helpFunction";
 
-const state: IProfileStateUser = {
-  user: "",
-  email: "",
+const state: IUser = {
+  userAccountInfo: null,
+  userAvatar: null,
 };
 
-const getters: GetterTree<IProfileStateUser, IRootState> = {
-  user(state): string {
-    return state.user;
+const getters: GetterTree<IUser, IRootState> = {
+  userAccountInfo(state) {
+    return state.userAccountInfo;
   },
-  email(state) {
-    return state.email;
-  },
-};
-
-const mutations: MutationTree<IProfileStateUser> = {
-  setUser(state, { newUser, email }: { [key: string]: string }): void {
-    state.user = newUser;
-    state.email = email;
+  userAvatar(state) {
+    return state.userAvatar;
   },
 };
 
-const actions: ActionTree<IProfileStateUser, IRootState> = {
-  async registerUser(
-    { commit },
-    { userMail, userPassword }: IAuth
-  ): Promise<void> {
-    const user = await firebase
-      .auth()
-      .createUserWithEmailAndPassword(userMail, userPassword);
+const mutations: MutationTree<IUser> = {
+  setUserAccountInfo(state, userInfo) {
+    state.userAccountInfo = userInfo;
   },
 
-  async signInUser(
-    { commit },
-    { userMail, userPassword }: IAuth
-  ): Promise<void> {
-    const user = await firebase
-      .auth()
-      .signInWithEmailAndPassword(userMail, userPassword);
+  setUserAvatar(state, url) {
+    state.userAvatar = url;
   },
+};
 
-  logoutUser({ commit }) {
-    firebase.auth().signOut();
-    commit("setUser", { newUser: "", email: "" });
-  },
-
+const actions: ActionTree<IUser, IRootState> = {
   async checkEqualVersion({ getters, commit, dispatch }) {
-    const user = getters.user;
+    const emailToDB = stringToDBFormat(getters.email);
 
     firebase
       .database()
-      .ref(`${user}`)
+      .ref(`users/${emailToDB}/version`)
       .on("value", (res) => {
         const result = res.val();
 
@@ -72,14 +53,51 @@ const actions: ActionTree<IProfileStateUser, IRootState> = {
   },
 
   async setVersionOnDB({ getters }, value) {
-    const user = getters.user;
-
+    const emailToDB = stringToDBFormat(getters.email);
     firebase
       .database()
-      .ref(`${user}`)
+      .ref(`users/${emailToDB}/version`)
       .set({
         version: getters.version,
         checkedVersion: value ? value : false,
+      });
+  },
+
+  setUserInfo({ dispatch, getters }, userInfo) {
+    const emailToDB = stringToDBFormat(getters.email);
+    firebase
+      .database()
+      .ref(`users/${emailToDB}/userInfo`)
+      .set(userInfo);
+
+    dispatch("getUserInfo");
+  },
+
+  setUserAvatar({ getters, dispatch, commit }, { img }) {
+    const storageRef = firebase.storage().ref("avatars/");
+    const emailToDB = stringToDBFormat(getters.email);
+
+    storageRef
+      .child(`${getters.email}.jpeg`)
+      .putString(img, "data_url")
+      .then(() => {
+        firebase
+          .database()
+          .ref(`users/${emailToDB}/isAvatar`)
+          .set(true);
+      });
+
+    commit("setUsersAvatars", { email: getters.email, img });
+  },
+
+  getUserInfo({ getters, commit }) {
+    const emailToDB = stringToDBFormat(getters.email);
+
+    firebase
+      .database()
+      .ref(`users/${emailToDB}/userInfo`)
+      .on("value", (res) => {
+        commit("setUserAccountInfo", res.val());
       });
   },
 };

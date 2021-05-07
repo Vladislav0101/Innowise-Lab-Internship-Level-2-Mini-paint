@@ -36,7 +36,6 @@ import { IFeedObject } from "../types/index";
 
 import Header from "@/components/Header/Header.vue";
 import PictureBox from "@/components/Main/PictureBox.vue";
-import Popover from "@/components/Popover/Popover.vue";
 import SearchUser from "@/components/Main/SearchUser.vue";
 import SearchUserWithHint from "@/components/Main/SearchUserWithHint.vue";
 import ToSliderButton from "@/components/Main/ToSliderButton.vue";
@@ -46,8 +45,7 @@ interface MainDataProps {
   inputUserValue: string;
   lastCall: Date | null;
   distanceToTheBottom: number;
-  isInfiniteScrollEnabled: boolean;
-  throttleScroll: Function;
+  throttleScroll: any;
 }
 
 export default Vue.extend({
@@ -56,7 +54,6 @@ export default Vue.extend({
       inputUserValue: "",
       lastCall: null,
       distanceToTheBottom: 300,
-      isInfiniteScrollEnabled: true,
       throttleScroll: throttle(this.handlerScroll, 300)
     };
   },
@@ -65,11 +62,6 @@ export default Vue.extend({
 
     inputUser(value: string): void {
       this.inputUserValue = value;
-    },
-
-    setIsInfiniteScrollEnabled(res: { [key: string]: number }): void {
-      this.isInfiniteScrollEnabled =
-        res.numberOfElements === res.numberOfPicturesOnPage;
     },
 
     handlerScroll() {
@@ -81,7 +73,7 @@ export default Vue.extend({
         totalHeight - scrollTop - displayHeight <= this.distanceToTheBottom &&
         this.isInfiniteScrollEnabled
       ) {
-        this.getPictures().then(this.setIsInfiniteScrollEnabled);
+        this.getPictures();
       }
     },
 
@@ -96,9 +88,8 @@ export default Vue.extend({
 
   mounted(): void {
     if (!this.arrayOfUrls.length) {
-      this.getPictures().then(this.setIsInfiniteScrollEnabled);
+      this.getPictures();
     }
-
     this.subscribeToScroll();
   },
 
@@ -107,7 +98,8 @@ export default Vue.extend({
       "arrayOfUrls",
       "isLearningPathActive",
       "features",
-      "version"
+      "version",
+      "isInfiniteScrollEnabled"
     ]),
 
     arrOfChosenUserPict(): string | Array<IFeedObject> {
@@ -136,7 +128,6 @@ export default Vue.extend({
   components: {
     Header,
     PictureBox,
-    Popover,
     SearchUser,
     SearchUserWithHint,
     ToSliderButton,

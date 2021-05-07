@@ -4,5 +4,7 @@ enum Routes {
   registration = "/registration",
   create = "/create",
   slider = "/slider",
+  myAccount = "/my-account",
+  someoneUser = "/user/:id",
 }
 export default Routes;

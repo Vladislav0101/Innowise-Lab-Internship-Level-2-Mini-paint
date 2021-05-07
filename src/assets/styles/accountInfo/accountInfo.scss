@@ -1,0 +1,187 @@
+@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
+
+:root {
+  --itim: "Itim", cursive;
+}
+input,
+select,
+option,
+textarea {
+  outline: none;
+}
+body #app div .information-box {
+  padding: 15px;
+  font-family: var(--itim);
+}
+.information-box input {
+  font-family: var(--itim);
+}
+.no-info {
+  color: $color-dark;
+  margin-top: 15px;
+}
+.header--information {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.avatar {
+  background: $color-background;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 100%;
+  border: 1px solid $color-background;
+}
+.avatar img {
+  width: 40px;
+  height: 40px;
+}
+.header--information p {
+  color: $color-background;
+  font-size: 1.2rem;
+}
+
+.header-info-edit {
+  display: flex;
+  padding: 10px;
+  gap: 17px;
+  align-items: center;
+  background-color: $color-secondary;
+  border-radius: 7px 7px 0 0;
+}
+.go-edit {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  border: none;
+  background: none;
+  fill: $color-background;
+  transition: $transition-primary;
+}
+.go-edit:hover {
+  fill: $color-dark-secondary;
+  cursor: pointer;
+}
+.box_main-information {
+  border: 2px solid $color-secondary;
+  border-top: none;
+  margin-top: 15px;
+  border-radius: 0 0 7px 7px;
+  padding: 10px 0 10px 65px;
+}
+.main-information {
+  display: grid;
+  width: max-content;
+  grid-column-gap: 25px;
+}
+.info-prop {
+  color: $color-dark-primary;
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+.info-value {
+  color: $color-secondary;
+  font-size: 1.5rem;
+}
+.main-information p {
+  color: $color-secondary;
+}
+
+//create
+.create-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 15px auto 0 auto;
+  color: $color-dark;
+  grid-column-gap: 30px;
+  max-width: 630px;
+}
+.create-info input {
+  padding-left: 10px;
+}
+.create-info input[type="text"],
+.create-info input[type="date"] {
+  margin-bottom: 7px;
+  width: calc(100% - 10px);
+}
+.create-main-info,
+.create-work {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  gap: 5px;
+}
+.create-work {
+  gap: 5px;
+}
+.gender-radio,
+.work-radio,
+.study-radio {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid $color-secondary;
+  margin-bottom: 7px;
+}
+.work-radio,
+.study-radio {
+  margin-bottom: 15px;
+}
+.work-radio label,
+.study-radio label,
+.gender-radio label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+#country {
+  border-radius: 7px;
+  height: 35px;
+  background: none;
+  color: $color-secondary;
+  border: 1px solid $color-secondary;
+}
+.create-submit-button {
+  width: 150px;
+  height: 30px;
+  font-size: 1rem;
+  transition: $transition-primary;
+  margin: 15px auto 0 auto;
+}
+.validate-error {
+  background-color: $color-error;
+}
+.label-input-avatar {
+  width: max-content;
+  color: $color-dark-primary;
+  margin: 15px auto 0 auto;
+}
+.label-input-avatar:hover {
+  cursor: pointer;
+}
+#input-avatar {
+  display: none;
+}
+.label-input-avatar p {
+  width: 150px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid $color-primary;
+  background-color: $color-background;
+  color: $color-primary;
+  outline: none;
+  border-radius: 5px;
+  transition: $transition-primary;
+}
+.label-input-avatar p:hover {
+  border: 1px solid $color-background;
+  background-color: $color-primary;
+  color: $color-dark-primary;
+  cursor: pointer;
+}
+//___create

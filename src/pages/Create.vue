@@ -48,6 +48,7 @@ export default Vue.extend({
       | CanvasRenderingContext2D
       | null
       | undefined = canvas?.getContext("2d");
+
     this.canvas = canvas;
     this.context = context;
   },
@@ -171,9 +172,6 @@ export default Vue.extend({
   align-items: center;
   justify-content: center;
   animation: color 20s linear infinite;
-}
-.settings_color input:hover {
-  background: none !important;
 }
 @keyframes color {
   0% {

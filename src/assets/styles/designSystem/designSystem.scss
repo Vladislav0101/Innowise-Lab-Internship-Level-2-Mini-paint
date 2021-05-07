@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Fascinate&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500&display=swap");
+
+$Fascinate: "Fascinate", cursive;
+$HindSiliguri: "Hind Siliguri", sans-serif;
+
+.fascinate {
+  font-family: $Fascinate;
+}
+.hind_siliguri {
+  font-family: $HindSiliguri;
+}
+
+$color-primary: #30d5c8;
+$color-dark-primary: #026159;
+$color-secondary: #ca4260;
+$color-dark-secondary: #74182c;
+$color-background: #f0fffa;
+$color-dark: #253533;
+$color-shadow: #02615940;
+$color-error: rgb(153, 35, 35);
+
+$transition-primary: all 0.1s linear;
+
+main,
+body,
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: $color-background;
+  font-family: $HindSiliguri;
+  font-weight: 500;
+}
+a {
+  height: max-content;
+  text-decoration: none;
+}
+h1 {
+  font-family: $Fascinate;
+}
+
+[custom-input] {
+  background-color: $color-secondary;
+  color: $color-background;
+  border: 1px solid $color-secondary;
+  font-size: 1rem;
+  border-radius: 7px;
+  height: 35px;
+  outline: none;
+  transition: $transition-primary;
+}
+[custom-input]::placeholder {
+  color: $color-background;
+}
+[custom-input]:hover,
+[custom-input]:focus,
+select:hover,
+select:focus {
+  background-color: #e7748d;
+  color: $color-background;
+  border: 1px solid #e7748d;
+  cursor: pointer;
+}
+[custom-button] {
+  border: 1px solid $color-primary;
+  background-color: $color-background;
+  color: $color-primary;
+  outline: none;
+  border-radius: 5px;
+}
+[custom-button]:hover {
+  border: 1px solid $color-background;
+  background-color: $color-primary;
+  color: $color-dark-primary;
+  cursor: pointer;
+}
+.logo-svg {
+  fill: $color-background;
+  width: 40px;
+}
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}

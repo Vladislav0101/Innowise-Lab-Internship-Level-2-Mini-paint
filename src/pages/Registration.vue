@@ -6,24 +6,31 @@
       </h1>
       <form action="sign_in" class="auth_form">
         <input
+          custom-input
           type="text"
           placeholder="mail"
           class="auth_input"
           v-model="userToSent.userMail"
         />
         <input
+          custom-input
           type="password"
           placeholder="password"
           class="auth_input"
           v-model="userToSent.userPassword"
         />
         <input
+          custom-input
           type="password"
           placeholder="password"
           class="auth_input"
           v-model="userToSent.userPasswordConfirm"
         />
-        <button class="auth_button" @click.prevent="registerUserLocal">
+        <button
+          custom-button
+          class="auth_button"
+          @click.prevent="registerUserLocal"
+        >
           register
         </button>
       </form>
@@ -63,12 +70,16 @@ export default Vue.extend({
       if (
         this.userToSent.userPassword === this.userToSent.userPasswordConfirm
       ) {
-        this.registerUser(this.userToSent).catch(err => {
-          this.submitStatus = err.message;
-          setTimeout(() => {
-            this.submitStatus = "";
-          }, 2000);
-        });
+        this.registerUser(this.userToSent)
+          .then(() => {
+            this.$router.push({ name: "main" });
+          })
+          .catch(err => {
+            this.submitStatus = err.message;
+            setTimeout(() => {
+              this.submitStatus = "";
+            }, 2000);
+          });
       } else {
         this.submitStatus = "Check your password";
         setTimeout(() => {
@@ -79,4 +90,3 @@ export default Vue.extend({
   }
 });
 </script>
-<style scoped></style>

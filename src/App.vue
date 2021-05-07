@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="wrapper">
+  <div id="app">
     <ModalIsNeedTour v-if="isNeedToLearningPath" />
     <router-view to="/"></router-view>
   </div>

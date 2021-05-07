@@ -46,6 +46,7 @@ export interface IFeedObject {
 export interface IFeed {
   arrayOfUrls: Array<IFeedObject>;
   token: null;
+  isInfiniteScrollEnabled: boolean;
 }
 
 export interface IRenderingContext {
@@ -63,4 +64,19 @@ export interface IVersion {
 export interface IFeaturesElement {
   isChecked: boolean;
   text: string;
+}
+
+export interface IUser {
+  userAccountInfo: null | { [key: string]: string };
+  userAvatar: string | null;
+}
+
+export interface ISomeoneUser {
+  someoneUserInfo: null | { [key: string]: string };
+  someoneUserEmail: null | string;
+  usersAvatars: { [key: string]: string };
+}
+
+export interface IAnalytics {
+  countEvents: { [key: string]: number };
 }
