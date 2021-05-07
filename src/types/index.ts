@@ -46,16 +46,21 @@ export interface IFeedObject {
 export interface IFeed {
   arrayOfUrls: Array<IFeedObject>;
   token: null;
-  // isScroll: boolean;
-}
-
-export interface ISettings {
-  localSize: number;
-  isSizeInput?: boolean;
-  localColor: string;
-  mode: string;
 }
 
 export interface IRenderingContext {
   context: CanvasRenderingContext2D | null | undefined;
+}
+
+export interface IVersion {
+  features: { [key: string]: IFeaturesElement };
+  version: string;
+  isLearningPathActive: boolean;
+  isVersionsMatch: boolean;
+  isNeedToLearningPath: boolean;
+}
+
+export interface IFeaturesElement {
+  isChecked: boolean;
+  text: string;
 }

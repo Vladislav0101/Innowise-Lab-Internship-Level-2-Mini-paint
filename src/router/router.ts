@@ -8,7 +8,7 @@ import Main from "@/pages/Main.vue";
 import Create from "@/pages/Create.vue";
 import SignIn from "@/pages/SignIn.vue";
 import Registration from "@/pages/Registration.vue";
-import Slider from "@/pages/Slider.vue";
+import Slider from "@/pages/SliderPage.vue";
 
 Vue.use(VueRouter);
 
@@ -64,6 +64,7 @@ const router = new VueRouter({
     },
   ],
 });
+
 router.beforeEach((to, from, next) => {
   const user: string = store.getters.user;
   const isRequiresAuth = to.meta.requiresAuth;

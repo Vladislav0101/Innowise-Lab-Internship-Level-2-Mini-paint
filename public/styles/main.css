@@ -369,7 +369,6 @@ canvas {
 }
 
 .slider_svg_button {
-  margin-left: 15px;
   fill: chartreuse;
   -webkit-transition: fill 0.1s linear;
   transition: fill 0.1s linear;
@@ -440,5 +439,104 @@ canvas {
 
 .slider_svg_stop {
   fill: #001e38;
+}
+
+@-webkit-keyframes beat {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    background-color: orange;
+  }
+  50% {
+    -webkit-transform: scale(1.3);
+            transform: scale(1.3);
+    background-color: crimson;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    background-color: orange;
+  }
+}
+
+@keyframes beat {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    background-color: orange;
+  }
+  50% {
+    -webkit-transform: scale(1.3);
+            transform: scale(1.3);
+    background-color: crimson;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    background-color: orange;
+  }
+}
+
+.popover-box {
+  position: relative;
+}
+
+.notification {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  background-color: coral;
+  -webkit-animation: beat 2s ease-out infinite;
+          animation: beat 2s ease-out infinite;
+}
+
+.popover {
+  background-color: #fcfcfc;
+  padding: 10px 15px;
+  border-radius: 7px;
+}
+
+.agree-feature {
+  width: 30px;
+  height: 30px;
+}
+
+.popover button {
+  padding: 2px 5px;
+}
+
+.modal-window {
+  background-color: #f0fffa;
+  max-width: 300px;
+  padding: 10px 15px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.modal-window button {
+  width: 50px;
+  text-align: center;
+  padding: 2px 0;
+}
+
+.popover button,
+.modal-window button {
+  background-color: #001e38;
+  color: #f0fffa;
+  font-size: 1rem;
+  border: none;
+  border-radius: 7px;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+}
+
+.popover button:hover,
+.modal-window button:hover {
+  cursor: pointer;
+  background-color: chartreuse;
+  color: #001e38;
 }
 /*# sourceMappingURL=main.css.map */

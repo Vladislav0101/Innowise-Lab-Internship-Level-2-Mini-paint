@@ -1,28 +1,67 @@
 <template>
   <header>
-    <CreationButton v-if="!isCreated" />
+    <component
+      :is="CreationButtonIs"
+      :idElement="'creation-button'"
+      :text="features['creation-button'].text"
+      v-if="!isCreated"
+    ></component>
+
     <BackToMainButton v-else />
+
     <router-link :to="{ name: 'main' }" class="logo">
       <h1>
         mini-paint
       </h1>
     </router-link>
+
     <LogoutButton v-if="!isCreated" />
-    <SaveButton :canvas="canvas" v-else />
+
+    <component
+      :is="SaveButtonIs"
+      :idElement="'save-button'"
+      :text="features['save-button'].text"
+      v-else
+    ></component>
   </header>
 </template>
 <script lang="ts">
 import Vue from "vue";
+import { mapGetters } from "vuex";
 
 import CreationButton from "@/components/Header/CreationButton.vue";
+import CreationButtonWithHint from "@/components/Header/CreationButtonWithHint.vue";
 import LogoutButton from "@/components/Header/LogoutButton.vue";
 import BackToMainButton from "@/components/Header/BackToMainButton.vue";
 import SaveButton from "@/components/Header/SaveButton.vue";
+import SaveButtonWithHint from "@/components/Header/SaveButtonWithHint.vue";
 
 export default Vue.extend({
+  computed: {
+    ...mapGetters(["isLearningPathActive", "features", "version"]),
+
+    CreationButtonIs(): Function {
+      return this.isLearningPathActive && this.version === "1.0"
+        ? CreationButtonWithHint
+        : CreationButton;
+    },
+
+    SaveButtonIs(): Function {
+      return this.isLearningPathActive && this.version === "1.0"
+        ? SaveButtonWithHint
+        : SaveButton;
+    }
+  },
+
   props: ["isCreated", "canvas"],
 
-  components: { CreationButton, LogoutButton, BackToMainButton, SaveButton }
+  components: {
+    CreationButton,
+    CreationButtonWithHint,
+    LogoutButton,
+    BackToMainButton,
+    SaveButton
+  }
 });
 </script>
 

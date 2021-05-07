@@ -22,7 +22,7 @@
 import Vue from "vue";
 import { mapGetters } from "vuex";
 
-import { ICanvas } from "@/types/index";
+import { ICanvas } from "../types/index";
 
 import Header from "@/components/Header/Header.vue";
 import Settings from "@/components/Create/Settings.vue";

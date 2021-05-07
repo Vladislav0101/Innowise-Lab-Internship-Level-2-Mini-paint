@@ -2,6 +2,7 @@ import firebase from "firebase";
 import { ActionTree, MutationTree, GetterTree } from "vuex";
 
 import { IProfileStateUser, IRootState, IAuth } from "@/types/index";
+import { eventBus } from "@/main";
 
 const state: IProfileStateUser = {
   user: "",
@@ -46,6 +47,40 @@ const actions: ActionTree<IProfileStateUser, IRootState> = {
   logoutUser({ commit }) {
     firebase.auth().signOut();
     commit("setUser", { newUser: "", email: "" });
+  },
+
+  async checkEqualVersion({ getters, commit, dispatch }) {
+    const user = getters.user;
+
+    firebase
+      .database()
+      .ref(`${user}`)
+      .on("value", (res) => {
+        const result = res.val();
+
+        if (!result || result.version !== getters.version) {
+          dispatch("setVersionOnDB");
+        }
+
+        commit("setIsVersionsMatch", result.version === getters.version);
+
+        if (!result.checkedVersion) {
+          eventBus.$emit("isNeedToLearningPath");
+        }
+      });
+    commit("setFeatures");
+  },
+
+  async setVersionOnDB({ getters }, value) {
+    const user = getters.user;
+
+    firebase
+      .database()
+      .ref(`${user}`)
+      .set({
+        version: getters.version,
+        checkedVersion: value ? value : false,
+      });
   },
 };
 

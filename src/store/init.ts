@@ -6,6 +6,7 @@ import "firebase/messaging";
 import "firebase/storage";
 
 import { IRootState, IInit } from "@/types/index";
+import { eventBus } from "@/main";
 
 const state: IInit = {
   isInit: false,
@@ -42,6 +43,8 @@ const actions: ActionTree<IInit, IRootState> = {
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           commit("setUser", { newUser: user.uid, email: user.email });
+
+          dispatch("initVersion");
         }
         res(user);
       }, rej);

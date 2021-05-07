@@ -1,0 +1,34 @@
+{
+  "version_1_0": {
+    "rectangle": {
+      "text": "You can draw rectangle"
+    },
+    "circle": {
+      "text": "You can draw circle"
+    },
+    "line": {
+      "text": "You can draw line"
+    },
+    "pencil": {
+      "text": "You can use pencil"
+    },
+    "size": {
+      "text": "You can change size"
+    },
+    "color": {
+      "text": "You can change color"
+    },
+    "creation-button": {
+      "text": "You can draw picture"
+    },
+    "save-button": {
+      "text": "You can save picture"
+    },
+    "slider": {
+      "text": "You can make slideshow"
+    },
+    "search": {
+      "text": "You can search an user"
+    }
+  }
+}

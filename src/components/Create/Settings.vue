@@ -1,83 +1,149 @@
 <template>
   <div class="settings">
-    <div class="settings_figure" @click="setRectangleMode">
-      <div class="rectangle"></div>
-    </div>
-    <div class="settings_figure" @click="setCircleMode">
-      <div class="circle"></div>
-    </div>
-    <div class="settings_figure" @click="setLineMode">
-      <div class="line"></div>
-    </div>
-    <div class="settings_line">
-      <button class="pencil" @click="setPencilMode">
-        <img src="../../assets/pencil.png" alt="" />
-      </button>
-    </div>
-    <div class="settings_size">
-      <button @click="setIsSizeInput">width</button>
-      <input type="range" v-model="localSize" width="50px" v-if="isSizeInput" />
-    </div>
-    <div class="settings_color">
-      <input type="color" v-model="localColor" width="50px" />
-    </div>
+    <component
+      :is="componentIs"
+      v-for="item of tools"
+      :key="item.id"
+      :idElement="item.idElement"
+      :requiredVersion="'1.0'"
+      :toolClass="item.toolClass"
+      :mode="item.mode"
+      :text="features[item.idElement].text"
+    >
+      <div
+        :class="item.idElement"
+        v-if="'circle rectangle line'.includes(item.idElement)"
+      ></div>
+
+      <div v-else-if="item.idElement === 'pencil'">
+        <img src="../../assets/pencil.png" alt="pencil" width="35px" />
+      </div>
+
+      <div v-else-if="item.idElement === 'size'">
+        <button @click="setIsSizeInput">width</button>
+        <input
+          type="range"
+          v-model="localSize"
+          width="50px"
+          v-if="isSizeInput"
+        />
+      </div>
+
+      <div v-else-if="item.idElement === 'color'">
+        <input type="color" v-model="localColor" width="50px" />
+      </div>
+    </component>
   </div>
 </template>
+
 <script lang="ts">
 import { mapActions, mapGetters } from "vuex";
 import Vue from "vue";
 
-import { ISettings } from "@/types/index";
+import Tool from "@/components/Create/Tool.vue";
+import ToolWithHint from "@/components/Create/ToolWithHint.vue";
 
+interface SettingsData {
+  localSize: number;
+  isSizeInput?: boolean;
+  localColor: string;
+  tools: Array<object>;
+}
 export default Vue.extend({
-  data(): ISettings {
+  data(): SettingsData {
     return {
       localSize: 0,
       isSizeInput: false,
       localColor: "",
-      mode: "pencil"
+      tools: [
+        {
+          id: 1,
+          idElement: "rectangle",
+          requiredVersion: "'1.0'",
+          toolClass: "settings_figure",
+          mode: "rectangle"
+        },
+        {
+          id: 2,
+          idElement: "circle",
+          requiredVersion: "'1.0'",
+          toolClass: "settings_figure",
+          mode: "circle"
+        },
+        {
+          id: 3,
+          idElement: "line",
+          requiredVersion: "'1.0'",
+          toolClass: "settings_figure",
+          mode: "line"
+        },
+        {
+          id: 4,
+          idElement: "pencil",
+          requiredVersion: "'1.0'",
+          toolClass: "settings_figure",
+          mode: "pencil"
+        },
+        {
+          id: 5,
+          idElement: "size",
+          requiredVersion: "'1.0'",
+          toolClass: "settings_size"
+        },
+        {
+          id: 6,
+          idElement: "color",
+          requiredVersion: "'1.0'",
+          toolClass: "settings_color"
+        }
+      ]
     };
   },
+
   computed: {
-    ...mapGetters(["size", "color"])
+    ...mapGetters([
+      "size",
+      "color",
+      "isLearningPathActive",
+      "features",
+      "version"
+    ]),
+
+    componentIs(): Function {
+      return this.isLearningPathActive && this.version === "1.0"
+        ? ToolWithHint
+        : Tool;
+    }
   },
+
   watch: {
     localSize(): void {
       this.setSize(this.localSize);
     },
+
     localColor(): void {
       this.setColor(this.localColor);
     }
   },
+
   methods: {
     ...mapActions(["setSize", "setColor", "setMode"]),
+
     setIsSizeInput(): void {
       this.isSizeInput = !this.isSizeInput;
-    },
-    setPencilMode(): void {
-      this.mode = "pencil";
-      this.setMode("pencil");
-    },
-    setLineMode(): void {
-      this.mode = "line";
-      this.setMode("line");
-    },
-    setCircleMode(): void {
-      this.mode = "circle";
-      this.setMode("circle");
-    },
-    setRectangleMode(): void {
-      this.mode = "rectangle";
-      this.setMode("rectangle");
     }
   },
+
+  components: { Tool, ToolWithHint },
+
   mounted() {
     this.localSize = this.size;
     this.localColor = this.color;
   }
 });
 </script>
-<style scoped>
+
+<style>
 .settings {
   width: 10vw;
   height: 100%;
