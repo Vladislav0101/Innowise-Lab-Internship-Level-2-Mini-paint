@@ -3,6 +3,7 @@
     <section class="create-main-info">
       <label for="create-firstName">First name</label>
       <input
+        custom-input
         type="text"
         name="firstName"
         id="create-firstName"
@@ -13,6 +14,7 @@
 
       <label for="create-secondName">Second name</label>
       <input
+        custom-input
         type="text"
         name="secondName"
         id="create-secondName"
@@ -47,6 +49,7 @@
 
       <label for="create-birthday">Birthday</label>
       <input
+        custom-input
         type="date"
         name="birthday"
         id="create-birthday"
@@ -92,7 +95,7 @@
       </div>
       <label for="post" v-if="isEmployed">
         <p>Post</p>
-        <input type="text" id="post" v-model="info.post" />
+        <input custom-input type="text" id="post" v-model="info.post" />
       </label>
 
       <p>Education</p>
@@ -121,11 +124,21 @@
 
       <label for="university" v-if="isStudy">
         <p>University</p>
-        <input type="text" id="university" v-model="info.university" />
+        <input
+          custom-input
+          type="text"
+          id="university"
+          v-model="info.university"
+        />
       </label>
       <label for="specialization" v-if="isStudy">
         <p>Specialization</p>
-        <input type="text" id="specialization" v-model="info.specialization" />
+        <input
+          custom-input
+          type="text"
+          id="specialization"
+          v-model="info.specialization"
+        />
       </label>
     </section>
 
@@ -134,7 +147,12 @@
       <input type="file" ref="fileInput" id="input-avatar" @change="addAva" />
     </label>
 
-    <button type="submit" @submit="submitForm" class="create-submit-button">
+    <button
+      custom-button
+      type="submit"
+      @submit="submitForm"
+      class="create-submit-button"
+    >
       Edit
     </button>
   </form>

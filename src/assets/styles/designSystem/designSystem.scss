@@ -3,22 +3,22 @@
 
 $Fascinate: "Fascinate", cursive;
 $HindSiliguri: "Hind Siliguri", sans-serif;
+
 .fascinate {
   font-family: $Fascinate;
 }
 .hind_siliguri {
   font-family: $HindSiliguri;
 }
-// $color-primary: #ff5007;
-// $color-secondary: #00043c;
 
 $color-primary: #30d5c8;
 $color-dark-primary: #026159;
-// $color-secondary: #a9203e;
 $color-secondary: #ca4260;
 $color-dark-secondary: #74182c;
 $color-background: #f0fffa;
-$color-shadow: #cdcdcdba;
+$color-dark: #253533;
+$color-shadow: #02615940;
+$color-error: rgb(153, 35, 35);
 
 $transition-primary: all 0.1s linear;
 
@@ -27,11 +27,11 @@ body,
 * {
   margin: 0;
   padding: 0;
-  font-family: $HindSiliguri;
-  font-weight: 500;
 }
 body {
   background-color: $color-background;
+  font-family: $HindSiliguri;
+  font-weight: 500;
 }
 a {
   height: max-content;
@@ -41,7 +41,7 @@ h1 {
   font-family: $Fascinate;
 }
 
-input {
+[custom-input] {
   background-color: $color-secondary;
   color: $color-background;
   border: 1px solid $color-secondary;
@@ -51,26 +51,26 @@ input {
   outline: none;
   transition: $transition-primary;
 }
-input::placeholder {
+[custom-input]::placeholder {
   color: $color-background;
 }
-input:hover,
-input:focus,
+[custom-input]:hover,
+[custom-input]:focus,
 select:hover,
 select:focus {
-  background-color: #e7748d !important;
-  color: $color-background !important;
-  border: 1px solid #e7748d !important;
+  background-color: #e7748d;
+  color: $color-background;
+  border: 1px solid #e7748d;
   cursor: pointer;
 }
-button {
+[custom-button] {
   border: 1px solid $color-primary;
   background-color: $color-background;
   color: $color-primary;
   outline: none;
   border-radius: 5px;
 }
-button:hover {
+[custom-button]:hover {
   border: 1px solid $color-background;
   background-color: $color-primary;
   color: $color-dark-primary;

@@ -1,27 +1,21 @@
-$Fascinate: "Fascinate", cursive;
-$HindSiliguri: "Hind Siliguri", sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
 
-$color-primary: #30d5c8;
-$color-dark-primary: #026159;
-$color-secondary: #ca4260;
-$color-dark-secondary: #74182c;
-$color-background: #f0fffa;
-$color-dark: #253533;
-$color-shadow: #02615940;
-$color-error: #ff1313;
-
-$transition-primary: all 0.1s linear;
-
+:root {
+  --itim: "Itim", cursive;
+}
 input,
 select,
 option,
 textarea {
   outline: none;
 }
-.information-box {
+body #app div .information-box {
   padding: 15px;
+  font-family: var(--itim);
 }
-
+.information-box input {
+  font-family: var(--itim);
+}
 .no-info {
   color: $color-dark;
   margin-top: 15px;
@@ -31,7 +25,6 @@ textarea {
   align-items: center;
   gap: 1rem;
 }
-
 .avatar {
   background: $color-background;
   width: 40px;
@@ -46,7 +39,7 @@ textarea {
 }
 .header--information p {
   color: $color-background;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .header-info-edit {
@@ -88,9 +81,11 @@ textarea {
 .info-prop {
   color: $color-dark-primary;
   font-weight: 300;
+  font-size: 1.2rem;
 }
 .info-value {
   color: $color-secondary;
+  font-size: 1.5rem;
 }
 .main-information p {
   color: $color-secondary;
@@ -118,11 +113,11 @@ textarea {
   display: flex;
   flex-direction: column;
   max-width: 300px;
+  gap: 5px;
 }
-// #create-firstName,
-// #create-secondName {
-//   margin-bottom: 7px;
-// }
+.create-work {
+  gap: 5px;
+}
 .gender-radio,
 .work-radio,
 .study-radio {
@@ -130,6 +125,10 @@ textarea {
   justify-content: space-around;
   border-bottom: 1px solid $color-secondary;
   margin-bottom: 7px;
+}
+.work-radio,
+.study-radio {
+  margin-bottom: 15px;
 }
 .work-radio label,
 .study-radio label,

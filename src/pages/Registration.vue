@@ -6,24 +6,31 @@
       </h1>
       <form action="sign_in" class="auth_form">
         <input
+          custom-input
           type="text"
           placeholder="mail"
           class="auth_input"
           v-model="userToSent.userMail"
         />
         <input
+          custom-input
           type="password"
           placeholder="password"
           class="auth_input"
           v-model="userToSent.userPassword"
         />
         <input
+          custom-input
           type="password"
           placeholder="password"
           class="auth_input"
           v-model="userToSent.userPasswordConfirm"
         />
-        <button class="auth_button" @click.prevent="registerUserLocal">
+        <button
+          custom-button
+          class="auth_button"
+          @click.prevent="registerUserLocal"
+        >
           register
         </button>
       </form>

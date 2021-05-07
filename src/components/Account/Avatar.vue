@@ -8,7 +8,7 @@
 import Vue from "vue";
 import { mapGetters } from "vuex";
 
-import img from "../../assets/default-avatar.png";
+import img from "../../assets/icons/default-avatar.png";
 
 export default Vue.extend({
   props: ["src"],

@@ -1,7 +1,9 @@
 <template>
   <div>
-    <button class="agree-feature" @click="checkFeatureLocal">Ok</button>
-    <button @click.prevent="complete">Complete</button>
+    <button custom-button class="agree-feature" @click="checkFeatureLocal">
+      Ok
+    </button>
+    <button custom-button @click.prevent="complete">Complete</button>
   </div>
 </template>
 

@@ -1,15 +1,6 @@
-$Fascinate: "Fascinate", cursive;
-$HindSiliguri: "Hind Siliguri", sans-serif;
-
-$color-primary: #30d5c8;
-$color-dark-primary: #026159;
-$color-secondary: #ca4260;
-$color-dark-secondary: #74182c;
-$color-background: #f0fffa;
-$color-dark: #253533;
-$color-shadow: #02615940;
-
-$transition-primary: all 0.1s linear;
+@import "../designSystem/designSystem.scss";
+@import "../accountInfo/accountInfo.scss";
+@import "../adaptive/adaptive.scss";
 
 // --------SIGN_IN_________
 .auth_box {
@@ -232,11 +223,12 @@ nav {
   color: $color-secondary;
 }
 .settings_color input {
-  background-color: $color-background !important;
+  background-color: $color-background;
 }
 .settings_color input:hover {
-  background-color: $color-background !important;
-  border: none !important;
+  background-color: $color-background;
+  border: none;
+  cursor: pointer;
 }
 canvas {
   background-color: $color-background;
@@ -331,7 +323,7 @@ canvas {
   overflow: hidden;
 }
 .slider_box .picture_box {
-  margin: 0 25px !important;
+  margin: 0 25px;
   box-shadow: none;
   border: 1px solid $color-dark-primary;
 }

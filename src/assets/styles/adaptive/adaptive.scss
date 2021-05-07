@@ -1,7 +1,3 @@
-$color-background: #f0fffa;
-$color-dark-primary: #026159;
-
-$transition-primary: all 0.1s linear;
 @media (max-width: 692px) {
   .left-toggle {
     grid-area: 2/1/3/2;
@@ -29,8 +25,6 @@ $transition-primary: all 0.1s linear;
     width: 95vw;
   }
   header {
-    //   display: grid !important;
-    //   justify-items: center;
     justify-content: center;
     overflow: hidden;
   }
@@ -48,7 +42,7 @@ $transition-primary: all 0.1s linear;
     transform: translate(100vw);
     transition: all 0.5s ease-out;
   }
-  .burger {
+  header .burger {
     display: block;
     z-index: 1;
     position: absolute;
@@ -69,23 +63,12 @@ $transition-primary: all 0.1s linear;
     opacity: 1;
     transform: translateX(0);
   }
-  // .logo {
-  // grid-area: 1/1/2/3;
-  // }
-  .logo h1 {
-    font-size: 2rem !important;
-  }
-  // .createButton,
-  // .logoutButton {
-  //   font-size: 1rem;
-  //   margin-top: 5px;
-  // }
   .header--information p {
-    font-size: 1.3em !important;
+    font-size: 1.3em;
   }
   .box_main-information {
     font-size: 1.2rem;
-    padding: 10px 0 10px 10% !important;
+    padding: 10px 0 10px 10%;
   }
   .picture_box {
     margin: 25px 0 5px 0;
@@ -98,13 +81,13 @@ $transition-primary: all 0.1s linear;
     flex-direction: column;
   }
   .settings {
-    display: flex !important;
-    width: 100vw !important;
-    height: auto !important;
-    justify-content: space-around !important;
+    display: flex;
+    width: 100vw;
+    height: auto;
+    justify-content: space-around;
   }
   .settings_size input {
-    transform: none !important;
+    transform: none;
     bottom: -40px;
     left: -15px;
   }

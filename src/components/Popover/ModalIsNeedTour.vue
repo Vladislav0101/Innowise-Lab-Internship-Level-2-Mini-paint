@@ -3,8 +3,8 @@
     <div class="modal-window">
       <h2>We have some new features, would you like to see them?</h2>
       <form>
-        <button @click="agree">Yes</button>
-        <button @click="disagree">No</button>
+        <button custom-button @click="agree">Yes</button>
+        <button custom-button @click="disagree">No</button>
       </form>
     </div>
   </div>

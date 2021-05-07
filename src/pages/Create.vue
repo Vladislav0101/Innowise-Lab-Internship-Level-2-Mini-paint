@@ -173,9 +173,6 @@ export default Vue.extend({
   justify-content: center;
   animation: color 20s linear infinite;
 }
-.settings_color input:hover {
-  background: none !important;
-}
 @keyframes color {
   0% {
     background-color: #ee8585;

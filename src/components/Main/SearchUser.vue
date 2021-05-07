@@ -1,6 +1,7 @@
 <template>
   <div class="search">
     <input
+      custom-input
       type="text"
       v-model="inputUser"
       @input="$emit('inputUser', inputUser)"
