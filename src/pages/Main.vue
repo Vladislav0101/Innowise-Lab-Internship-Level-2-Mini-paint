@@ -45,7 +45,7 @@ import Vue from "vue";
 import { mapActions, mapGetters } from "vuex";
 import throttle from "lodash/throttle";
 
-import { IFeedObject } from "@/types/index";
+import { IFeedObject } from "../types/index";
 
 import Header from "@/components/Header/Header.vue";
 import PictureBox from "@/components/Main/PictureBox.vue";
@@ -56,6 +56,7 @@ interface MainDataProps {
   lastCall: Date | null;
   distanceToTheBottom: number;
   isScroll: boolean;
+  throttleScroll: Function;
 }
 
 export default Vue.extend({
@@ -65,7 +66,8 @@ export default Vue.extend({
       arrOfChosenUserPict: "",
       lastCall: null,
       distanceToTheBottom: 300,
-      isScroll: true
+      isScroll: true,
+      throttleScroll: throttle(this.handlerScroll, 300)
     };
   },
   methods: {
@@ -88,40 +90,26 @@ export default Vue.extend({
     },
 
     handlerScroll(): void {
-      throttle(() => {
-        const totalHeight = document.documentElement.scrollHeight;
-        const scrollTop = window.pageYOffset;
-        const displayHeight = document.documentElement.clientHeight;
+      const totalHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.pageYOffset;
+      const displayHeight = document.documentElement.clientHeight;
 
-        if (
-          totalHeight - scrollTop - displayHeight <= this.distanceToTheBottom &&
-          this.isScroll
-        ) {
-          this.getPictures().then(this.setIsScroll);
-        }
-      }, 300);
+      if (
+        totalHeight - scrollTop - displayHeight <= this.distanceToTheBottom &&
+        this.isScroll
+      ) {
+        this.getPictures().then(this.setIsScroll);
+      }
     },
 
     subscribeToScroll(): void {
-      // window.addEventListener("scroll", this.handlerScroll);
-      window.onscroll = throttle(() => {
-        const totalHeight = document.documentElement.scrollHeight;
-        const scrollTop = window.pageYOffset;
-        const displayHeight = document.documentElement.clientHeight;
-
-        if (
-          totalHeight - scrollTop - displayHeight <= this.distanceToTheBottom &&
-          this.isScroll
-        ) {
-          this.getPictures().then(this.setIsScroll);
-        }
-      }, 300);
+      window.addEventListener("scroll", this.throttleScroll);
     }
   },
 
-  // destroyed() {
-  //   window.removeEventListener("scroll", this.handlerScroll);
-  // },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.throttleScroll);
+  },
 
   mounted() {
     if (!this.arrayOfUrls.length) {
