@@ -9,16 +9,11 @@ const state: IAnalytics = {
     end: null,
     isDrawing: false,
   },
-  dataAnalytics: null,
 };
 
 const getters: GetterTree<IAnalytics, IRootState> = {
   drawingProcess(state) {
     return state.drawingProcess;
-  },
-
-  dataAnalytics(state) {
-    return state.dataAnalytics;
   },
 };
 
@@ -28,29 +23,11 @@ const mutations: MutationTree<IAnalytics> = {
     if (end) state.drawingProcess.end = end;
     if (isDrawing) state.drawingProcess.isDrawing = isDrawing;
   },
-
-  setDataAnalytics(state, analyticsObject) {
-    state.dataAnalytics = analyticsObject;
-  },
 };
 
 const actions: ActionTree<IAnalytics, IRootState> = {
-  setAnalyticsUnit({ dispatch, getters }, { data }) {
-    const user = getters.user;
-
-    firebase
-      .database()
-      .ref(`analytics/${new Date().getTime()}`)
-      .update({ ...data, user: user });
-  },
-
-  setPageVisit({ dispatch }, eventName) {
-    dispatch("setAnalyticsUnit", {
-      data: {
-        event: `visit-page`,
-        type: eventName,
-      },
-    });
+  setEventFirebaseAnalytics({ commit }, { eventName, data }) {
+    firebase.analytics().logEvent(`${eventName}`, { ...data });
   },
 
   setDrawingProcess({ getters, commit, dispatch }, mode) {
@@ -69,9 +46,9 @@ const actions: ActionTree<IAnalytics, IRootState> = {
         const start = getters.drawingProcess.start;
         const end = getters.drawingProcess.end;
 
-        dispatch("setAnalyticsUnit", {
+        dispatch("setEventFirebaseAnalytics", {
+          eventName: "drawing-process",
           data: {
-            event: "drawing-process",
             startDrawing: start,
             endDrawing: end,
             totalTime: end - start,
@@ -79,15 +56,6 @@ const actions: ActionTree<IAnalytics, IRootState> = {
         });
       }
     }
-  },
-
-  getAnalytics({ commit, dispatch }) {
-    const ref = firebase.database().ref("analytics");
-
-    ref.on("value", (res) => {
-      commit("setDataAnalytics", res.val());
-      dispatch("addObjEventCount");
-    });
   },
 };
 

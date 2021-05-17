@@ -1,4 +1,4 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { ActionTree, MutationTree, GetterTree } from "vuex";
 
 import { IRootState, IFeed } from "@/types/index";
@@ -46,13 +46,12 @@ const actions: ActionTree<IFeed, IRootState> = {
     const numberOfPicturesOnPage = 7;
 
     const token = state.token;
-    const page = (await token)
+    const page = token
       ? storageRef.list({
           maxResults: numberOfPicturesOnPage,
           pageToken: token,
         })
       : storageRef.list({ maxResults: numberOfPicturesOnPage });
-
     commit("setToken", (await page).nextPageToken);
 
     return dispatch("requestProcessing", {

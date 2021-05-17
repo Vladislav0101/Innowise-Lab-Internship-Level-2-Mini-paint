@@ -1,4 +1,4 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { ActionTree, MutationTree, GetterTree } from "vuex";
 
 import { IRootState, IProfileStateCreate } from "@/types/index";

@@ -1,3 +1,4 @@
+import firebase from "firebase/app";
 import Vue from "vue";
 import VueRouter from "vue-router";
 
@@ -11,6 +12,7 @@ import Registration from "@/pages/Registration.vue";
 import Slider from "@/pages/SliderPage.vue";
 import MyAccount from "@/pages/MyAccount.vue";
 import SomeoneUser from "@/pages/SomeoneUser.vue";
+import Analytics from "@/pages/Analytics.vue";
 
 Vue.use(VueRouter);
 
@@ -80,18 +82,28 @@ const router = new VueRouter({
         requiresAuth: true,
       },
     },
+    {
+      name: "analytics",
+      path: Routes.analytics,
+      component: Analytics,
+      meta: {
+        requiresAuth: true,
+      },
+    },
   ],
 });
 
 router.beforeEach((to, from, next) => {
-  store.dispatch("setAnalyticsUnit", {
-    user: store.getters.user,
-    date: new Date().getTime(),
-    event: `visit-${to.name}-page`,
-  });
-
   const user: string = store.getters.user;
   const isRequiresAuth = to.meta.requiresAuth;
+
+  if (isRequiresAuth && user) {
+    store.dispatch("setPageVisit", to.name);
+  }
+
+  if (from.name === Routes.create) {
+    store.dispatch("setDrawingProcess", "end");
+  }
 
   if (isRequiresAuth && !user) {
     next({ path: Routes.sign });

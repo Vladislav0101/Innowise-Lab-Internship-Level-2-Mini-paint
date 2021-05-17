@@ -6,5 +6,6 @@ enum Routes {
   slider = "/slider",
   myAccount = "/my-account",
   someoneUser = "/user/:id",
+  analytics = "/analytics",
 }
 export default Routes;

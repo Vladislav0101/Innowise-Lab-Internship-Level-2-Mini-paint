@@ -20,7 +20,7 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 import { ICanvas } from "../types/index";
 
@@ -36,7 +36,8 @@ export default Vue.extend({
       sizeLocal: 5,
       action: "up",
       arrToBuildFigure: [],
-      imageData: ""
+      imageData: "",
+      isStart: false
     };
   },
 
@@ -54,10 +55,17 @@ export default Vue.extend({
   },
 
   methods: {
+    ...mapActions(["setDrawingProcess"]),
+
     mDown(e: MouseEvent): void {
       this.action = "down";
       this.saveImageData();
+
       if (this.mode === "pencil") this.drawPoint(e);
+
+      if (!this.drawingProcess.isDrawing) {
+        this.setDrawingProcess("start");
+      }
     },
 
     mUp(): void {
@@ -148,7 +156,7 @@ export default Vue.extend({
   },
 
   computed: {
-    ...mapGetters(["size", "color", "mode"])
+    ...mapGetters(["size", "color", "mode", "drawingProcess"])
   }
 });
 </script>

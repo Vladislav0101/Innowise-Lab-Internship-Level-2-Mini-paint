@@ -1,4 +1,4 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { ActionTree, MutationTree, GetterTree } from "vuex";
 
 import { IRootState, IUser } from "@/types/index";
@@ -33,10 +33,9 @@ const actions: ActionTree<IUser, IRootState> = {
   async checkEqualVersion({ getters, commit, dispatch }) {
     const emailToDB = stringToDBFormat(getters.email);
 
-    firebase
-      .database()
-      .ref(`users/${emailToDB}/version`)
-      .on("value", (res) => {
+    const ref = firebase.database().ref(`users/${emailToDB}/version`);
+    if (ref) {
+      ref.on("value", (res) => {
         const result = res.val();
 
         if (!result || result.version !== getters.version) {
@@ -49,6 +48,9 @@ const actions: ActionTree<IUser, IRootState> = {
           eventBus.$emit("isNeedToLearningPath");
         }
       });
+    } else {
+      dispatch("setVersionOnDB");
+    }
     commit("setFeatures");
   },
 

@@ -40,3 +40,20 @@ export function stringFromDBFormat(str: string): string {
     })
     .join("");
 }
+
+export function filterByDate(obj: object, min: any, max: any) {
+  const filterObject: any = {};
+
+  const minDate = min ? new Date(min).getTime() : 0;
+  const maxDate = max ? new Date(max).getTime() : new Date().getTime();
+
+  Object.entries(obj).forEach((item) => {
+    const key = +item[0];
+    const value = item[1];
+
+    if (minDate < key && key < maxDate) {
+      filterObject[key] = value;
+    }
+  });
+  return filterObject;
+}

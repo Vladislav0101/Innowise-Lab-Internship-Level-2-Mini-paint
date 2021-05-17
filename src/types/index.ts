@@ -31,6 +31,7 @@ export interface ICanvas {
   action: string;
   arrToBuildFigure: Array<Array<number>>;
   imageData: any;
+  isStart: boolean;
 }
 
 export interface IProfileStateCreate {
@@ -78,5 +79,15 @@ export interface ISomeoneUser {
 }
 
 export interface IAnalytics {
-  countEvents: { [key: string]: number };
+  // countEvents: { [key: string]: number };
+  drawingProcess: {
+    start: number | null;
+    end: number | null;
+    isDrawing: boolean;
+  };
+  dataAnalytics: { [key: number]: {} } | null;
+}
+
+export interface ICharts {
+  objEventCount: { [key: string]: number } | null;
 }

@@ -9,6 +9,7 @@ import version from "@/store/version";
 import auth from "@/store/auth";
 import someoneUserAccount from "@/store/someoneUserAccount";
 import analytics from "@/store/analytics";
+import charts from "@/store/charts";
 
 import { IRootState } from "@/types/index";
 
@@ -17,6 +18,7 @@ Vue.use(Vuex);
 const store: StoreOptions<IRootState> = {
   state: { version: "1.0.0" },
   modules: {
+    charts,
     analytics,
     someoneUserAccount,
     auth,

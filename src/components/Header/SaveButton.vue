@@ -42,7 +42,7 @@ import { mapActions, mapGetters } from "vuex";
 
 export default Vue.extend({
   methods: {
-    ...mapActions(["savePicture"]),
+    ...mapActions(["savePicture", "setDrawingProcess"]),
 
     save(): void {
       const img: string = this.canvas.toDataURL();
@@ -50,6 +50,8 @@ export default Vue.extend({
       this.savePicture({ img }).then(() => {
         alert("Save completed");
       });
+
+      this.setDrawingProcess("end");
     }
   },
 
