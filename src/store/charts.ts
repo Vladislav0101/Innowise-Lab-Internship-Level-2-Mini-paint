@@ -2,10 +2,10 @@ import { ActionTree, MutationTree, GetterTree } from "vuex";
 import firebase from "firebase/app";
 
 import { ICharts, IRootState } from "@/types/index";
-import { filterByDate } from "@/utils/helpFunction";
 
 const state: ICharts = {
   objEventCount: null,
+  currentAnalyticObject: null,
 };
 
 const getters: GetterTree<ICharts, IRootState> = {
@@ -16,14 +16,16 @@ const getters: GetterTree<ICharts, IRootState> = {
 
 const mutations: MutationTree<ICharts> = {
   setObjEventCount(state, obj) {
-    state.objEventCount = obj;
+    state.objEventCount = Object.assign({}, state.objEventCount, obj);
   },
 };
 
 const actions: ActionTree<ICharts, IRootState> = {
   addObjEventCount({ getters, commit }, filterByDateObject) {
-    const analytics = getters.dataAnalytics;
-    const objEventCount: any = filterByDateObject ? filterByDateObject : {};
+    const analytics = filterByDateObject
+      ? filterByDateObject
+      : getters.dataAnalytics;
+    const objEventCount: any = {};
 
     Object.entries(analytics).forEach((item: any) => {
       if (!(item[1].type in objEventCount)) {
@@ -34,7 +36,7 @@ const actions: ActionTree<ICharts, IRootState> = {
     });
 
     commit("setObjEventCount", objEventCount);
-    // console.log(filterByDate(analytics, "2021-05-13", "2021-05-15"));
+    return objEventCount;
   },
 };
 

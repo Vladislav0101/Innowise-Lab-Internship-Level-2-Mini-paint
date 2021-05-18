@@ -79,15 +79,16 @@ export interface ISomeoneUser {
 }
 
 export interface IAnalytics {
-  // countEvents: { [key: string]: number };
   drawingProcess: {
     start: number | null;
     end: number | null;
     isDrawing: boolean;
   };
   dataAnalytics: { [key: number]: {} } | null;
+  isLoadAnalytics: boolean;
 }
 
 export interface ICharts {
   objEventCount: { [key: string]: number } | null;
+  currentAnalyticObject: { [key: string]: any } | null;
 }

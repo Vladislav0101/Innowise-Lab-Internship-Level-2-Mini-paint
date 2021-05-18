@@ -10,6 +10,7 @@ const state: IAnalytics = {
     isDrawing: false,
   },
   dataAnalytics: null,
+  isLoadAnalytics: false,
 };
 
 const getters: GetterTree<IAnalytics, IRootState> = {
@@ -19,6 +20,10 @@ const getters: GetterTree<IAnalytics, IRootState> = {
 
   dataAnalytics(state) {
     return state.dataAnalytics;
+  },
+
+  isLoadAnalytics(state) {
+    return state.isLoadAnalytics;
   },
 };
 
@@ -31,6 +36,10 @@ const mutations: MutationTree<IAnalytics> = {
 
   setDataAnalytics(state, analyticsObject) {
     state.dataAnalytics = analyticsObject;
+  },
+
+  setIsLoadAnalytics(state, value) {
+    state.isLoadAnalytics = value;
   },
 };
 
@@ -71,7 +80,7 @@ const actions: ActionTree<IAnalytics, IRootState> = {
 
         dispatch("setAnalyticsUnit", {
           data: {
-            event: "drawing-process",
+            event: "drawingProcess",
             startDrawing: start,
             endDrawing: end,
             totalTime: end - start,
@@ -86,7 +95,7 @@ const actions: ActionTree<IAnalytics, IRootState> = {
 
     ref.on("value", (res) => {
       commit("setDataAnalytics", res.val());
-      dispatch("addObjEventCount");
+      commit("setIsLoadAnalytics", true);
     });
   },
 };

@@ -3,7 +3,6 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 import "firebase/storage";
-// import "firebase/analytics";
 
 import { IRootState, IInit } from "@/types/index";
 
@@ -38,7 +37,6 @@ const actions: ActionTree<IInit, IRootState> = {
 
     firebase.initializeApp(firebaseConfig);
 
-    // firebase.analytics();
     dispatch("getAnalytics");
 
     if (firebase.apps.length > 0) {
